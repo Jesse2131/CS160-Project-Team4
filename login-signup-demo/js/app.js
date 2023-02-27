@@ -22,9 +22,9 @@ function login() {
 }
 
 function signup() {
-    const emailVal = document.getElementById('email_sign').value;
-    const passwordVal = document.getElementById('password_sign').value;
-    firebase.auth().createUserWithEmailAndPassword(emailVal, passwordVal)
+    const email = document.getElementById('email_sign').value;
+    const password = document.getElementById('password_sign').value;
+    firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(userCredential => {
         // User signed up successfully
         console.log(userCredential);
@@ -34,8 +34,7 @@ function signup() {
       })
       .catch(error => {
         // Handle errors here
-        console.error(error);
-        alert(error.message);
+        document.getElementById("errormsg").innerHTML = error.message;
     });
 }
 
