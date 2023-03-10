@@ -12,7 +12,10 @@ to add to whatever branch you're on
 
 1. git add files or git add *. (git add * adds everything in the current directiory you're in) 
 2. git commit -m "whatever message" 
-3. git push. (This will push whatever you added to the github and you should be able to see it online) Make sure you're in the correct branch 
+3. git push. (This will push whatever you added to the github and you should be able to see it online) Make sure you're in the correct branch  
+
+if you're pushing to a branch for the first time use, git push --set-upstream origin branchname 
+
 
 After you have already cloned the repo, just use 
 
