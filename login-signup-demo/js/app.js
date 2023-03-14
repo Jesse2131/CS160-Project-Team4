@@ -17,7 +17,7 @@ function login() {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.error(errorCode, errorMessage);
-      alert(errorMessage);
+      document.getElementById("errormsg").innerHTML = error.message;
     });
 }
 
