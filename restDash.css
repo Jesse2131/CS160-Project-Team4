@@ -1,0 +1,130 @@
+/*Menu Buttons*/
+nav a{
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 10px;
+    float: right;
+    margin-right: 20px;
+}
+
+nav a:hover {
+    background-color: #f1af3d;
+}
+/*Driver Search Button*/
+button {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    border-radius: 10px;
+    border: none;
+    font-size: 25px;
+}
+
+button:hover {
+    background-color: #f1af3d;
+}
+
+/*Dashboard Alignment*/
+.aligned {
+    height: 400px;
+}
+
+.column1 {
+    float: left;
+}
+
+.column2 {
+    float: right;
+    margin-top: -50px;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/*Text*/
+h1 {
+    color: #f1af3d;
+    font-family: Sen-Bold;
+    font-size: 80px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+h2 {
+    color: #acacac;
+}
+
+body {
+    margin: 100px;
+    font-family: Sen;
+    font-size: 25px;
+}
+
+@font-face {
+    font-family: Sen;
+    src: url(Sen-Regular.ttf);
+}
+@font-face {
+    font-family: Sen-Bold;
+    font-weight: bold;
+    src: url(Sen-Bold.ttf);
+}
+
+/*Progress Bar*/
+#progress {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+#progress-bar {
+    position: absolute;
+    background: #f1af3d;
+    height: 15px;
+    width: 800px;
+    top: 50%;
+    left: 0;
+}
+
+#icons {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+#icons::before {
+    content: "";
+    background-color: #acacac;
+    position: absolute;
+    height: 5px;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    z-index: -1;
+}
+
+#icons .step {
+    position: relative;
+    background-color: white;
+    border-radius: 100%;
+    border: 3px solid #acacac;
+    height: 25px;
+    width: 25px;
+    line-height: 25px;
+    text-align: center;
+}
+
+#icons .step.active {
+    color: white;
+    background-color: #f1af3d;
+    border-color: #f1af3d;
+}

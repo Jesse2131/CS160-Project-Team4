@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Restaurant Dashboard</title>
+    <link rel="stylesheet"
+        href="restDash.css">
+    <script async src="progressBar.js"></script>
+</head>
+<body>
+    <!Dashboard Menu>
+    <nav>
+        <a href="login.html">Log Out</a>
+        <a href="restaurantAcc.html">Account</a>
+        <a href="restaurantDash.html">Dashboard</a>
+    </nav>
+
+    <!Logo>
+    <div class="aligned">
+        <a href="restaurantWel.html">
+            <img src="ODFDS_Logo.png"
+                 alt="(Logo)"
+                 style="width: 250px; position: absolute; transform: translate(0, 150px)">
+        </a>
+    </div>
+
+    <!Dashboard>
+
+    <div class="row">
+        <div class="column1">
+            <img src="order.png"
+                 alt="(orders)"
+                 style="width: 800px">
+        </div>
+        <div class="column2">
+            <img src="map.png"
+                 alt="(map)"
+                 style="width: 400px">
+        </div>
+    </div>
+
+    <!Order Progress>
+    <div id="progress">
+        <div id="progress-bar">
+            <ul id="icons">
+                <li class="step active">1</li>
+                <li class="step">2</li>
+                <li class="step">3</li>
+            </ul>
+        </div>
+    </div>
+    <button id="progress-prev" class="btn" disabled>Previous</button>
+    <button id="progress-next" class="btn">Next</button>
+</body>
+</html>
