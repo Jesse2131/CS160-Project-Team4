@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+
         <meta charset="UTF-8">
+
         <!-- LINK STYLESHEET -->
         <link rel="stylesheet" href="../CSS/inProgressOrder.css">
 
@@ -15,46 +17,49 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
-        <!--        <link rel="icon" type="image/x-icon" href="odfdsLOGO.png">-->
         <title>ODFDS</title>
+
     </head>
 
 
     <body>
 
-    <ul>
-        <li><a href="https://github.com/Jesse2131/CS160-Project-Team4">Log Out</a></li>
-        <li><a href="https://github.com/Jesse2131/CS160-Project-Team4">Account</a></li>
-        <li><a href="https://github.com/Jesse2131/CS160-Project-Team4">Dashboard</a></li>
-        <li><a href="https://github.com/Jesse2131/CS160-Project-Team4">Start an Order</a></li>
-    </ul>
+        <!-- NAVBAR -->
+        <ul>
+            <li><a href="https://github.com/Jesse2131/CS160-Project-Team4">Log Out</a></li>
+            <li><a href="https://github.com/Jesse2131/CS160-Project-Team4">Account</a></li>
+            <li><a href="https://github.com/Jesse2131/CS160-Project-Team4">Dashboard</a></li>
+            <li><a href="https://github.com/Jesse2131/CS160-Project-Team4">Start an Order</a></li>
+        </ul>
 
-    <img class = "odfds-logo" src="../ASSETS/odfdsLOGO.png" alt=ODFDS_Logo"/>
-    <div class="details-and-tracking-flex">
-        <div class="order-details">
-            <div class="c1-r1">
-                <p class="driver-name">Driver Name</p>
-                <p class="eta">ETA: XX min</p>
+        <img class = "odfds-logo" src="../ASSETS/odfdsLOGO.png" alt=ODFDS_Logo"/>
+        <!-- FLEX DISPLAY (row): driver details, tracker, map (placeholder at the moment)-->
+        <div class="details-and-tracking-flex">
+            <!-- FLEX DISPLAY (columns): driver details, tracker, map (placeholder at the moment) -->
+            <div class="driver-details">
+                <div class="c1-r1">
+                    <p class="driver-name">Driver Name</p>
+                    <p class="eta">ETA: XX min</p>
+                </div>
+                <div class="spec-requests">Special Requests:</div>
+                <div class="spec-requests-details">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
             </div>
-            <div class="spec-requests">Special Requests:</div>
-            <div class="spec-requests-details">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-        </div>
-        <div class="live-tracker">
-            <button class="material-symbols-outlined">
-                storefront
-            </button>
-            <button class="material-symbols-outlined">
-                directions_car
-            </button>
-            <button class="material-symbols-outlined">
-                check_circle
-            </button>
-        </div>
-        <div class="map-placeholder">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3172.3092209100796!2d-121.8810715!3d37.335187399999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fccb864de43d5%3A0x397ffe721937340e!2sSan%20Jos%C3%A9%20State%20University!5e0!3m2!1sen!2sus!4v1678880239971!5m2!1sen!2sus" width="500" height="320" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
+            <div class="live-tracker">
+                <button class="material-symbols-outlined">
+                    storefront
+                </button>
+                <button class="material-symbols-outlined">
+                    directions_car
+                </button>
+                <button class="material-symbols-outlined">
+                    check_circle
+                </button>
+            </div>
+            <div class="map-placeholder">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3172.3092209100796!2d-121.8810715!3d37.335187399999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fccb864de43d5%3A0x397ffe721937340e!2sSan%20Jos%C3%A9%20State%20University!5e0!3m2!1sen!2sus!4v1678880239971!5m2!1sen!2sus" width="500" height="320" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
 
-    </div>
+        </div>
 
     </body>
 </html>

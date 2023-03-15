@@ -1,5 +1,7 @@
+/* MAKE SURE FONT IS IMPORTED*/
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400&display=swap');
 
+/* NAVBAR */
 ul {
     list-style-type: none;
     margin: 0;
@@ -28,13 +30,15 @@ li a:hover {
     background-color: #F1AF3D;
 }
 
-
+/* LOGO */
 .odfds-logo {
     max-height: 200px;
     max-width: 200px;
     padding-left: 100px;
     padding-top: 100px;
 }
+
+/* TEXT */
 .welcome-to-odfds {
     font-family: 'Poppins', sans-serif;
     color: #F1AF3D;
@@ -63,6 +67,8 @@ li a:hover {
     padding-left: 100px;
     margin: 0px;
 }
+
+/* BUTTON(S) */
 button {
     border: 0px;
     border-radius: 4px;
