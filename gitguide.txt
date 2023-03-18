@@ -1,0 +1,23 @@
+to get the repo into your local machine 
+
+1. git clone https://github.com/Jesse2131/CS160-Project-Team4.git
+
+to create a branch 
+
+1. git checkout -b branchname. This will automatically switch you to the branch you made 
+2. git branch. This will list what branches we have and also what branch you're currently in 
+3. git checkout branchname. This switches you to the branch you specify 
+
+to add to whatever branch you're on 
+
+1. git add files or git add *. (git add * adds everything in the current directiory you're in) 
+2. git commit -m "whatever message" 
+3. git push. (This will push whatever you added to the github and you should be able to see it online) Make sure you're in the correct branch  
+
+if you're pushing to a branch for the first time use, git push --set-upstream origin branchname 
+
+
+After you have already cloned the repo, just use 
+
+1. git pull. This will update your local files with the updated github files online.
+
