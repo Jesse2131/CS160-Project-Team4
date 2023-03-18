@@ -1,0 +1,120 @@
+/* MAKE SURE FONT IS IMPORTED*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400&display=swap');
+
+/* NAVBAR */
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    padding-top: 25px;
+    padding-right: 75px;
+    padding-bottom: 25px;
+}
+li {
+    display: inline;
+    float: right;
+    padding: 7px;
+}
+li a {
+    font-family: 'Poppins', sans-serif;
+    display: block;
+    color: #FFFFFF;
+    background-color: #000000;
+    text-align: center;
+    padding: 8px 17px;
+    text-decoration: none;
+    border-radius: 4px;
+
+}
+li a:hover {
+    background-color: #F1AF3D;
+}
+
+/* LOGO */
+.odfds-logo {
+    max-height: 150px;
+    max-width: 150px;
+    padding-left: 75px;
+    padding-top: 150px;
+}
+
+/* FLEXBOX */
+.details-and-tracking-flex {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: row;
+}
+.driver-details {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 60px;
+    padding-bottom: 90px;
+    margin-left: 75px;
+    margin-right: 25px;
+    border-radius: 12px;
+    background-color: #f5f5f5;
+}
+.live-tracker {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-right: 25px;
+}
+.map-placeholder {
+    border-radius: 30%;
+    margin-right: 75px;
+}
+.c1-r1 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    font-size: 35px;
+}
+.driver-name {
+    color: #F1AF3D;
+    font-weight: 500;
+}
+.eta {
+    color: #F1AF3D;
+    font-weight: 300;
+}
+.spec-requests {
+    font-size: 17px;
+    font-weight: 600;
+}
+.spec-requests-details {
+    font-size: 17px;
+    font-weight: 300;
+    font-style: italic;
+}
+
+/* ICONS */
+.material-symbols-outlined {
+    max-height: 48px;
+    max-width: 48px;
+    background-color: transparent;
+    border: 0px;
+    cursor: pointer;
+    opacity: 0.5;
+    color: #F1AF3D;
+    font-variation-settings:
+         'FILL' 1,
+         'wght' 700,
+         'GRAD' 0,
+         'opsz' 48
+ }
+.material-symbols-outlined:hover {
+    opacity: 1;
+    color: #F1AF3D;
+    justify-content: space-between;
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 700,
+    'GRAD' 0,
+    'opsz' 48
+}
