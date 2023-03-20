@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Driver's Dashboard</title>
+
+    <link rel="stylesheet" href="../CSS/deliveryDashboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="driverDashboardContainer">
+
+      <ul>
+        <li><a href="https://github.com/Jesse2131/CS160-Project-Team4">Log Out</a></li>
+        <li><a href="https://github.com/Jesse2131/CS160-Project-Team4">Account</a></li>
+        <li><a href="https://github.com/Jesse2131/CS160-Project-Team4">Dashboard</a></li>
+      </ul>
+
+      <img id="dashboardLogo" src="../../../ASSETS/odfdsLOGO.png" />
+
+      <br>
+      <img id="restaurantImg" src="../images/restaurantIcon.png" />
+      <img id="placeholderMapImg" src="../images/placeholderMap.PNG" />
+      <br>
+      <img id="dotImg1" src="../images/progressDots.png" />
+      <button id="confirmPickupButton" type="button">
+        <img class="checkImg" src="../images/unfilledCheckIcon.png" />
+      </button>
+      <img id="driverImg" src="../images/carIcon.png" />
+      <br>
+      <img id="dotImg2" src="../images/progressDots.png" />
+      <button id="confirmDeliveryButton" type="button">
+        <img class="checkImg" src="../images/unfilledCheckIcon.png" />
+      </button>
+      <img id="completeImg" src="../images/fullCheckIcon.png" />
+    </div>
+
+    <div class="currentDeliveriesBorder">
+      <div class="currentDeliveries">
+        <h1>
+          Restaurant Name - Order 1
+          <span class="minuteText">
+            35 Min
+          </span>
+        </h1>
+        <p class="requestHeader">Special Requests:</p>
+        <p class="requestText">Any special requests</p>
+
+        <h1>
+          Restaurant Name - Order 2
+        </h1>
+        <p class="requestHeader">Special Requests:</p>
+        <p class="requestText">Any special requests</p>
+      </div>
+    </div>
+  </body>
+</html>
