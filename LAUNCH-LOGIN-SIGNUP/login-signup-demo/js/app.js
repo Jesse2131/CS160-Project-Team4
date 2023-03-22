@@ -1,5 +1,9 @@
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
+// get the database
+const db = firebase.firestore(); 
+// get the 3 collections
+const drivers = db.collection('drivers'); 
 
 function login() {
   const email = document.getElementById('email').value;
@@ -28,6 +32,8 @@ function signup() {
       .then(userCredential => {
         // User signed up successfully
         console.log(userCredential);
+        // Add user to DB 
+        addToDB(); 
         // Redirect to login page or do other actions
         window.location.href = 'index.html';
       })
@@ -35,5 +41,19 @@ function signup() {
         // Handle errors here
         document.getElementById("errormsg").innerHTML = error.message;
     });
+}
+
+function addToDB() {
+  // Add user to correct database collection
+  var userId = firebase.auth().currentUser.uid;
+  drivers.add({
+    first_name: "test",
+    last_name: "test last", 
+    address: "tesst addy"
+  }).then((docRef) => {
+    console.log("Success");
+  }).catch((error) => {
+    console.error("error");
+  });
 }
 
