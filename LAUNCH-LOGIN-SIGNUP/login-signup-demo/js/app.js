@@ -36,7 +36,6 @@ function signup() {
 
     // Continue if no errors
     creation.then(function () {
-        // var userUid = auth.currentUser.uid;
         addToDB();
     });
 }
@@ -44,33 +43,22 @@ function signup() {
 function addToDB() {
   // get the database
   const db = firebase.firestore(); 
-  // Get current user 
+  // Get current user and their type 
   var userUid = firebase.auth().currentUser.uid;
-  // add to the correct collection 
-  var fileName = location.pathname.split("/").slice(-1)
-  var col_name = " ";
-  if (fileName === "cust_login.html"){
-    col_name = "customers";
-  }
-  else if(fileName === "rest_login.html"){
-    col_name = "restaraunts";
-  }
-  else{
-    col_name = "drivers";
-  }
-  var col = db.collection(col_name);
-  console.log(col_name); 
+  var user_type = document.getElementById('user-type').value;
+  // Add to correct collection
+  var col = db.collection(user_type);
 
-  // col.doc(userUid).set({
-  //   first_name: "test",
-  //   last_name: "test last", 
-  //   address: "tesst addy"
-  // }).then((docRef) => {
-  //   console.log("Success");
-  //   // Redirect to main page 
-  //   window.location.href = "index.html"; 
-  // }).catch((error) => {
-  //   console.error(error);
-  // });
+  col.doc(userUid).set({
+    first_name: "test",
+    last_name: "test last", 
+    address: "tesst addy"
+  }).then((docRef) => {
+    console.log("Success");
+    // Redirect to main page 
+    window.location.href = "index.html"; 
+  }).catch((error) => {
+    console.error(error);
+  });
 }
 
