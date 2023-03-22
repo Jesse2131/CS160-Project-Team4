@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400&display=swap');
+
 .currentDeliveries {
     width: 690px;
     height: 390px;
@@ -40,17 +42,22 @@
     float: right;
     margin-right: 25px;
     font-weight: normal;
+    font-family: 'Poppins', sans-serif;
 }
 
 .requestHeader {
     font-weight: bold;
     margin-left: 25px;
     margin-top: 35px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
 }
 
 .requestText {
     margin-left: 25px;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
 }
 
 .checkImg {
@@ -138,8 +145,9 @@
 h1 {
     color: #f1af3d;
     margin-left:25px;
-    font-size: 36px;
+    font-size: 30px;
     margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
 }
 
 ul {
