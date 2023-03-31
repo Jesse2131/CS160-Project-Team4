@@ -7,11 +7,18 @@ function login() {
 
   firebase.auth().signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-      console.log(user);
-      // Redirect to dashboard or home page
-      window.location.href = 'index.html';
+      // Redirect to the correct dashboard 
+      var user_type = document.getElementById('user-type').value;
+      console.log(user_type);
+      if(user_type === 'customers'){
+        window.location.href = 'index.html';
+      }
+      else if(user_type === 'driver'){
+        window.location.href = "../../driver/driver-user-interface/driver-dashboard.html";
+      }
+      else{
+        window.location.href = "../../restaurantDash.html";
+      }
     })
     .catch((error) => {
       const errorCode = error.code;
