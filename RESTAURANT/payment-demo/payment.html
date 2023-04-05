@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/payment_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main">
+    <div class="container">
+        <div class="navigation-component">
+            <div class="row">
+                <a class="small-box" href="" style="background-color: orange;">
+                    <div class="icon-box">
+                        <i class="fa fa-shopping-basket"></i>
+                    </div>
+                    <text>START AN ORDER</text>
+                </a>
+                <a class="small-box" href="">
+                    <text>DASHBOARD</text>
+                </a>
+                <a class="small-box" href="">
+                    <text>ACCOUNT</text>
+                </a>
+                <a class="small-box" href="">
+                    <text>LOG OUT</text>
+                </a>
+            </div>
+        </div>
+        <img src="../../ASSETS/odfdsLOGO.png" alt="" style="height: 150px; width: 150px; align-self: flex-start;">
+        <form action="">
+            <div style="flex: 5; padding-right: 20px;">
+                <div class="row">
+                    <div class="col">
+                        <h3 class="title">payment</h3>
+                        <div class="inputBox">
+                            <span>cards accepted :</span>
+                            <img src="../../ASSETS/card_img.png" alt="">
+                        </div>
+                        <div class="inputBox">
+                            <span>name on card :</span>
+                            <input type="text" placeholder="mr. john deo">
+                        </div>
+                        <div class="inputBox">
+                            <span>credit card number :</span>
+                            <input type="number" placeholder="1111-2222-3333-4444">
+                        </div>
+                        <div class="inputBox">
+                            <span>exp month :</span>
+                            <input type="text" placeholder="january">
+                        </div>
+
+                        <div class="flex">
+                            <div class="inputBox">
+                                <span>exp year :</span>
+                                <input type="number" placeholder="2022">
+                            </div>
+                            <div class="inputBox">
+                                <span>CVV :</span>
+                                <input type="text" placeholder="1234">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 15px">
+                    <div class="col">
+                        <h3 class="title">billing address</h3>
+
+                        <div class="inputBox">
+                            <span>full name :</span>
+                            <input type="text" placeholder="john deo">
+                        </div>
+                        <div class="inputBox">
+                            <span>email :</span>
+                            <input type="email" placeholder="example@example.com">
+                        </div>
+                        <div class="inputBox">
+                            <span>address :</span>
+                            <input type="text" placeholder="room - street - locality">
+                        </div>
+                        <div class="inputBox">
+                            <span>city :</span>
+                            <input type="text" placeholder="mumbai">
+                        </div>
+
+                        <div class="flex">
+                            <div class="inputBox">
+                                <span>state :</span>
+                                <input type="text" placeholder="india">
+                            </div>
+                            <div class="inputBox">
+                                <span>zip code :</span>
+                                <input type="text" placeholder="123 456">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="flex: 3; padding-left: 15px;">
+                <div class="col">
+                    <h3 class="title">DETAILS</h3>
+                    <br/>
+                    <div class="row" style="justify-content: space-between; width: 100%;">
+                        <text>Total Orders</text>
+                        <text>$XX.00</text>
+                    </div>
+                    <div class="row" style="justify-content: space-between; width: 100%;">
+                        <text>Trip minimum</text>
+                        <text>$5.00</text>
+                    </div>
+                    <div class="row">
+                        <text>XX miles</text>
+                        <text>$XX.00</text>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <text>Total:</text>
+                        <text>$YY.00</text>
+                    </div>
+                </div>
+                <input type="submit" value="proceed to checkout" class="submit-btn">
+            </div>
+        </form>
+    
+    </div>
+</div>
+</body>
+</html>

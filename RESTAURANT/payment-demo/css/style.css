@@ -140,10 +140,14 @@
     flex: 1;
     background-color: #F0F0F0;
     border-radius: 10px;
-    padding: 50px 30px;
+    padding: 100px 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.driver-info text{
+    font-size: 20px;
 }
 
 .driver-name{
@@ -156,8 +160,12 @@
     flex: 1;
     background-color: #F0F0F0;
     border-radius: 10px;
-    padding: 90px 30px;
+    padding: 100px 30px;
     margin-left: 10px;
+}
+
+.trip-info text{
+    font-size: 20px;
 }
 
 .total-price{
