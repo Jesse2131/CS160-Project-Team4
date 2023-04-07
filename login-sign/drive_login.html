@@ -2,24 +2,24 @@
 <html>
   <head>
     <title>ODFDS - Restaurant Login/Signup</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/login-sign.css">
   </head>
   <body>
 
     <div class="wrapper">
 
         <div class="content1">
-            <img src="images/ODFDS_Logo.png" alt="logo">
+            <img src="../ASSETS/odfdsLOGO.png" alt="logo">
         </div>
 
         <div class="content2">
             <div class="login-container">
-                <img src="images/rest.png" alt="cust">
+                <img src="../ASSETS/login-sign/drive.png" alt="cust">
                 <br><br>
                 <form>
                   <input type="email" id="email" name="email" placeholder="Email">
                   <input type="password" id="password" name="password" placeholder="Password">
-                  <input type="hidden" id="user-type" name="user-type" value="restaurants">
+                  <input type="hidden" id="user-type" name="user-type" value="driver">
                   <p id="errormsg"></p>
                   <button type="button" onclick="login()">Login</button><br>
                   <button type="button" onclick="signup()">Sign up</button>
@@ -32,7 +32,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
-    <script src="js/config.js"></script>
-    <script src="js/app.js"></script>
+    <script src="../JS/config.js"></script>
+    <script src="../JS/login-sign.js"></script>
   </body>
 </html>
