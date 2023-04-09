@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ODFDS - Sign Up</title>
+    <!-- Reset css for consistence styles across browsers -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="../CSS/login-sign.css">
+  </head>
+  <body>
+
+    <div class="wrapper">
+        <div class="login-container">
+            <img src="../ASSETS/odfdsLOGO.png" alt="logo">
+            <br><br>
+            <form>
+                <input type="email" id="email" name="email" placeholder="Email">
+                <input type="password" id="password" name="password" placeholder="Password">
+                <select id="user-type">
+                    <option value="" disabled selected>Please select who you are</option>
+                    <option value="customers">Customer</option>
+                    <option value="restaurants">Restaurant</option>
+                    <option value="drivers">Driver</option>
+                </select>
+                <p id="errormsg"></p>
+                <button type="button" onclick="signup()">Sign Up</button><br>
+                <a href="login.html">Already have an account? Login here!</a>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
+    <script src="../JS/config.js"></script>
+    <script src="../JS/login-sign.js"></script>
+  </body>
+</html>
