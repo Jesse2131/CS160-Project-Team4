@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400&display=swap');
+
+.accInfoContainerBorder {
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: #f5f5f5;
+    width: 860px;
+    height: 400px;
+    margin: auto;
+    top: 16px;
+    position: relative;
+}
+
+.accInfoCategories {
+    background-color: #acacac;
+    width: 220px;
+    height: 400px;
+    float: left;
+    top: 0px;
+    position: relative;
+    border: none;
+    border-right: 2px solid #F1AF3D;
+}
+
+.accInfoContainer {
+    overflow: auto;
+    width: 638px;
+    height: 400px;
+    float: right;
+    top: 0px;
+    position: relative;
+    border: none;
+}
+
+.infoLabel {
+    font-weight: bold;
+}
+
+.infoText {
+    margin-bottom: 30px;
+}
+
+.selectedButton {
+
+}
+
+.selectedButton:hover {
+    background-color: #F1AF3D;
+    color: white;
+}
+
+.deselectedButton {
+    background-color: #acacac;
+    color: black;
+}
+
+.deselectedButton:hover {
+    background-color: #F1AF3D;
+    color: white;
+}
+
+button {
+    border: none;
+    border-bottom: 2px solid #f5f5f5;
+    width: 220px;
+    height: 100px;
+    background-color: black;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    margin-left: 40px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    padding-top: 25px;
+    padding-right: 75px;
+}
+
+li {
+    display: inline;
+    float: right;
+    padding: 7px;
+}
+
+li a {
+    font-family: 'Poppins', sans-serif;
+    display: block;
+    color: #FFFFFF;
+    background-color: #000000;
+    text-align: center;
+    padding: 8px 17px;
+    text-decoration: none;
+    border-radius: 4px;
+
+}
+
+li a:hover {
+    background-color: #F1AF3D;
+}
+
+.odfds-logo {
+    width: 10%;
+    height: 10%;
+    margin-left: 80px;
+    margin-top: 40px;
+}
