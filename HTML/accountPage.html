@@ -32,19 +32,21 @@
         <button class="deselectedButton" id="accInfoButton4" onclick="viewOrdrHist()">Order History</button>
       </div>
       <div class="accInfoContainer" id="accountDetails">
-        <p class="infoLabel">Username:</p>
-        <p class="infoText">Sample</p>
-        <p class="infoLabel">Password:</p>
-        <p class="infoText">Sample</p>
-        <p class="infoLabel">Email:</p>
-        <p class="infoText">Sample</p>
-        <p class="infoLabel">Account Type:</p>
-        <p class="infoText">Sample</p>
+        <form>
+          <p class="infoLabel">Username:</p>
+          <input class="infoText" id="text" type="text" name="updateUsername" placeholder="username"/>
+          <p class="infoLabel">Password:</p>
+          <input class="infoText" id="password" type="password" name="updatePassword" placeholder="password"/>
+          <p class="infoLabel">Email:</p>
+          <input class="infoText" id="email" type="email" name="updateEmail"/>
+          <p class="infoLabel">Account Type:</p>
+          <p class="infoText">Sample</p>
+        </form>
       </div>
       <div class="accInfoContainer" id="addressInformation" hidden>
-        <p class="infoLabel">Address Line 1</p>
+        <p class="infoLabel">Address Line 1:</p>
         <p class="infoText">Sample</p>
-        <p class="infoLabel">Address Line 2</p>
+        <p class="infoLabel">Address Line 2:</p>
         <p class="infoText">Sample</p>
         <p class="infoLabel">City:</p>
         <p class="infoText">Sample</p>
@@ -57,6 +59,12 @@
       </div>
     </div>
 
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
+    <script src="../JS/config.js"></script>
+    <script src="../JS/login-sign.js"></script>
     <script src="../JS/accountPage.js"></script>
   </body>
 </html>

@@ -75,3 +75,21 @@ function viewOrdrHist() {
     but4.classList.add('selectedButton');
     but4.classList.remove('deselectedButton');
 }
+
+function displayInfo() {
+    const db = firebase.firestore();
+    const curr_userID = sessionStorage.getItem("currentUser");
+    const curr_user = db.collection('drivers').doc(curr_userID);
+    return curr_user.get()
+        .then((doc) => {
+            let retrievedEmail = "";
+            retrievedEmail = doc.data().email;
+            document.getElementById("email").placeholder = retrievedEmail;
+        })
+        .catch((error) => {
+            console.log("Error getting user data:", error);
+            return "";
+        });
+}
+
+window.onload = displayInfo();
