@@ -10,14 +10,14 @@
   </head>
 
   <body>
-    <div>
+    <!-- NAVBAR -->
+    <div class="navbar">
       <ul>
         <li><a href="https://github.com/Jesse2131/CS160-Project-Team4">Log Out</a></li>
-        <li><a href="accountPage.html">Account</a></li>
-        <li><a href="deliveryDashboardDriver.html">Dashboard</a></li>
+        <li><a href="https://github.com/Jesse2131/CS160-Project-Team4">Account</a></li>
+        <li><a href="https://github.com/Jesse2131/CS160-Project-Team4">Dashboard</a></li>
       </ul>
-
-      <img class = "odfds-logo" src="../ASSETS/odfdsLOGO.png" />
+      <img class = "odfds-logo" src="../ASSETS/odfdsLOGO.png" height="452" width="452"/>
     </div>
 
     <div class="accInfoContainerBorder">
@@ -32,14 +32,22 @@
       </div>
       <div class="accInfoContainer" id="accountDetails">
         <form>
-          <p class="infoLabel">Username:</p>
-          <input class="infoText" id="text" type="text" name="updateUsername" placeholder="username"/>
-          <p class="infoLabel">Password:</p>
-          <input class="infoText" id="password" type="password" name="updatePassword" placeholder="password"/>
-          <p class="infoLabel">Email:</p>
-          <input class="infoText" id="email" type="email" name="updateEmail" placeholder="Not Logged In"/>
-          <p class="infoLabel">Account Type:</p>
-          <p class="infoText">Sample</p>
+          <div class="acc-form-group">
+            <p class="infoLabel">Username:</p>
+            <input class="infoText" id="text" type="text" name="updateUsername" placeholder="username"/>
+          </div>
+          <div class="acc-form-group">
+            <p class="infoLabel">Password:</p>
+            <input class="infoText" id="password" type="password" name="updatePassword" placeholder="password"/>
+          </div>
+          <div class="acc-form-group">
+            <p class="infoLabel">Email:</p>
+            <input class="infoText" id="email" type="email" name="updateEmail" placeholder="Not Logged In"/>
+          </div>
+          <div class="acc-form-group">
+            <p class="infoLabel">Account Type:</p>
+            <input class="infoText" id="acc_type" type="acc_type" name="updateType" placeholder="Not Logged In"/>
+          </div>
         </form>
       </div>
       <div class="accInfoContainer" id="addressInformation" hidden>

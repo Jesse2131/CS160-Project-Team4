@@ -1,4 +1,3 @@
-window.onload = displayInfo();
 let allInfo = document.getElementsByClassName("accInfoContainer");
 let but1 = document.getElementById("accInfoButton1");
 let but2 = document.getElementById("accInfoButton2");
@@ -88,5 +87,6 @@ function displayInfo() {
     }).catch((error) => {
         console.log("Error getting user data:", error);
     });
-
 }
+
+window.onload = displayInfo();
