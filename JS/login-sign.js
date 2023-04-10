@@ -17,7 +17,8 @@ function login() {
         }
         else if(user_type === 'drivers'){
           console.log('driver');
-          // window.location.href = "../../driver/driver-user-interface/driver-dashboard.html";
+          window.location.href = "../HTML/welcomeDashboardDriver.html";
+          sessionStorage.setItem("currentUser", curr_user);
         }
         else{
           console.log('restaurants');

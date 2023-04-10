@@ -37,7 +37,7 @@
 }
 
 .infoText {
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
 
 .selectedButton {
@@ -72,6 +72,11 @@ button {
 }
 
 p {
+    font-family: 'Poppins', sans-serif;
+    margin-left: 40px;
+}
+
+input {
     font-family: 'Poppins', sans-serif;
     margin-left: 40px;
 }
