@@ -1,3 +1,4 @@
+window.onload = displayInfo();
 let allInfo = document.getElementsByClassName("accInfoContainer");
 let but1 = document.getElementById("accInfoButton1");
 let but2 = document.getElementById("accInfoButton2");
@@ -80,16 +81,12 @@ function displayInfo() {
     const db = firebase.firestore();
     const curr_userID = sessionStorage.getItem("currentUser");
     const curr_user = db.collection('drivers').doc(curr_userID);
-    return curr_user.get()
-        .then((doc) => {
-            let retrievedEmail = "";
-            retrievedEmail = doc.data().email;
-            document.getElementById("email").placeholder = retrievedEmail;
-        })
-        .catch((error) => {
-            console.log("Error getting user data:", error);
-            return "";
-        });
-}
 
-window.onload = displayInfo();
+    curr_user.get().then((doc) => {
+        const retrievedEmail = doc.data().email;
+        document.getElementById("email").placeholder = retrievedEmail;
+    }).catch((error) => {
+        console.log("Error getting user data:", error);
+    });
+
+}

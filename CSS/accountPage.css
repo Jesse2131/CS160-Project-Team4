@@ -5,10 +5,10 @@
     border-radius: 10px;
     background-color: #f5f5f5;
     width: 860px;
-    height: 400px;
+    /* height: 400px; */
     margin: auto;
-    top: 16px;
-    position: relative;
+    /* top: 16px; */
+    /* position: relative; */
 }
 
 .accInfoCategories {
