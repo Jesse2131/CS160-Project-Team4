@@ -38,6 +38,10 @@
 
 .infoText {
     margin-bottom: 15px;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    font-size: 16px;
 }
 
 .selectedButton {
@@ -117,3 +121,4 @@ li a:hover {
     margin-left: 80px;
     margin-top: 40px;
 }
+
