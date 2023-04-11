@@ -42,6 +42,8 @@ function signup() {
     if(user_type != ""){
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
+      const name = document.getElementById('name').value;
+      const address = document.getElementById('address').value;
   
       // Create user 
       var creation = firebase.auth().createUserWithEmailAndPassword(email, password); 
@@ -54,7 +56,7 @@ function signup() {
   
       // Continue if no errors
       creation.then(function () {
-          addToDB(user_type, email);
+          addToDB(user_type, email, name, address);
       });
     }
     else{
@@ -68,7 +70,7 @@ function addToDB(...params) {
   // Get current user and their type 
   var userUid = firebase.auth().currentUser.uid;
   // unpack params 
-  const [user_type, email] = params
+  const [user_type, email, name, address] = params
   // Add to users collection and corresponding collecion
   var col = db.collection(user_type);
   Promise.all([
@@ -78,8 +80,8 @@ function addToDB(...params) {
     }),
     col.doc(userUid).set({
         email: email,
-        name: "test", 
-        address: "test"
+        name: name,
+        address: address
     })
   ])
   .then(() => {
