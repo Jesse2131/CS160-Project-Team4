@@ -17,7 +17,7 @@
         <li><a href="accountPage.html">Account</a></li>
         <li><a href="deliveryDashboardDriver.html">Dashboard</a></li>
       </ul>
-      <img class = "odfds-logo" src="../ASSETS/odfdsLOGO.png" height="452" width="452"/>
+      <img class="odfds-logo" src="../ASSETS/odfdsLOGO.png" height="452" width="452"/>
     </div>
 
     <div class="accInfoContainerBorder">
@@ -34,7 +34,7 @@
         <form>
           <div class="acc-form-group">
             <p class="infoLabel">Username:</p>
-            <input class="infoText" id="text" type="text" name="updateUsername" placeholder="username"/>
+            <input class="infoText" id="username" type="text" name="updateUsername" placeholder="username"/>
           </div>
           <div class="acc-form-group">
             <p class="infoLabel">Password:</p>
@@ -46,23 +46,35 @@
           </div>
           <div class="acc-form-group">
             <p class="infoLabel">Account Type:</p>
-            <input class="infoText" id="acc_type" type="acc_type" name="updateType" placeholder="Not Logged In"/>
+            <input class="infoText" id="acc_type" type="text" name="updateType" placeholder="Not Logged In"/>
           </div>
         </form>
       </div>
       <div class="accInfoContainer" id="addressInformation" hidden>
-        <p class="infoLabel">Address Line 1:</p>
-        <p class="infoText">Sample</p>
-        <p class="infoLabel">Address Line 2:</p>
-        <p class="infoText">Sample</p>
-        <p class="infoLabel">City:</p>
-        <p class="infoText">Sample</p>
+        <form>
+          <div class="acc-form-group">
+            <p class="infoLabel">Address:</p>
+            <input class="infoText" id="address" type="text" name="updateAddress" placeholder="Not Logged In" />
+          </div>
+          <div class="acc-form-group">
+            <p class="infoLabel">City:</p>
+            <input class="infoText" id="city" type="text" name="updateCity" placeholder="Not Logged In" />
+          </div>
+        </form>
       </div>
       <div class="accInfoContainer" id="paymentInformation" hidden>
-        <p class="infoText">Sample Text</p>
+        <form>
+          <div class="acc-form-group">
+            <p class="infoText">Sample Text</p>
+          </div>
+        </form>
       </div>
       <div class="accInfoContainer" id="orderHistory" hidden>
-        <p class="infoText">There are currently no orders in your history!</p>
+        <form>
+          <div class="acc-form-group">
+            <p class="infoText">There are currently no orders in your history!</p>
+          </div>
+        </form>
       </div>
     </div>
 

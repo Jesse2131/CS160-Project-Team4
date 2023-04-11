@@ -79,11 +79,21 @@ function viewOrdrHist() {
 function displayInfo() {
     const db = firebase.firestore();
     const curr_userID = sessionStorage.getItem("currentUser");
-    const curr_user = db.collection('drivers').doc(curr_userID);
+    const checkUserType = db.collection('users').doc(curr_userID);
+    let retrievedUserType = "";
+    checkUserType.get().then((doc) => {
+        retrievedUserType = doc.data().type;
+        document.getElementById("acc_type").placeholder = retrievedUserType;
 
-    curr_user.get().then((doc) => {
-        const retrievedEmail = doc.data().email;
-        document.getElementById("email").placeholder = retrievedEmail;
+        const curr_user = db.collection(retrievedUserType).doc(curr_userID);
+        curr_user.get().then((doc) => {
+            const retrievedName = doc.data().name;
+            const retrievedEmail = doc.data().email;
+            const retrievedAddress = doc.data().address;
+            document.getElementById("username").placeholder = retrievedName;
+            document.getElementById("email").placeholder = retrievedEmail;
+            document.getElementById("address").placeholder = retrievedAddress;
+        });
     }).catch((error) => {
         console.log("Error getting user data:", error);
     });
