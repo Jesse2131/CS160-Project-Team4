@@ -3,6 +3,7 @@ let but1 = document.getElementById("accInfoButton1");
 let but2 = document.getElementById("accInfoButton2");
 let but3 = document.getElementById("accInfoButton3");
 let but4 = document.getElementById("accInfoButton4");
+const db = firebase.firestore();
 
 function viewAccDet() {
     let newView = document.getElementById("accountDetails");
@@ -77,8 +78,7 @@ function viewOrdrHist() {
 }
 
 function displayInfo() {
-    const db = firebase.firestore();
-    const curr_userID = sessionStorage.getItem("currentUser");
+    const curr_userID = sessionStorage.getItem("currentUser"); 
     const checkUserType = db.collection('users').doc(curr_userID);
     let retrievedUserType = "";
     checkUserType.get().then((doc) => {
@@ -97,6 +97,24 @@ function displayInfo() {
     }).catch((error) => {
         console.log("Error getting user data:", error);
     });
+}
+
+function updateInfo() {
+    const curr_userID = sessionStorage.getItem("currentUser");
+    const checkUserType = db.collection('users').doc(curr_userID);
+    const usernameField = document.getElementById("username");
+    const passwordField = document.getElementById("password");
+    const emailField = document.getElementById("email");
+
+    if (emailField.value !== "") {
+        firebase.auth().curr_userID.updateEmail(emailField)
+        .then(() => {
+            document.getElementById("errormsg").innerHTML = "Changes saved successfully";
+        }).catch((error) => {
+            document.getElementById("errormsg").innerHTML = error;
+        });
+    }
+    
 }
 
 window.onload = displayInfo();
