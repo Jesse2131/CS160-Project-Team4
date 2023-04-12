@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Driver's Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../CSS/starter-code.css">
+    <link rel="stylesheet" href="../CSS/deliveryDashboard.css">
+  </head>
+
+  <body>
+    <div class="driverDashboardContainer">
+
+      <ul>
+        <li><a href="https://github.com/Jesse2131/CS160-Project-Team4">Log Out</a></li>
+        <li><a href="accountPage.html">Account</a></li>
+        <li><a href="deliveryDashboardDriver.html">Dashboard</a></li>
+      </ul>
+
+      <img id="dashboardLogo" src="../ASSETS/odfdsLOGO.png" />
+
+      <br>
+      <img id="restaurantImg" src="../ASSETS/driver-dashboard/restaurantIcon.png" />
+      <img id="placeholderMapImg" src="../ASSETS/driver-dashboard/placeholderMap.PNG" />
+      <br>
+      <img id="dotImg1" src="../ASSETS/driver-dashboard/progressDots.png" />
+      <button id="confirmPickupButton" type="button">
+        <img class="checkImg" src="../ASSETS/driver-dashboard/unfilledCheckIcon.png" />
+      </button>
+      <img id="driverImg" src="../ASSETS/driver-dashboard/carIcon.png" />
+      <br>
+      <img id="dotImg2" src="../ASSETS/driver-dashboard/progressDots.png" />
+      <button id="confirmDeliveryButton" type="button">
+        <img class="checkImg" src="../ASSETS/driver-dashboard/unfilledCheckIcon.png" />
+      </button>
+      <img id="completeImg" src="../ASSETS/driver-dashboard/fullCheckIcon.png" />
+    </div>
+
+    <div class="currentDeliveriesBorder">
+      <div class="currentDeliveries">
+        <h1>
+          Restaurant Name - Order 1
+          <span class="minuteText">
+            35 Min
+          </span>
+        </h1>
+        <p class="requestHeader">Special Requests:</p>
+        <p class="requestText">Any special requests</p>
+
+        <h1>
+          Restaurant Name - Order 2
+        </h1>
+        <p class="requestHeader">Special Requests:</p>
+        <p class="requestText">Any special requests</p>
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
+    <script src="../JS/config.js"></script>
+    <script src="../JS/login-sign.js"></script>
+  </body>
+</html>

@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400&display=swap');
 
 /* NAVBAR */
-ul {
+.navbar ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -10,12 +10,12 @@ ul {
     padding-right: 75px;
     padding-bottom: 25px;
 }
-li {
+.navbar li {
     display: inline;
     float: right;
     padding: 7px;
 }
-li a {
+.navbar li a {
     font-family: 'Poppins', sans-serif;
     display: block;
     color: #FFFFFF;
@@ -26,12 +26,12 @@ li a {
     border-radius: 4px;
 
 }
-li a:hover {
+.navbar li a:hover {
     background-color: #F1AF3D;
 }
 
 /* LOGO */
-.odfds-logo {
+.navbar .odfds-logo {
     max-height: 150px;
     max-width: 150px;
     padding-left: 75px;

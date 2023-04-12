@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400&display=swap');
+
 .currentDeliveries {
     width: 690px;
     height: 390px;
@@ -14,6 +16,8 @@
     width: 690px;
     height: 390px;
     margin-left: 80px;
+    top: -32px;
+    position: relative;
 }
 
 .dashboardButton {
@@ -25,7 +29,7 @@
     left: -25px;
     padding: 5px 15px;
     color: white;
-    cusor: pointer;
+    cursor: pointer;
     border: none;
     border-radius: 4px;
 }
@@ -38,17 +42,22 @@
     float: right;
     margin-right: 25px;
     font-weight: normal;
+    font-family: 'Poppins', sans-serif;
 }
 
 .requestHeader {
     font-weight: bold;
     margin-left: 25px;
     margin-top: 35px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
 }
 
 .requestText {
     margin-left: 25px;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
 }
 
 .checkImg {
@@ -67,6 +76,7 @@
     width: 140px;
     position: absolute;
     left: 800px;
+    top: 197px;
 }
 
 #dotImg1 {
@@ -106,7 +116,7 @@
     width: 35%;
     height: 35%;
     position: relative;
-    top: -20px;
+    top: -40px;
     margin-right: 15px;
 }
 
@@ -135,6 +145,36 @@
 h1 {
     color: #f1af3d;
     margin-left:25px;
-    font-size: 36px;
+    font-size: 30px;
     margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    padding-top: 25px;
+    padding-right: 75px;
+}
+
+li {
+    display: inline;
+    float: right;
+    padding: 7px;
+}
+
+li a {
+    font-family: 'Poppins', sans-serif;
+    display: block;
+    color: #FFFFFF;
+    background-color: #000000;
+    text-align: center;
+    padding: 8px 17px;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+li a:hover {
+    background-color: #F1AF3D;
 }
