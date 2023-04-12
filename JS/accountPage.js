@@ -77,44 +77,75 @@ function viewOrdrHist() {
     but4.classList.remove('deselectedButton');
 }
 
-function displayInfo() {
-    const curr_userID = sessionStorage.getItem("currentUser"); 
-    const checkUserType = db.collection('users').doc(curr_userID);
-    let retrievedUserType = "";
-    checkUserType.get().then((doc) => {
-        retrievedUserType = doc.data().type;
-        document.getElementById("acc_type").placeholder = retrievedUserType;
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        // Set session storage
+        sessionStorage.setItem("currentUser", user.uid);
+        // Email is given
+        document.getElementById("email").placeholder = user.email;
+        // Query db for additional data
+        const checkUserType = db.collection('users').doc(user.uid);
+        let retrievedUserType = "";
+        checkUserType.get().then((doc) => {
+            retrievedUserType = doc.data().type;
+            document.getElementById("acc_type").placeholder = retrievedUserType;
 
-        const curr_user = db.collection(retrievedUserType).doc(curr_userID);
-        curr_user.get().then((doc) => {
-            const retrievedName = doc.data().name;
-            const retrievedEmail = doc.data().email;
-            const retrievedAddress = doc.data().address;
-            document.getElementById("username").placeholder = retrievedName;
-            document.getElementById("email").placeholder = retrievedEmail;
-            document.getElementById("address").placeholder = retrievedAddress;
+            const curr_user = db.collection(retrievedUserType).doc(user.uid);
+            curr_user.get().then((doc) => {
+                const retrievedName = doc.data().name;
+                const retrievedAddress = doc.data().address;
+                document.getElementById("username").placeholder = retrievedName;
+                document.getElementById("address").placeholder = retrievedAddress;
+            });
+        }).catch((error) => {
+            console.log("Error getting user data:", error);
         });
-    }).catch((error) => {
-        console.log("Error getting user data:", error);
-    });
-}
+    } else {
+      // No user is signed in.
+      console.log('User is not signed in');
+    }
+  });
+  
+
+// function displayInfo() {
+
+//     const curr_userID = sessionStorage.getItem("currentUser"); 
+//     const checkUserType = db.collection('users').doc(curr_userID);
+//     let retrievedUserType = "";
+//     checkUserType.get().then((doc) => {
+//         retrievedUserType = doc.data().type;
+//         document.getElementById("acc_type").placeholder = retrievedUserType;
+
+//         const curr_user = db.collection(retrievedUserType).doc(curr_userID);
+//         curr_user.get().then((doc) => {
+//             const retrievedName = doc.data().name;
+//             const retrievedEmail = doc.data().email;
+//             const retrievedAddress = doc.data().address;
+//             document.getElementById("username").placeholder = retrievedName;
+//             document.getElementById("email").placeholder = retrievedEmail;
+//             document.getElementById("address").placeholder = retrievedAddress;
+//         });
+//     }).catch((error) => {
+//         console.log("Error getting user data:", error);
+//     });
+// }
 
 function updateInfo() {
-    const curr_userID = sessionStorage.getItem("currentUser");
-    const checkUserType = db.collection('users').doc(curr_userID);
-    const usernameField = document.getElementById("username");
-    const passwordField = document.getElementById("password");
-    const emailField = document.getElementById("email");
-
+    const curr_user = firebase.auth().currentUser;
+    // Text fields
+    const usernameField = document.getElementById("username").value;
+    const passwordField = document.getElementById("password").value;
+    const emailField = document.getElementById("email").value;
+    
+    
     if (emailField.value !== "") {
-        firebase.auth().curr_userID.updateEmail(emailField)
+        curr_user.updateEmail(emailField)
         .then(() => {
             document.getElementById("errormsg").innerHTML = "Changes saved successfully";
         }).catch((error) => {
             document.getElementById("errormsg").innerHTML = error;
         });
     }
-    
 }
 
-window.onload = displayInfo();
+// window.onload = displayInfo();
