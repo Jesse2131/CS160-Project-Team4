@@ -104,7 +104,7 @@ firebase.auth().onAuthStateChanged(function(user) {
       // No user is signed in.
       console.log('User is not signed in');
     }
-  });
+});
   
 
 // function displayInfo() {
@@ -132,13 +132,12 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 function updateInfo() {
     const curr_user = firebase.auth().currentUser;
+    const curr_user_id = curr_user.uid;
     // Text fields
     const usernameField = document.getElementById("username").value;
-    const passwordField = document.getElementById("password").value;
     const emailField = document.getElementById("email").value;
-    
-    
-    if (emailField.value !== "") {
+
+    if (emailField !== "") {
         curr_user.updateEmail(emailField)
         .then(() => {
             document.getElementById("errormsg").innerHTML = "Changes saved successfully";
@@ -146,6 +145,47 @@ function updateInfo() {
             document.getElementById("errormsg").innerHTML = error;
         });
     }
+    else if(usernameField !== ""){
+        getUserType(curr_user.uid)
+        .then(userType => {
+            const userRef = db.collection(userType).doc(curr_user.uid);
+            updateAttribute(userRef, "name", usernameField);
+        });
+    }
+    // TODO: 
+    // Add code for address update 
 }
+
+// For email reset
+document.getElementById("reset-password-link").addEventListener("click", function(event) {
+    // Prevent the link from navigating to a new page
+    event.preventDefault(); 
+    resetPassword();
+});
+
+function resetPassword() {
+    const curr_user_email = firebase.auth().currentUser.email;
+    firebase.auth().sendPasswordResetEmail(curr_user_email).then(function() {
+      // Password reset email sent.
+      document.getElementById("errormsg").innerHTML = "An email as been sent to you to reset your password";
+    }).catch(function(error) {
+      document.getElementById("errormsg").innerHTML = error;
+    });
+}
+
+// Function to query the DB
+function updateAttribute(userRef, attribute, updatedValue) {
+    const updateObject = {};
+    updateObject[attribute] = updatedValue;
+  
+    userRef.update(updateObject)
+    .then(() => {
+        document.getElementById("errormsg").innerHTML = "Changes saved successfully";
+    })
+    .catch((error) => {
+        document.getElementById("errormsg").innerHTML = error;
+    });
+}
+  
 
 // window.onload = displayInfo();
