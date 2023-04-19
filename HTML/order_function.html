@@ -1,3 +1,4 @@
+<!-- THIS PAGE IS JUST FOR TESTING WILL DELETE AND MOVE TO REST VIEWS  -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -33,7 +34,12 @@
     <!-- PAGE FOOTER ENDS -->
 
     <div style="text-align: center;">
-        <button onclick="addToMenu()">Add to menu</button>
+        <form>
+            <input type="new-menu-item-name" id="new-menu-item-name" name="new-menu-item-name" placeholder="Name of new item">
+            <input type="new-menu-item-price" id="new-menu-item-price" name="new-menu-item-price" placeholder="Price of new item">
+            <p id="errormsg"></p>
+            <button onclick="addToMenu(event)">Add to menu</button>
+        </form>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
@@ -41,8 +47,9 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
     <script src="../JS/config.js"></script>
+    <script src="../JS/starter-code.js"></script>
     <script src="../JS/login-sign.js"></script>
-    <script src="../JS/accountPage.js"></script>
+    <!-- <script src="../JS/accountPage.js"></script> -->
     <script src="../JS/add-menu.js"></script>
   </body>
 </html>
