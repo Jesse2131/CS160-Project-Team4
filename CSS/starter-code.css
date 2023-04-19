@@ -2,27 +2,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400&display=swap');
 
 body {
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     margin-bottom: 150px;
 }
 
 /* NAVBAR */
+.navbar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;   
+}
 .navbar ul {
     list-style-type: none;
-    margin: 0;
-    padding: 0;
     padding-top: 25px;
-    padding-right: 75px;
     padding-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .navbar li {
-    display: inline;
-    float: right;
     padding: 7px;
 }
 .navbar li a {
     font-family: 'Poppins', sans-serif;
-    display: block;
     color: #FFFFFF;
     background-color: #000000;
     text-align: center;
@@ -34,16 +35,27 @@ body {
 .navbar li a:hover {
     background-color: #F1AF3D;
 }
-/* NAVBAR ENDS */
+
+.navbar h1 {
+    color: #F1AF3D;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 /* LOGO */
 .navbar .odfds-logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto; 
     max-height: 150px;
     max-width: 150px;
-    padding-left: 75px;
-    padding-top: 150px;
 }
 /* LOGO ENDS */
+
+/* NAVBAR ENDS */
 
 /* PAGE FOOTER */
 .footer {

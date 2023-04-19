@@ -106,7 +106,7 @@ function display_acc_info(user) {
             document.getElementById("username").placeholder = retrievedName;
             document.getElementById("address").placeholder = retrievedAddress;
             // Update account button to show currently logged in user        
-            document.getElementById("nav-logged-in-user").innerHTML = retrievedName + " - Account";
+            document.getElementById("nav-logged-in-user").innerHTML = "Welcome " + retrievedName;
         });
     }).catch((error) => {
         console.log("Error getting user data:", error);
