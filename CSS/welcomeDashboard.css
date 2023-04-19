@@ -2,27 +2,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400&display=swap');
 
 body {
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     margin-bottom: 150px;
 }
 
 /* NAVBAR */
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    padding-top: 25px;
-    padding-right: 75px;
-    padding-bottom: 25px;
+.navbar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
-li {
-    display: inline;
-    float: right;
+.navbar ul {
+    list-style-type: none;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.navbar li {
     padding: 7px;
 }
-li a {
+.navbar li a {
     font-family: 'Poppins', sans-serif;
-    display: block;
     color: #FFFFFF;
     background-color: #000000;
     text-align: center;
@@ -31,16 +32,79 @@ li a {
     border-radius: 4px;
 
 }
-li a:hover {
+.navbar li a:hover {
     background-color: #F1AF3D;
 }
 
+.navbar h1 {
+    color: #F1AF3D;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /* LOGO */
-.odfds-logo {
+.navbar .odfds-logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     max-height: 150px;
     max-width: 150px;
+}
+/* LOGO ENDS */
+
+/* NAVBAR ENDS */
+
+/* PAGE FOOTER */
+.footer {
+    font-family: 'Poppins', sans-serif;
+    position: fixed;
+    text-align: center;
+    left: 0;
+    bottom: 0;
+    padding-bottom: 0;
+    margin-top: auto;
+    width: 100%;
+    height: 70px;
+    background-color: #F1AF3D;
+    color: #000000;
+}
+
+.odfds-title {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 17px;
+    font-weight: 600;
+    margin: 0;
+    margin-top: 10px;
+    margin-bottom: 3px;
+}
+
+.socials {
+    align-content: center;
+    max-width: 25px;
+    max-height: 24px;
+    padding-left: 10px;
+}
+
+.appstore-download {
+    max-height: 28px;
+}
+
+.playstore-download {
+    max-height: 26px;
+}
+/* PAGE FOOTER ENDS */
+
+.odfds-logo {
+    padding-top: 15px;
+}
+
+.odfds-logo-main {
     padding-left: 75px;
-    padding-top: 175px;
+    padding-top: 100px;
 }
 
 /* TEXT */
@@ -95,43 +159,3 @@ button:hover {
     color: white;
 }
 
-/* PAGE FOOTER */
-.footer {
-    font-family: 'Poppins', sans-serif;
-    position: fixed;
-    text-align: center;
-    left: 0;
-    bottom: 0;
-    padding-bottom: 0;
-    margin-top: auto;
-    width: 100%;
-    height: 70px;
-    background-color: #F1AF3D;
-    color: #000000;
-}
-
-.odfds-title {
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 17px;
-    font-weight: 600;
-    margin: 0;
-    margin-top: 10px;
-    margin-bottom: 3px;
-}
-
-.socials {
-    align-content: center;
-    max-width: 25px;
-    max-height: 24px;
-    padding-left: 10px;
-}
-
-.appstore-download {
-    max-height: 28px;
-}
-
-.playstore-download {
-    max-height: 26px;
-}
-/* PAGE FOOTER ENDS */
