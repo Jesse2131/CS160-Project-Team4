@@ -1,6 +1,3 @@
-firebase.initializeApp(firebaseConfig);
-firebase.analytics();
-
 function login() {
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
@@ -22,7 +19,7 @@ function login() {
         }
         else{
           console.log('restaurants');
-          // window.location.href = "../../restaurantDash.html";
+          window.location.href = "../HTML/order_function.html";
         }
       }).catch((error) => {
         console.log("Error getting user type:", error);
@@ -74,8 +71,6 @@ function logout() {
 }
 
 function addToDB(...params) {
-  // get the database
-  const db = firebase.firestore(); 
   // Get current user and their type 
   var userUid = firebase.auth().currentUser.uid;
   // unpack params 
@@ -94,7 +89,7 @@ function addToDB(...params) {
   ])
   .then(() => {
       console.log("Success");
-      // Redirect to main page 
+      // Redirect to appropriate dashboard
       window.location.href = "index.html"; 
   })
   .catch((error) => {

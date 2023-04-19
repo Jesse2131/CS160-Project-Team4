@@ -3,7 +3,6 @@ let but1 = document.getElementById("accInfoButton1");
 let but2 = document.getElementById("accInfoButton2");
 let but3 = document.getElementById("accInfoButton3");
 let but4 = document.getElementById("accInfoButton4");
-const db = firebase.firestore();
 
 function viewAccDet() {
     let newView = document.getElementById("accountDetails");
@@ -103,10 +102,10 @@ function display_acc_info(user) {
         curr_user.get().then((doc) => {
             const retrievedName = doc.data().name;
             const retrievedAddress = doc.data().address;
-            document.getElementById("username").placeholder = retrievedName;
-            document.getElementById("address").placeholder = retrievedAddress;
             // Update account button to show currently logged in user        
             document.getElementById("nav-logged-in-user").innerHTML = "Welcome " + retrievedName;
+            document.getElementById("username").placeholder = retrievedName;
+            document.getElementById("address").placeholder = retrievedAddress;
         });
     }).catch((error) => {
         console.log("Error getting user data:", error);
