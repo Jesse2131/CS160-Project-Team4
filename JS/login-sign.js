@@ -56,12 +56,21 @@ function signup() {
   
       // Continue if no errors
       creation.then(function () {
-          addToDB(user_type, email, name, address);
+          addToDB(user_type, name, address);
       });
     }
     else{
       document.getElementById("errormsg").innerHTML = "Please select a user type";
     }
+}
+
+function logout() {
+  firebase.auth().signOut().then(() => {
+    window.location.href = "../HTML/intro.html";
+  }).catch((error) => {
+    // Handle errors here
+    console.error(error);
+  });
 }
 
 function addToDB(...params) {
@@ -70,7 +79,7 @@ function addToDB(...params) {
   // Get current user and their type 
   var userUid = firebase.auth().currentUser.uid;
   // unpack params 
-  const [user_type, email, name, address] = params
+  const [user_type, name, address] = params
   // Add to users collection and corresponding collecion
   var col = db.collection(user_type);
   Promise.all([
@@ -79,7 +88,6 @@ function addToDB(...params) {
         type: user_type
     }),
     col.doc(userUid).set({
-        email: email,
         name: name,
         address: address
     })

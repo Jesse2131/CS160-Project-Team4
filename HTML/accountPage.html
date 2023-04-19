@@ -12,70 +12,86 @@
   <body>
     <!-- NAVBAR -->
     <div class="navbar">
+      <img class="odfds-logo" src="../ASSETS/odfdsLOGO.png"/>
+      <h1 id="nav-logged-in-user">Welcome User</h1>
       <ul>
-        <li><a href="intro.html">Log Out</a></li>
-        <li><a href="accountPage.html">Account</a></li>
         <li><a href="deliveryDashboardDriver.html">Dashboard</a></li>
+        <li><a href="accountPage.html">Account</a></li>
+        <li><a onclick="logout()">Log Out</a></li>
       </ul>
-      <img class="odfds-logo" src="../ASSETS/odfdsLOGO.png" height="452" width="452"/>
     </div>
+    <!-- NAVBAR ENDS -->
 
-    <div class="accInfoContainerBorder">
-      <div class="accInfoCategories">
-        <button class="selectedButton" id="accInfoButton1" onclick="viewAccDet()">General Account Details</button>
-        <br>
-        <button class="deselectedButton" id="accInfoButton2" onclick="viewAddrInfo()">Address Information</button>
-        <br>
-        <button class="deselectedButton" id="accInfoButton3" onclick="viewPayInfo()">Payment Information</button>
-        <br>
-        <button class="deselectedButton" id="accInfoButton4" onclick="viewOrdrHist()">Order History</button>
+    <!-- PAGE FOOTER -->
+    <div class="footer">
+      <p class="odfds-title">ODFDS©</p>
+      <img class="socials" src="../ASSETS/instalogo.png">
+      <img class="socials" src="../ASSETS/twitterlogo.png"/>
+      <img class="appstore-download" src="../ASSETS/appstore.png"/>
+      <img class="playstore-download" src="../ASSETS/playstore.png"/>
+  </div>
+  <!-- PAGE FOOTER ENDS -->
+
+    <div class="accInfoWrapper">
+      <div class="accInfoContainerBorder">
+        <div class="accInfoCategories">
+          <button class="selectedButton" id="accInfoButton1" onclick="viewAccDet()">General Account Details</button>
+          <br>
+          <button class="deselectedButton" id="accInfoButton2" onclick="viewAddrInfo()">Address Information</button>
+          <br>
+          <button class="deselectedButton" id="accInfoButton3" onclick="viewPayInfo()">Payment Information</button>
+          <br>
+          <button class="deselectedButton" id="accInfoButton4" onclick="viewOrdrHist()">Order History</button>
+        </div>
+        <div class="accInfoContainer" id="accountDetails">
+          <form>
+            <div class="acc-form-group">
+              <p class="infoLabel">Name:</p>
+              <input class="infoText" id="username" type="text" name="updateUsername" placeholder="Not Logged In"/>
+            </div>
+            <div class="acc-form-group">
+              <p class="infoLabel">Password:</p>
+              <a href="#" id="reset-password-link">Reset Password</a>
+            </div>
+            <div class="acc-form-group">
+              <p class="infoLabel">Email:</p>
+              <input class="infoText" id="email" type="email" name="updateEmail" placeholder="Not Logged In"/>
+            </div>
+            <div class="acc-form-group">
+              <p class="infoLabel">Account Type:</p>
+              <input class="infoText" id="acc_type" type="text" name="updateType" placeholder="Not Logged In" disabled="disabled"/>
+            </div>
+          </form>
+        </div>
+        <div class="accInfoContainer" id="addressInformation" hidden>
+          <form>
+            <div class="acc-form-group">
+              <p class="infoLabel">Address:</p>
+              <input class="infoText" id="address" type="text" name="updateAddress" placeholder="Not Logged In" />
+            </div>
+            <div class="acc-form-group">
+              <p class="infoLabel">City:</p>
+              <input class="infoText" id="city" type="text" name="updateCity" placeholder="Not Logged In" />
+            </div>
+          </form>
+        </div>
+        <div class="accInfoContainer" id="paymentInformation" hidden>
+          <form>
+            <div class="acc-form-group">
+              <p class="infoText">Sample Text</p>
+            </div>
+          </form>
+        </div>
+        <div class="accInfoContainer" id="orderHistory" hidden>
+          <form>
+            <div class="acc-form-group">
+              <p class="infoText">There are currently no orders in your history!</p>
+            </div>
+          </form>
+        </div>
       </div>
-      <div class="accInfoContainer" id="accountDetails">
-        <form>
-          <div class="acc-form-group">
-            <p class="infoLabel">Username:</p>
-            <input class="infoText" id="username" type="text" name="updateUsername" placeholder="username"/>
-          </div>
-          <div class="acc-form-group">
-            <p class="infoLabel">Password:</p>
-            <input class="infoText" id="password" type="password" name="updatePassword" placeholder="password"/>
-          </div>
-          <div class="acc-form-group">
-            <p class="infoLabel">Email:</p>
-            <input class="infoText" id="email" type="email" name="updateEmail" placeholder="Not Logged In"/>
-          </div>
-          <div class="acc-form-group">
-            <p class="infoLabel">Account Type:</p>
-            <input class="infoText" id="acc_type" type="text" name="updateType" placeholder="Not Logged In"/>
-          </div>
-        </form>
-      </div>
-      <div class="accInfoContainer" id="addressInformation" hidden>
-        <form>
-          <div class="acc-form-group">
-            <p class="infoLabel">Address:</p>
-            <input class="infoText" id="address" type="text" name="updateAddress" placeholder="Not Logged In" />
-          </div>
-          <div class="acc-form-group">
-            <p class="infoLabel">City:</p>
-            <input class="infoText" id="city" type="text" name="updateCity" placeholder="Not Logged In" />
-          </div>
-        </form>
-      </div>
-      <div class="accInfoContainer" id="paymentInformation" hidden>
-        <form>
-          <div class="acc-form-group">
-            <p class="infoText">Sample Text</p>
-          </div>
-        </form>
-      </div>
-      <div class="accInfoContainer" id="orderHistory" hidden>
-        <form>
-          <div class="acc-form-group">
-            <p class="infoText">There are currently no orders in your history!</p>
-          </div>
-        </form>
-      </div>
+      <p id="errormsg"></p>
+      <button class="editacc-btn" onclick="updateInfo()">Save Changes</button>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>

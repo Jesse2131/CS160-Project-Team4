@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400&display=swap');
 
+.accInfoWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .accInfoContainerBorder {
     font-family: 'Poppins', sans-serif;
     overflow: hidden;
@@ -9,6 +15,7 @@
     margin: auto;
     position: relative;
     top: 16px;
+    margin-bottom: 40px;
 }
 
 .accInfoCategories {
@@ -82,17 +89,26 @@
     margin-left: 2px;
 }
 
-.navbar .odfds-logo {
-    width: 10%;
-    height: 10%;
-    margin-left: 80px;
-    margin-top: 40px;
-    padding-left: 0px;
-    padding-top: 0px;
-    max-width: 160px;
-    max-height: 160px;
+.acc-form-group a{
+    margin-left: 2px;
 }
 
-.navbar ul {
-    padding-bottom: 0px;
+.editacc-btn{
+    border: 0px;
+    border-radius: 4px;
+    padding: 9px 40px;
+    background-color: #000000;
+    max-width: 200px;
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+    color: #FFFFFF;
+    transition-duration: 0.2s;
 }
+
+.editacc-btn:hover {
+    cursor: pointer;
+    background-color: #F1AF3D;
+    opacity: 1;
+    color: white;
+}
+
