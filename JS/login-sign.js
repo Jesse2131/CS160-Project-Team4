@@ -53,7 +53,7 @@ function signup() {
   
       // Continue if no errors
       creation.then(function () {
-          addToDB(user_type, name, address);
+          addToDB(user_type, email, name, address);
       });
     }
     else{
@@ -74,7 +74,7 @@ function addToDB(...params) {
   // Get current user and their type 
   var userUid = firebase.auth().currentUser.uid;
   // unpack params 
-  const [user_type, name, address] = params
+  const [user_type, email, name, address] = params
   // Add to users collection and corresponding collecion
   var col = db.collection(user_type);
   Promise.all([
@@ -83,6 +83,7 @@ function addToDB(...params) {
         type: user_type
     }),
     col.doc(userUid).set({
+        email: email,
         name: name,
         address: address
     })
