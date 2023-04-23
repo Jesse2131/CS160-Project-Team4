@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <!-- LINK STYLESHEET -->
+        <link rel="stylesheet" href="../CSS/starter-code.css">
         <link rel="stylesheet" href="../CSS/welcomeDashboard.css">
 
         <!-- FONTS -->
@@ -22,18 +23,17 @@
 
     <body>
 
-    <!-- NAVBAR -->
-    <div class="navbar">
-        <img class="odfds-logo" src="../ASSETS/odfdsLOGO.png"/>
-        <h1 id="nav-logged-in-user">Welcome User</h1>
-        <ul>
-            <li><a href="https://github.com/Jesse2131/CS160-Project-Team4">Dashboard</a></li>
-            <li><a href="accountPage.html">Account</a></li>
-            <li><a onclick="logout()">Log Out</a></li>
-
-        </ul>
-    </div>
-    <!-- NAVBAR ENDS -->
+        <!-- NAVBAR -->
+        <div class="navbar">
+            <img class="odfds-logo" src="../ASSETS/odfdsLOGO.png"/>
+            <h1 id="nav-logged-in-user">Welcome User</h1>
+            <ul>
+                <li><a href="welcomeDashboardDriver.html">Dashboard</a></li>
+                <li><a href="accountPage.html">Account</a></li>
+                <li><a onclick="logout()">Log Out</a></li>
+            </ul>
+        </div>
+        <!-- NAVBAR ENDS -->
 
 
 <!--        <img class = "odfds-logo-main" src="../ASSETS/odfdsLOGO.png" height="200" width="200"/>-->
@@ -45,14 +45,6 @@
         <br>
         <button type="button" onclick="driverOnline()">GO ONLINE</button>
 
-        <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
-        <script src="../JS/config.js"></script>
-        <script src="../JS/dashboardDriver.js"></script>
-        <script src="../JS/login-sign.js"></script>
-
         <!-- PAGE FOOTER -->
         <div class="footer">
             <p class="odfds-title">ODFDS©</p>
@@ -62,5 +54,14 @@
             <img class="playstore-download" src="../ASSETS/playstore.png"/>
         </div>
         <!-- PAGE FOOTER ENDS -->
+
+        <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
+        <script src="../JS/config.js"></script>
+        <script src="../JS/starter-code.js"></script>
+        <script src="../JS/login-sign.js"></script>
+        <script src="../JS/dashboardDriver.js"></script>
     </body>
 </html>

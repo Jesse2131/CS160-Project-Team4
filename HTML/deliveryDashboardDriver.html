@@ -9,29 +9,34 @@
   </head>
 
   <body>
-    <div class="driverDashboardContainer">
-
+    <!-- NAVBAR -->
+    <div class="navbar">
+      <img class="odfds-logo" src="../ASSETS/odfdsLOGO.png"/>
+      <h1 id="nav-logged-in-user">Welcome User</h1>
       <ul>
-        <li><a href="https://github.com/Jesse2131/CS160-Project-Team4">Log Out</a></li>
-        <li><a href="accountPage.html">Account</a></li>
         <li><a href="deliveryDashboardDriver.html">Dashboard</a></li>
+        <li><a href="accountPage.html">Account</a></li>
+        <li><a onclick="logout()">Log Out</a></li>
       </ul>
+    </div>
+    <!-- NAVBAR ENDS -->
 
-      <img id="dashboardLogo" src="../ASSETS/odfdsLOGO.png" />
-
+    <div class="driverDashboardContainer">
       <br>
       <img id="restaurantImg" src="../ASSETS/driver-dashboard/restaurantIcon.png" />
-      <img id="placeholderMapImg" src="../ASSETS/driver-dashboard/placeholderMap.PNG" />
+      <div class="map-placeholder">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3172.3092209100796!2d-121.8810715!3d37.335187399999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fccb864de43d5%3A0x397ffe721937340e!2sSan%20Jos%C3%A9%20State%20University!5e0!3m2!1sen!2sus!4v1678880239971!5m2!1sen!2sus" width="500" height="320" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
       <br>
       <img id="dotImg1" src="../ASSETS/driver-dashboard/progressDots.png" />
-      <button id="confirmPickupButton" type="button">
-        <img class="checkImg" src="../ASSETS/driver-dashboard/unfilledCheckIcon.png" />
+      <button id="confirmPickupButton" type="button" onclick="confirmPickup()">
+        <img id="checkImg1" src="../ASSETS/driver-dashboard/unfilledCheckIcon.png" />
       </button>
       <img id="driverImg" src="../ASSETS/driver-dashboard/carIcon.png" />
       <br>
       <img id="dotImg2" src="../ASSETS/driver-dashboard/progressDots.png" />
-      <button id="confirmDeliveryButton" type="button">
-        <img class="checkImg" src="../ASSETS/driver-dashboard/unfilledCheckIcon.png" />
+      <button class="disabledButton" id="confirmDeliveryButton" type="button" onclick="confirmDelivery()">
+        <img id="checkImg2" src="../ASSETS/driver-dashboard/unfilledCheckIcon.png" />
       </button>
       <img id="completeImg" src="../ASSETS/driver-dashboard/fullCheckIcon.png" />
     </div>
@@ -55,11 +60,23 @@
       </div>
     </div>
 
+    <!-- PAGE FOOTER -->
+    <div class="footer">
+      <p class="odfds-title">ODFDS©</p>
+      <img class="socials" src="../ASSETS/instalogo.png">
+      <img class="socials" src="../ASSETS/twitterlogo.png"/>
+      <img class="appstore-download" src="../ASSETS/appstore.png"/>
+      <img class="playstore-download" src="../ASSETS/playstore.png"/>
+    </div>
+    <!-- PAGE FOOTER ENDS -->
+
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
     <script src="../JS/config.js"></script>
+    <script src="../JS/starter-code.js"></script>
     <script src="../JS/login-sign.js"></script>
+    <script src="../JS/dashboardDriver.js"></script>
   </body>
 </html>
