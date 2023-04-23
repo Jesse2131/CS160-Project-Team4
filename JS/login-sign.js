@@ -63,6 +63,13 @@ function signup() {
 
 function logout() {
   firebase.auth().signOut().then(() => {
+    // Set status to offline
+    const curr_user = firebase.auth().currentUser;
+    getUserType(curr_user.uid)
+        .then(userType => {
+          const userRef = db.collection(userType).doc(curr_user.uid);
+          updateAttribute(userRef, "status", "offline");
+    });
     window.location.href = "../HTML/intro.html";
   }).catch((error) => {
     // Handle errors here
@@ -85,7 +92,8 @@ function addToDB(...params) {
     col.doc(userUid).set({
         email: email,
         name: name,
-        address: address
+        address: address,
+        status: "offline"
     })
   ])
   .then(() => {
