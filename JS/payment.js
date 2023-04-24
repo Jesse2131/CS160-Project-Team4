@@ -1,7 +1,7 @@
-// firebase.initializeApp(firebaseConfig);
-// firebase.analytics();
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
 
-// const database = firebase.database();
+//const database = firebase.database();
 
 // function readOrders(){
 //   const dbRef = database.ref();

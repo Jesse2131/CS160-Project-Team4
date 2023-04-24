@@ -4,6 +4,79 @@ let but2 = document.getElementById("accInfoButton2");
 let but3 = document.getElementById("accInfoButton3");
 let but4 = document.getElementById("accInfoButton4");
 
+const database = firebase.database();
+
+function createTable(arr) {
+//body reference 
+var body = document.getElementsByClassName("order_history")[0];
+
+arr.map((val, index) => {
+  var row = document.createElement("div");
+  row.classList.add("row");
+
+  var createdAt = document.createTextNode(val.createdAt);
+  var restaurant = document.createTextNode(val.restaurant_name);
+  var total_spend = document.createTextNode(val.total_spend);
+  var status = document.createTextNode(val.status);
+  var payment_type = document.createTextNode(val.payment_type);
+
+  var text1 = document.createElement("text");
+  var text2 = document.createElement("text");
+  var text3 = document.createElement("text");
+  var text4 = document.createElement("text");
+  var text5 = document.createElement("text");
+
+  text1.appendChild(createdAt);
+  text2.appendChild(restaurant);
+  text3.appendChild(total_spend);
+  text4.appendChild(status);
+  text5.appendChild(payment_type);
+
+  var receipt = document.createElement("div");
+  receipt.classList.add("order-receipt-button");
+
+  var link = document.createElement("a");
+  link.setAttribute("id", "view_receipt" + index);
+
+  var view = document.createTextNode("View Receipt");
+  link.appendChild(view);
+
+  receipt.appendChild(link);
+
+  row.appendChild(text1);
+  row.appendChild(text2);
+  row.appendChild(text3);
+  row.appendChild(text4);
+  row.appendChild(text5);
+  row.appendChild(receipt);
+  
+  body.appendChild(row);
+});
+}
+
+function readOrders(){
+  const dbRef = database.ref();
+  dbRef.child("Orders").get().then(async (snapshot) => {
+    if (snapshot.exists()) {
+      console.log(snapshot.val());
+      var arr = [];
+
+      snapshot.forEach((childSnapshot) => {
+          arr.push(childSnapshot.val());
+      });
+      createTable(arr);
+      getCharge(0);
+      getCharge(1);
+    } else {
+      console.log("No data available");
+    }
+  }).catch((error) => {
+    console.error(error);
+  });
+}
+
+readOrders();
+
 async function getCharge(index){
     let chargeRequest = await fetch(
         `https://api.stripe.com/v1/charges`,
@@ -30,10 +103,9 @@ async function getCharge(index){
     
     chargeRes2 = await chargeRequest2.json();
     console.log(chargeRes2.receipt_url);
-}
 
-function testing(){
-    console.log("test");
+    var a = document.getElementById("view_receipt" + index);
+    a.href = chargeRes2.receipt_url;
 }
 
 // document.getElementById("receipt-testing").addEventListener("click", getCharge(0));

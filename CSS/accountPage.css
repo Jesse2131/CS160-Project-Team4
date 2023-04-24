@@ -11,7 +11,7 @@
     overflow: hidden;
     border-radius: 10px;
     background-color: #f5f5f5;
-    width: 860px;
+    width: 1000px;
     margin: auto;
     position: relative;
     top: 16px;
@@ -147,7 +147,8 @@
 .order_hist_table .row{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
 }
 
 .order_hist_table .col{
@@ -156,18 +157,25 @@
     justify-content: space-between;
 }
 
-.order_hist_table .col text{
-    height: 40px;
+.order_hist_table .row text{
+    flex: 1;
+    width: 110px;
     font-size: 16px;
     padding: 5px;
 }
 
-.order-receipt-button button{
-    border: 0px;
-    border-radius: 4px;
+.order-receipt-button{
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.order-receipt-button a{
+    text-decoration: none;
     background-color: #000000;
-    width: 100px;
-    max-height: 40px;
-    font-size: 14px;
     color: #FFFFFF;
+    border-radius: 5px;
+    font-size: 14px;
+    padding: 10px;
 }
