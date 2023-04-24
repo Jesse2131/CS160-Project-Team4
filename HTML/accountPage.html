@@ -12,13 +12,25 @@
   <body>
     <!-- NAVBAR -->
     <div class="navbar">
+      <img class="odfds-logo" src="../ASSETS/odfdsLOGO.png"/>
+      <h1 id="nav-logged-in-user">Welcome User</h1>
       <ul>
-        <li><a onclick="logout()">Log Out</a></li>
-        <li><a href="accountPage.html">Account</a></li>
         <li><a href="deliveryDashboardDriver.html">Dashboard</a></li>
+        <li><a href="accountPage.html">Account</a></li>
+        <li><a onclick="logout()">Log Out</a></li>
       </ul>
-      <img class="odfds-logo" src="../ASSETS/odfdsLOGO.png" height="452" width="452"/>
     </div>
+    <!-- NAVBAR ENDS -->
+
+    <!-- PAGE FOOTER -->
+    <div class="footer">
+      <p class="odfds-title">ODFDS©</p>
+      <img class="socials" src="../ASSETS/instalogo.png">
+      <img class="socials" src="../ASSETS/twitterlogo.png"/>
+      <img class="appstore-download" src="../ASSETS/appstore.png"/>
+      <img class="playstore-download" src="../ASSETS/playstore.png"/>
+  </div>
+  <!-- PAGE FOOTER ENDS -->
 
     <div class="accInfoWrapper">
       <div class="accInfoContainerBorder">
@@ -34,12 +46,12 @@
         <div class="accInfoContainer" id="accountDetails">
           <form>
             <div class="acc-form-group">
-              <p class="infoLabel">Username:</p>
+              <p class="infoLabel">Name:</p>
               <input class="infoText" id="username" type="text" name="updateUsername" placeholder="Not Logged In"/>
             </div>
             <div class="acc-form-group">
               <p class="infoLabel">Password:</p>
-              <input class="infoText" id="password" type="password" name="updatePassword" placeholder="Not Logged In"/>
+              <a href="#" id="reset-password-link">Reset Password</a>
             </div>
             <div class="acc-form-group">
               <p class="infoLabel">Email:</p>
@@ -157,6 +169,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
     <script src="../JS/config.js"></script>
+    <script src="../JS/starter-code.js"></script>
     <script src="../JS/login-sign.js"></script>
     <script src="../JS/accountPage.js"></script>
   </body>

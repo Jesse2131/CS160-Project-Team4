@@ -1,6 +1,3 @@
-firebase.initializeApp(firebaseConfig);
-firebase.analytics();
-
 function login() {
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
@@ -22,7 +19,7 @@ function login() {
         }
         else{
           console.log('restaurants');
-          // window.location.href = "../../restaurantDash.html";
+          window.location.href = "../HTML/order_function.html";
         }
       }).catch((error) => {
         console.log("Error getting user type:", error);
@@ -56,7 +53,7 @@ function signup() {
   
       // Continue if no errors
       creation.then(function () {
-          addToDB(user_type, name, address);
+          addToDB(user_type, email, name, address);
       });
     }
     else{
@@ -66,6 +63,13 @@ function signup() {
 
 function logout() {
   firebase.auth().signOut().then(() => {
+    // Set status to offline
+    const curr_user = firebase.auth().currentUser;
+    getUserType(curr_user.uid)
+        .then(userType => {
+          const userRef = db.collection(userType).doc(curr_user.uid);
+          updateAttribute(userRef, "status", "offline");
+    });
     window.location.href = "../HTML/intro.html";
   }).catch((error) => {
     // Handle errors here
@@ -74,12 +78,10 @@ function logout() {
 }
 
 function addToDB(...params) {
-  // get the database
-  const db = firebase.firestore(); 
   // Get current user and their type 
   var userUid = firebase.auth().currentUser.uid;
   // unpack params 
-  const [user_type, name, address] = params
+  const [user_type, email, name, address] = params
   // Add to users collection and corresponding collecion
   var col = db.collection(user_type);
   Promise.all([
@@ -88,13 +90,15 @@ function addToDB(...params) {
         type: user_type
     }),
     col.doc(userUid).set({
+        email: email,
         name: name,
-        address: address
+        address: address,
+        status: "offline"
     })
   ])
   .then(() => {
       console.log("Success");
-      // Redirect to main page 
+      // Redirect to appropriate dashboard
       window.location.href = "index.html"; 
   })
   .catch((error) => {

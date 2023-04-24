@@ -94,6 +94,14 @@
     margin-right: 10px;
 }
 
+.acc-form-group a{
+    margin-left: 2px;
+}
+
+.acc-form-group a{
+    margin-left: 2px;
+}
+
 .editacc-btn{
     border: 0px;
     border-radius: 4px;
@@ -122,6 +130,10 @@
     padding-top: 0px;
     max-width: 160px;
     max-height: 160px;
+}
+
+.acc-form-group p{
+    margin-left: 2px;
 }
 
 .navbar ul {

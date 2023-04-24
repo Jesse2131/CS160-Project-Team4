@@ -60,9 +60,40 @@
     font-size: 14px;
 }
 
-.checkImg {
+.disabledButton {
+    pointer-events: none;
+}
+
+.driverDashboardContainer .map-placeholder {
+    float: right;
+    width: 35%;
+    height: 35%;
+    position: relative;
+    top: -40px;
+    margin-right: 15px;
+}
+
+.map-placeholder iframe {
+    width: 487px;
+    height: 500px;
+}
+
+#checkImg1 {
     filter: grayscale(100%);
     width: 40px;
+}
+
+#checkImg1:hover {
+    filter: grayscale(0%);
+}
+
+#checkImg2 {
+    filter: grayscale(100%);
+    width: 40px;
+}
+
+#checkImg2:hover {
+    filter: grayscale(0%);
 }
 
 #dashboardLogo {
@@ -76,14 +107,14 @@
     width: 140px;
     position: absolute;
     left: 800px;
-    top: 197px;
+    top: 152px;
 }
 
 #dotImg1 {
     width: 55px;
     position: absolute;
     left: 858px;
-    top: 340px;
+    top: 295px;
     filter: grayscale(100%);
 }
 
@@ -91,7 +122,7 @@
     width: 55px;
     position: absolute;
     left: 858px;
-    top: 405px;
+    top: 360px;
     filter: grayscale(100%);
 }
 
@@ -99,7 +130,7 @@
     width: 55px;
     position: absolute;
     left: 858px;
-    top: 470px;
+    top: 425px;
     filter: grayscale(100%);
 }
 
@@ -107,17 +138,8 @@
     width: 55px;
     position: absolute;
     left: 858px;
-    top: 530px;
+    top: 485px;
     filter: grayscale(100%);
-}
-
-#placeholderMapImg {
-    float: right;
-    width: 35%;
-    height: 35%;
-    position: relative;
-    top: -40px;
-    margin-right: 15px;
 }
 
 #confirmPickupButton {
@@ -128,7 +150,11 @@
     width: 40px;
     position: absolute;
     left: 797px;
-    top: 416px;
+    top: 371px;
+}
+
+#confirmPickupButton:hover {
+    filter: grayscale(0%);
 }
 
 #confirmDeliveryButton {
@@ -139,42 +165,13 @@
     width: 40px;
     position: absolute;
     left: 797px;
-    top: 541px;
+    top: 496px;
 }
 
-h1 {
+.currentDeliveries h1 {
     color: #f1af3d;
     margin-left:25px;
     font-size: 30px;
     margin-bottom: 20px;
     font-family: 'Poppins', sans-serif;
-}
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    padding-top: 25px;
-    padding-right: 75px;
-}
-
-li {
-    display: inline;
-    float: right;
-    padding: 7px;
-}
-
-li a {
-    font-family: 'Poppins', sans-serif;
-    display: block;
-    color: #FFFFFF;
-    background-color: #000000;
-    text-align: center;
-    padding: 8px 17px;
-    text-decoration: none;
-    border-radius: 4px;
-}
-
-li a:hover {
-    background-color: #F1AF3D;
 }
