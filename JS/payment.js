@@ -113,7 +113,7 @@ let cart = [
     quantity: 1,
   },
   {
-    name: "XX miles",
+    name: "XX miles", 
     price: 5,
     quantity: 1,
   },
@@ -147,6 +147,9 @@ async function getStripeSession() {
           payment_method_types: ["card"],
           mode: "payment",
           allow_promotion_codes: true,
+          payment_intent_data: {
+            receipt_email:'handyperson12@gmail.com'
+          },
           success_url: `http://${window.location.host}/HTML/success_payment.html`,
           cancel_url: `http://${window.location.host}/cancel_payment.html`,
           line_items,
@@ -165,3 +168,44 @@ async function getStripeSession() {
   };
 
 getStripeSession();
+
+async function testing(){
+  let paymentRequest2 = await fetch(
+    "https://api.stripe.com/v1/payment_intents",
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer sk_test_51Mvuu4I6ZJcOWwlq0rLtERYLSP8MOAZYNq6dKQdpJfywIpdi8A5LEOgcl2oW5ynvWaidmPQArHvIAizmHX86IeRj009naEPT3c`,
+      },
+    }
+  );
+  let res2 = await paymentRequest2.json();
+  console.log("test");
+  console.log(res2.data);
+
+  let paymentRequest = await fetch(
+    "https://api.stripe.com/v1/payment_intents/pi_3MyjiDI6ZJcOWwlq0g7zySvt",
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer sk_test_51Mvuu4I6ZJcOWwlq0rLtERYLSP8MOAZYNq6dKQdpJfywIpdi8A5LEOgcl2oW5ynvWaidmPQArHvIAizmHX86IeRj009naEPT3c`,
+      },
+    }
+  );
+  let res = await paymentRequest.json();
+  console.log(res.latest_charge);
+
+  let chargeRequest = await fetch(
+    `https://api.stripe.com/v1/charges`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer sk_test_51Mvuu4I6ZJcOWwlq0rLtERYLSP8MOAZYNq6dKQdpJfywIpdi8A5LEOgcl2oW5ynvWaidmPQArHvIAizmHX86IeRj009naEPT3c`,
+      },
+    }
+  );
+
+  let chargeRes = await chargeRequest.json();
+  console.log(chargeRes.data);
+}
+testing();

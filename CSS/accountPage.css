@@ -80,13 +80,18 @@
 .accInfoContainer .acc-form-group{
     display: flex;
     flex-direction: column;
-    margin-left: 40px;
-    justify-content: center;
-    margin-bottom: 25px;
+    align-items: center;
+    text-align: center;
 }
 
-.acc-form-group p{
-    margin-left: 2px;
+.acc-form-group table{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.acc-form-group th{
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .editacc-btn{
@@ -121,4 +126,36 @@
 
 .navbar ul {
     padding-bottom: 0px;
+}
+
+.order_hist_table {
+    flex: 1;
+}
+
+.order_hist_table .row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.order_hist_table .col{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.order_hist_table .col text{
+    height: 40px;
+    font-size: 16px;
+    padding: 5px;
+}
+
+.order-receipt-button button{
+    border: 0px;
+    border-radius: 4px;
+    background-color: #000000;
+    width: 100px;
+    max-height: 40px;
+    font-size: 14px;
+    color: #FFFFFF;
 }
