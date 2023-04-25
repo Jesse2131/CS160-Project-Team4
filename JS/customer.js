@@ -460,13 +460,6 @@ function loadRestaurantMenu() {
   });
 }
 
-window.onload = function () {
-  loadRestaurantMenu();
-  // addItem('assets/pizza.png', 'Pizza', '10.00', 0);
-  // addItem('assets/pizza.png', 'Pizza', '5.40', 0);
-  // addItem('assets/pizza.png', 'Pizza', '9.15', 0);
-  // addItem('assets/pizza.png', 'Pizza', '4.00', 0);
-}
 
 function addItem(imageUrl, label, price, quantity) {
   // Get the table body element
@@ -583,5 +576,8 @@ function updateCart(imageUrl, label, price, quantity) {
 }
 
 
+window.onload = function () {
+  loadRestaurantMenu();
+}
 
 window.initMap = initMap;
