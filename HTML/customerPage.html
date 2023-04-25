@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+
+<head>
+  <title>Draggable Directions</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  <link rel="stylesheet" type="text/css" href="./style.css" />
+  <link rel="stylesheet" href="./starter-code.css">
+  <link rel="stylesheet" href="./accountPage.css">
+  <script type="module" src="./index.js"></script>
+  <style>
+    
+    body {
+      width: 80%;
+      margin: 0 auto;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 8px;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    img {
+      width: 50px;
+      height: 50px;
+    }
+
+    input[type="number"] {
+      width: 50px;
+      text-align: center;
+    }
+
+    #loading {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    #loading-spinner {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 16px solid #f3f3f3;
+      border-top: 16px solid #3498db;
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="navbar">
+    <ul>
+      <li><a onclick="logout()">Log Out</a></li>
+      <li><a href="accountPage.html">Account</a></li>
+      <li><a href="deliveryDashboardDriver.html">Dashboard</a></li>
+    </ul>
+    <img class="odfds-logo" src="./assets/odfdsLOGO.png" height="452" width="452"/>
+  </div>
+
+  <img src="assets/pizzaCover.jpeg" alt="Image" style="width: 100%; height: 300px; border-radius: 10px;">
+
+  <div>
+    <h1>Amazing Box</h1>
+
+    <fieldset>
+      <legend>Items:</legend>
+      <table>
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Label</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+        </tbody>
+      </table>      
+    </fieldset>
+
+    <fieldset>
+      <legend>Cart</legend>
+      <table>
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Label</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="cart-items">
+        </tbody>
+      </table>      
+    </fieldset>
+
+    <button id="sendOrder" style="margin-top: 12px; margin-bottom: 12px;" >Add Item Before Process</button>
+  </div>
+
+  <fieldset>
+    <legend>Review Order:</legend>
+  <div id="container">
+    <div id="map"></div>
+    <div id="sidebar">
+      <fieldset>
+        <legend>Locations:</legend>
+        <p>Restaurant: 2855 Stevens Creek Blvd, Santa Clara, CA 95050</p>
+        <p>Delivery: 1419 Keoncrest Ave, San Jose, CA, 95110</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Order Details:</legend>
+        <p>Pizza: Small - Quality: 2</p>
+        <p>Pizza: Medium - Quality: 2</p>
+        <p>Pizza: Large - Quality: 2</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Deliver Details:</legend>
+        <p>Driver: Huy Ong</p>
+        <p>Duration: 40 mins</p>
+        <p>Distance: 12 miles</p>
+        <p>Cost: $23</p>
+      </fieldset>
+
+      <button id="acceptRequest">Accept Order</button>
+    </fieldset>
+      
+    
+    
+    </div>
+  </div>
+  <div id="loading">
+    <div id="loading-spinner"></div>
+  </div>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoWTjotq5OuS-aZLeiZxd0uR2YNRCJdmY&callback=initMap&v=weekly"
+    defer></script>
+</body>
+
+</html>
