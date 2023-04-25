@@ -11,7 +11,7 @@
     overflow: hidden;
     border-radius: 10px;
     background-color: #f5f5f5;
-    width: 860px;
+    width: 1000px;
     margin: auto;
     position: relative;
     top: 16px;
@@ -85,7 +85,17 @@
     margin-bottom: 25px;
 }
 
-.acc-form-group p{
+.acc-form-group table{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.acc-form-group th{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.acc-form-group a{
     margin-left: 2px;
 }
 
@@ -103,6 +113,8 @@
     font-family: 'Poppins', sans-serif;
     color: #FFFFFF;
     transition-duration: 0.2s;
+    top: -37px;
+    position: relative;
 }
 
 .editacc-btn:hover {
@@ -112,3 +124,48 @@
     color: white;
 }
 
+.acc-form-group p{
+    margin-left: 2px;
+}
+
+.order_hist_table {
+    flex: 1;
+}
+
+.order_hist_table .row{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.order_hist_table .col{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.order_hist_table .row text{
+    flex: 1;
+    width: 110px;
+    font-size: 16px;
+    padding: 5px;
+    align-items: center;
+    text-align: center;
+}
+
+.order-receipt-button{
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.order-receipt-button a{
+    text-decoration: none;
+    background-color: #000000;
+    color: #FFFFFF;
+    border-radius: 5px;
+    font-size: 14px;
+    padding: 10px;
+}

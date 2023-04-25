@@ -15,7 +15,7 @@
       <img class="odfds-logo" src="../ASSETS/odfdsLOGO.png"/>
       <h1 id="nav-logged-in-user">Welcome User</h1>
       <ul>
-        <li><a href="deliveryDashboardDriver.html">Dashboard</a></li>
+        <li><a id="dashboardLink" href="deliveryDashboardDriver.html">Dashboard</a></li>
         <li><a href="accountPage.html">Account</a></li>
         <li><a onclick="logout()">Log Out</a></li>
       </ul>
@@ -85,7 +85,23 @@
         <div class="accInfoContainer" id="orderHistory" hidden>
           <form>
             <div class="acc-form-group">
-              <p class="infoText">There are currently no orders in your history!</p>
+              <!-- <p class="infoText">There are currently no orders in your history!</p> -->
+              <div class="order_hist_table">
+                <div class="col">
+                  <div class="row">
+                    <text style="font-size: 18px; font-weight: bold;">Order Received</text>
+                    <text style="font-size: 18px; font-weight: bold;">Restaurant</text>
+                    <text style="font-size: 18px; font-weight: bold;">Total Spend</text>
+                    <text style="font-size: 18px; font-weight: bold;">Status</text>
+                    <text style="font-size: 18px; font-weight: bold;">Payment Type</text>
+                    <text style="font-size: 18px; font-weight: bold; flex: 2;">Order/Receipt</text>
+                  </div>
+                  
+                  <div class="order_history">
+                  </div>
+
+                </div>
+              </div>
             </div>
           </form>
         </div>
@@ -98,6 +114,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-database.js"></script>
     <script src="../JS/config.js"></script>
     <script src="../JS/starter-code.js"></script>
     <script src="../JS/login-sign.js"></script>

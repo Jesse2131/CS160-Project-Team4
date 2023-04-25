@@ -62,19 +62,29 @@ function signup() {
 }
 
 function logout() {
-  firebase.auth().signOut().then(() => {
-    // Set status to offline
     const curr_user = firebase.auth().currentUser;
-    getUserType(curr_user.uid)
-        .then(userType => {
-          const userRef = db.collection(userType).doc(curr_user.uid);
-          updateAttribute(userRef, "status", "offline");
+    firebase.auth().signOut().then(() => {
+        // Set status to offline
+        getUserType(curr_user.uid)
+            .then(userType => {
+              const userRef = db.collection(userType).doc(curr_user.uid);
+              const updateObject = {};
+              updateObject["status"] = "offline";
+              userRef.update(updateObject)
+                  .then(() => {
+                      document.getElementById("errormsg").innerHTML = "Changes saved successfully";
+                  })
+                  .catch((error) => {
+                      document.getElementById("errormsg").innerHTML = error;
+                  });
+              setTimeout(function() {
+                  window.location.href = "../HTML/intro.html";
+              }, 300);
+        });
+    }).catch((error) => {
+        // Handle errors here
+        console.error(error);
     });
-    window.location.href = "../HTML/intro.html";
-  }).catch((error) => {
-    // Handle errors here
-    console.error(error);
-  });
 }
 
 function addToDB(...params) {

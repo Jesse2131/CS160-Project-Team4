@@ -6,6 +6,7 @@ let check2 = document.getElementById("checkImg2");
 let dot2 = document.getElementById("dotImg2");
 let completeImg = document.getElementById("completeImg");
 let but2 = document.getElementById("confirmDeliveryButton");
+let dashLink = document.getElementById("dashboardLink");
 
 let status = "";
 
@@ -56,6 +57,9 @@ firebase.auth().onAuthStateChanged(function(user) {
         sessionStorage.setItem("currentUser", user.uid);
         // Display account page info
         display_acc_name(user);
+        setTimeout(function() {
+            link_to_dashboard(user);
+        }, 1000);
     } else {
         // No user is signed in.
         console.log('User is not signed in');
@@ -81,6 +85,16 @@ function display_acc_name(user) {
         console.log("Error getting user data:", error);
     });
 }
+
+function link_to_dashboard(user) {
+    if (status === "offline") {
+        document.getElementById("dashboardLink").href = "welcomeDashboardDriver.html";
+    } else {
+        document.getElementById("dashboardLink").href = "deliveryDashboardDriver.html";
+    }
+}
+
+
 
 function driverOnline() {
     const curr_user = firebase.auth().currentUser;
