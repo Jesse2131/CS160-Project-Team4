@@ -7,8 +7,12 @@ let dot2 = document.getElementById("dotImg2");
 let completeImg = document.getElementById("completeImg");
 let but2 = document.getElementById("confirmDeliveryButton");
 let dashLink = document.getElementById("dashboardLink");
+let order1 = document.getElementById("order1");
+let order2 = document.getElementById("order2");
 
 let status = "";
+
+const database = firebase.database();
 
 function confirmPickup() {
     if (confirm("You have picked up the order from the restaurant?")) {
@@ -56,9 +60,9 @@ firebase.auth().onAuthStateChanged(function(user) {
         // Set session storage
         sessionStorage.setItem("currentUser", user.uid);
         // Display account page info
-        display_acc_name(user);
+        display_user_info(user);
         setTimeout(function() {
-            link_to_dashboard(user);
+            link_to_dashboard();
         }, 1000);
     } else {
         // No user is signed in.
@@ -66,7 +70,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
 });
 
-function display_acc_name(user) {
+function display_user_info(user) {
     // Query db for additional data
     const checkUserType = db.collection('users').doc(user.uid);
     let retrievedUserType = "";
@@ -79,6 +83,14 @@ function display_acc_name(user) {
             const retrievedStatus = doc.data().status;
             // Update account button to show currently logged in user
             document.getElementById("nav-logged-in-user").innerHTML = "Welcome " + retrievedName;
+            if (retrievedStatus === "delivering") {
+                but1.classList.add('disabledButton');
+                but2.classList.remove('disabledButton');
+
+                check1.style.filter = "grayscale(0%)";
+                dot1.style.filter = "grayscale(0%)";
+                driverImg.style.filter = "grayscale(0%)";
+            }
             status = retrievedStatus;
         });
     }).catch((error) => {
@@ -86,15 +98,13 @@ function display_acc_name(user) {
     });
 }
 
-function link_to_dashboard(user) {
+function link_to_dashboard() {
     if (status === "offline") {
-        document.getElementById("dashboardLink").href = "welcomeDashboardDriver.html";
+        dashLink.href = "welcomeDashboardDriver.html";
     } else {
-        document.getElementById("dashboardLink").href = "deliveryDashboardDriver.html";
+        dashLink.href = "deliveryDashboardDriver.html";
     }
 }
-
-
 
 function driverOnline() {
     const curr_user = firebase.auth().currentUser;
