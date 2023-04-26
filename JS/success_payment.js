@@ -39,14 +39,21 @@ async function writePayment() {
       var isFirstLoad = localStorage.getItem(chargeRes.data[i].id);
 
       if (!isFirstLoad) {
-        let date = new Date().toLocaleDateString();
+        var today = new Date();
+        var date =
+          today.getFullYear() +
+          "/" +
+          (today.getMonth() + 1) +
+          "/" +
+          today.getDate();
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
         let obj = chargeRes.data[i].data.object;
         const dbRef = database.ref();
         dbRef
           .child("Orders")
           .push()
           .set({
-            createdAt: date,
+            createdAt: date + " " + time,
             driver_id: "BJ5wMY0pJfXeWglmloWkmTElyL13",
             item_lists: cart,
             payment_type: obj.payment_method_details.type,
