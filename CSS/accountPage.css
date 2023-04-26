@@ -80,8 +80,9 @@
 .accInfoContainer .acc-form-group{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    margin-left: 40px;
+    justify-content: center;
+    margin-bottom: 25px;
 }
 
 .acc-form-group table{
@@ -112,6 +113,8 @@
     font-family: 'Poppins', sans-serif;
     color: #FFFFFF;
     transition-duration: 0.2s;
+    top: -37px;
+    position: relative;
 }
 
 .editacc-btn:hover {
@@ -121,23 +124,8 @@
     color: white;
 }
 
-.navbar .odfds-logo {
-    width: 10%;
-    height: 10%;
-    margin-left: 80px;
-    margin-top: 40px;
-    padding-left: 0px;
-    padding-top: 0px;
-    max-width: 160px;
-    max-height: 160px;
-}
-
 .acc-form-group p{
     margin-left: 2px;
-}
-
-.navbar ul {
-    padding-bottom: 0px;
 }
 
 .order_hist_table {
@@ -162,6 +150,8 @@
     width: 110px;
     font-size: 16px;
     padding: 5px;
+    align-items: center;
+    text-align: center;
 }
 
 .order-receipt-button{

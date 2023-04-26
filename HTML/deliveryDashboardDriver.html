@@ -14,7 +14,7 @@
       <img class="odfds-logo" src="../ASSETS/odfdsLOGO.png"/>
       <h1 id="nav-logged-in-user">Welcome User</h1>
       <ul>
-        <li><a href="deliveryDashboardDriver.html">Dashboard</a></li>
+        <li><a id="dashboardLink" href="deliveryDashboardDriver.html">Dashboard</a></li>
         <li><a href="accountPage.html">Account</a></li>
         <li><a onclick="logout()">Log Out</a></li>
       </ul>
@@ -43,20 +43,24 @@
 
     <div class="currentDeliveriesBorder">
       <div class="currentDeliveries">
-        <h1>
-          Restaurant Name - Order 1
-          <span class="minuteText">
-            35 Min
+        <div id="order1">
+          <h1>
+            Restaurant Name - Order 1
+            <span class="minuteText">
+            XX Min
           </span>
-        </h1>
-        <p class="requestHeader">Special Requests:</p>
-        <p class="requestText">Any special requests</p>
+          </h1>
+          <p class="requestHeader">Special Requests:</p>
+          <p class="requestText">Any special requests</p>
+        </div>
 
-        <h1>
-          Restaurant Name - Order 2
-        </h1>
-        <p class="requestHeader">Special Requests:</p>
-        <p class="requestText">Any special requests</p>
+        <div id="order2" hidden>
+          <h1>
+            Restaurant Name - Order 2
+          </h1>
+          <p class="requestHeader">Special Requests:</p>
+          <p class="requestText">Any special requests</p>
+        </div>
       </div>
     </div>
 
@@ -74,6 +78,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-database.js"></script>
     <script src="../JS/config.js"></script>
     <script src="../JS/starter-code.js"></script>
     <script src="../JS/login-sign.js"></script>

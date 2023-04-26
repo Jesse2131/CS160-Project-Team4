@@ -199,6 +199,13 @@ function display_acc_info(user) {
             document.getElementById("nav-logged-in-user").innerHTML = "Welcome " + retrievedName;
             document.getElementById("username").placeholder = retrievedName;
             document.getElementById("address").placeholder = retrievedAddress;
+
+            const retrievedStatus = doc.data().status;
+            if (retrievedUserType === "drivers" && retrievedStatus === "offline") {
+                document.getElementById("dashboardLink").href = "welcomeDashboardDriver.html";
+            } else if (retrievedUserType === "drivers") {
+                document.getElementById("dashboardLink").href = "deliveryDashboardDriver.html";
+            }
         });
     }).catch((error) => {
         console.log("Error getting user data:", error);
