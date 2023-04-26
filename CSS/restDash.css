@@ -1,21 +1,16 @@
-/*Menu Buttons*/
-nav a{
-    background-color: black;
-    color: white;
-    padding: 10px 20px;
+/* Area for features that a restaurant has such as add to menu, search for driver, etc */
+.rest-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    border-radius: 10px;
-    float: right;
-    margin-right: 20px;
+    gap: 40px;
 }
 
-nav a:hover {
-    background-color: #f1af3d;
-}
+
 /*Driver Search Button*/
-button {
+.rest-container button {
     background-color: black;
     color: white;
     padding: 10px 20px;
@@ -25,7 +20,7 @@ button {
     font-size: 25px;
 }
 
-button:hover {
+.rest-container button:hover {
     background-color: #f1af3d;
 }
 
@@ -56,47 +51,24 @@ button:hover {
 }
 
 /*Text*/
-h1 {
-    color: #f1af3d;
-    font-family: Sen-Bold;
-    font-size: 80px;
-    margin-top: auto;
-    margin-bottom: auto;
-}
-
-h2 {
+.rest-lookdriver h2 {
     color: #acacac;
 }
 
-body {
-    margin: 100px;
-    font-family: Sen;
-    font-size: 25px;
-}
-
-@font-face {
-    font-family: Sen;
-    src: url(Sen-Regular.ttf);
-}
-@font-face {
-    font-family: Sen-Bold;
-    font-weight: bold;
-    src: url(Sen-Bold.ttf);
-}
 
 /*Progress Bar*/
-ul{
+.row ul{
     display: flex;
     flex-direction: column;
 }
-ul li{
+.row ul li{
     list-style: none;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-ul li .progress{
+.row ul li .progress{
     margin: 40px;
     display: inline-grid;
     place-items: center;
@@ -107,7 +79,7 @@ ul li .progress{
     position: relative;
     cursor: pointer;
 }
-.progress::after{
+.row .progress::after{
     position: absolute;
     content: " ";
     background-color: transparent;
@@ -116,16 +88,17 @@ ul li .progress{
     bottom: 45px;
     z-index: -1;
 }
-.one::after{
+.row .one::after{
     width: 0;
     height: 0;
 }
 
-ul li .active{
+.row ul li .active{
     background-color: #f1af3d;
     display: inline-grid;
     place-items: center;
 }
-li .active::after{
+
+.row li .active::after{
     background-color: #f1af3d;
 }
