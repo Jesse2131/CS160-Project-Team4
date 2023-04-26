@@ -73,6 +73,14 @@
     margin-right: 15px;
 }
 
+.currentDeliveries h1 {
+    color: #f1af3d;
+    margin-left:25px;
+    font-size: 30px;
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
 .map-placeholder iframe {
     width: 487px;
     height: 500px;
@@ -166,12 +174,4 @@
     position: absolute;
     left: 797px;
     top: 496px;
-}
-
-.currentDeliveries h1 {
-    color: #f1af3d;
-    margin-left:25px;
-    font-size: 30px;
-    margin-bottom: 20px;
-    font-family: 'Poppins', sans-serif;
 }
