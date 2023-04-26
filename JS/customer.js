@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
 import { getDatabase, set, ref, update, get, child, onValue } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
+import { getFirestore, collection, doc, getDocs, setDoc, updateDoc, arrayUnion, arrayRemove } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
 import { v4 as uuidv4 } from 'uuid';
 
 var map;
@@ -63,11 +64,24 @@ const firebaseConfig = {
   appId: "1:576921754903:web:0687f1211357a003782b52"
 };
 
+const firebaseConfig2 = {
+  apiKey: "AIzaSyCnK0wvRERHCX991OnlnjiQO1FBD5B0szk",
+  authDomain: "odfds-4bee9.firebaseapp.com",
+  databaseURL: "https://odfds-4bee9-default-rtdb.firebaseio.com",
+  projectId: "odfds-4bee9",
+  storageBucket: "odfds-4bee9.appspot.com",
+  messagingSenderId: "659148068949",
+  appId: "1:659148068949:web:e9bac363e7afdc758b1cdc",
+  measurementId: "G-90TQ3NJ5BH"
+};
+
 const app = initializeApp(firebaseConfig);
+const app2 = initializeApp(firebaseConfig2, "secondary");
 const db = getDatabase(app);
 const driversRef = ref(db, 'drivers');
 const restaurantsRef = ref(db, 'restaurants');
 const ordersRef = ref(db, 'orders');
+const firestoreDB = getFirestore(app2);
 
 
 
@@ -461,6 +475,8 @@ function loadRestaurantMenu() {
 }
 
 
+
+
 function addItem(imageUrl, label, price, quantity) {
   // Get the table body element
   const tableBody = document.getElementById('table-body');
@@ -575,9 +591,16 @@ function updateCart(imageUrl, label, price, quantity) {
   updateProcessButton();
 }
 
-
 window.onload = function () {
-  loadRestaurantMenu();
+  // loadRestaurantMenu();
+  const myCollection = collection(firestoreDB, 'Food_Inc_Menu');
+  const querySnapshot = getDocs(myCollection);
+  querySnapshot.then((snapshot) => {
+    snapshot.forEach((doc) => {
+      const data = doc.data();
+      addItem('assets/foodItemPlaceholder.png', data.item_name, data.item_price, 0);
+    });
+  });
 }
 
 window.initMap = initMap;
