@@ -22,6 +22,7 @@
 
 .rest-container button:hover {
     background-color: #f1af3d;
+    cursor: pointer;
 }
 
 /*Dashboard Alignment*/

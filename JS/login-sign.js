@@ -19,7 +19,7 @@ function login() {
         }
         else{
           console.log('restaurants');
-          window.location.href = "../HTML/order_function.html";
+          window.location.href = "../HTML/restaurantWel.html";
         }
       }).catch((error) => {
         console.log("Error getting user type:", error);
