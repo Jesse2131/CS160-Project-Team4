@@ -56,6 +56,8 @@ arr.map((val, index) => {
 });
 }
 
+console.log(localStorage.getItem("current_order"));
+
 function readOrders(){
   const dbRef = database.ref();
   dbRef.child("Orders").get().then(async (snapshot) => {

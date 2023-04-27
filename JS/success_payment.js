@@ -49,6 +49,8 @@ async function writePayment() {
         var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
         let obj = chargeRes.data[i].data.object;
         const dbRef = database.ref();
+        localStorage.setItem("current_order", dbRef.child("Orders").push().key);
+        console.log(dbRef.child("Orders").push().key);
         dbRef
           .child("Orders")
           .push()
@@ -65,7 +67,9 @@ async function writePayment() {
             transportation_cost: 2,
             charge_id: obj.id,
           })
-          .then()
+          .then((res) => {
+            console.log(res);
+          })
           .catch((error) => {
             console.log(error);
             console.error(error);
