@@ -51,8 +51,12 @@ arr.map((val, index) => {
   row.appendChild(receipt);
   
   body.appendChild(row);
+
+  getCharge(val.charge_id, index);
 });
 }
+
+console.log(localStorage.getItem("current_order"));
 
 function readOrders(){
   const dbRef = database.ref();
@@ -65,8 +69,6 @@ function readOrders(){
           arr.push(childSnapshot.val());
       });
       createTable(arr);
-      getCharge(0);
-      getCharge(1);
     } else {
       console.log("No data available");
     }
@@ -77,22 +79,9 @@ function readOrders(){
 
 readOrders();
 
-async function getCharge(index){
-    let chargeRequest = await fetch(
-        `https://api.stripe.com/v1/charges`,
-        {
-            method: "GET",
-            headers: {
-            Authorization: `Bearer sk_test_51Mvuu4I6ZJcOWwlq0rLtERYLSP8MOAZYNq6dKQdpJfywIpdi8A5LEOgcl2oW5ynvWaidmPQArHvIAizmHX86IeRj009naEPT3c`,
-            },
-        }
-    );
-    
-    let chargeRes = await chargeRequest.json();
-    let charge_arr = chargeRes.data;
-
+async function getCharge(id, index){
     let chargeRequest2 = await fetch(
-        `https://api.stripe.com/v1/charges/${charge_arr[index].id}`,
+        `https://api.stripe.com/v1/charges/${id}`,
         {
             method: "GET",
             headers: {

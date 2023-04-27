@@ -194,18 +194,5 @@ async function testing(){
   );
   let res = await paymentRequest.json();
   console.log(res.latest_charge);
-
-  let chargeRequest = await fetch(
-    `https://api.stripe.com/v1/charges`,
-    {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer sk_test_51Mvuu4I6ZJcOWwlq0rLtERYLSP8MOAZYNq6dKQdpJfywIpdi8A5LEOgcl2oW5ynvWaidmPQArHvIAizmHX86IeRj009naEPT3c`,
-      },
-    }
-  );
-
-  let chargeRes = await chargeRequest.json();
-  console.log(chargeRes.data);
 }
 testing();
