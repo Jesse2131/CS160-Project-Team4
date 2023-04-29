@@ -69,6 +69,16 @@
         <!-- Menu -->
         <div class="rest-menu">
             <h1>Menu</h1>
+            <div id="menu-list"></div>
+            <div class="rest-addMenu">
+                <h1>Add an item to the menu</h1>
+                <form>
+                    <input type="new-menu-item-name" id="new-menu-item-name" name="new-menu-item-name" placeholder="Name of new item">
+                    <input type="new-menu-item-price" id="new-menu-item-price" name="new-menu-item-price" placeholder="Price of new item">
+                    <p id="errormsg"></p>
+                    <button onclick="addToMenu(event)">Add to menu</button>
+                </form>
+            </div>
         </div>
     </div>
 
