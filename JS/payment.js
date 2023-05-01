@@ -78,6 +78,7 @@ firebase.analytics();
 //   "pk_test_51Mvuu4I6ZJcOWwlqfxypyW1ftkR2CJAyngLbxqWjz2i7O5qaoPSHz1C5oJuMf9tT0iCeKjCkiookBBK6gyHTihHj00tI1jztDs"
 // );
 
+
 function buildQuery(data, prefix) {
   // Determine the data type
   var type = Object.prototype.toString.call(data).slice(8, -1).toLowerCase();
