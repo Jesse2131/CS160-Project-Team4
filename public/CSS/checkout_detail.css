@@ -1,0 +1,194 @@
+/* MAKE SURE FONT IS IMPORTED*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.main{
+    display: flex;
+    justify-content: center;
+}
+
+.container{
+    position:fixed;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+}
+
+.navigation-component{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.col{
+    display: flex;
+    flex-direction: column;
+}
+
+.small-box{
+    background-color: #000000;
+    color: #FFFFFF;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 0.5px 0.5px #808080;
+    text-decoration: none;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.icon-box{
+    padding-right: 5px;
+}
+
+.small-box text{
+    font-size: 12px;
+}
+
+.title text{
+    font-size: 35px;
+    color: orange;
+    font-weight: bold;
+}
+
+.checkout-details{
+    flex: 4;
+}
+
+.checkout-description{
+    background-color: #F0F0F0;
+    padding: 30px 25px;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.customer-name{
+    font-size: 25px;
+    color: orange;
+    font-weight: bold;
+}
+
+.time-text{
+    font-size: 20px;
+    color: orange;
+}
+
+.checkout-options{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 0px 50px;
+}
+
+.checkout-options-box{
+    text-decoration: none;
+    background-color: #000000;
+    color: #FFFFFF;
+    width: 100%;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+.main-component{
+    padding-top: 5%;
+    width: 60%;
+}
+
+.restaurant-detail{
+    flex: 4;
+    background-color: #F0F0F0;
+    border-radius: 10px;
+    padding: 50px 30px;
+}
+
+.restaurant-total{
+    flex: 1;
+    background-color: #F0F0F0;
+    border-radius: 10px;
+}
+
+.order-quantity{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+}
+
+.checkout-button{
+    background-color: orange;
+    height: 25px;
+    color: #FFFFFF;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 0.5px 0.5px #808080;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.driver-info{
+    flex: 1;
+    background-color: #F0F0F0;
+    border-radius: 10px;
+    padding: 100px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.driver-info text{
+    font-size: 20px;
+}
+
+.driver-name{
+    font-size: 20px;
+    color: orange;
+    font-weight: bold;
+}
+
+.trip-info{
+    flex: 1;
+    background-color: #F0F0F0;
+    border-radius: 10px;
+    padding: 100px 30px;
+    margin-left: 10px;
+}
+
+.trip-info text{
+    font-size: 20px;
+}
+
+.total-price{
+    position: absolute;
+    right: 21%;
+    bottom: 30px;
+}
+
+table {
+    width: 100%;
+}
+
+table td {
+    text-align: center;
+}
+
+table tr {
+    font-size: 18px;
+}
