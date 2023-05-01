@@ -1,4 +1,13 @@
 /* Area for features that a restaurant has such as add to menu, search for driver, etc */
+.rest-wrapper{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 0 2%;
+    gap: 1%;
+    text-align: center;
+}
+
+
 .rest-container{
     display: flex;
     flex-direction: column;
@@ -22,6 +31,7 @@
 
 .rest-container button:hover {
     background-color: #f1af3d;
+    cursor: pointer;
 }
 
 /*Dashboard Alignment*/
@@ -102,3 +112,29 @@
 .row li .active::after{
     background-color: #f1af3d;
 }
+
+/* FOR INCOMING ORDERS  */ 
+.incoming-orders{
+    background-color: #acacac;
+}
+
+/* FOR MENU */
+.rest-menu{
+    background-color: #acacac;
+}
+
+#menu-list{
+    max-height: 400px;
+    overflow-y: scroll;
+    text-align: left;
+    margin-left: 30%;
+}
+
+
+.menu-item h1, .menu-item p {
+    display: inline;
+    margin: 0;
+    padding-right: 10px;
+}
+  
+  

@@ -1,3 +1,4 @@
+let counter = 1;
 function addToMenu(event){
     /*  Collection represents a restaurants menu(named Name-Menu, ie FoodInc-Menu)
             Documents inside of collection represents each menu item
@@ -7,8 +8,8 @@ function addToMenu(event){
     */
     event.preventDefault();
 
-    // Get currently logged in rest user 
     const curr_user = firebase.auth().currentUser;
+    console.log(curr_user);
     // Input form values
     const item_name = document.getElementById("new-menu-item-name").value;
     const item_price = document.getElementById("new-menu-item-price").value;
@@ -73,6 +74,13 @@ function createCollection(...params) {
                 item_price: item_price
             }).then((docRef) => {
                 document.getElementById("errormsg").innerHTML = "Menu Item added successfully!";
+                // Display on menu
+                const menuListElement = document.getElementById('menu-list');
+                const menuItemElement = document.createElement('div');
+                menuItemElement.classList.add('menu-item');
+                menuItemElement.innerHTML = `<span>${counter}. <h1>${item_name}</h1> $<p>${item_price}</p></span>`;
+                menuListElement.appendChild(menuItemElement);
+                counter++;
             }).catch((error) => {
                 document.getElementById("errormsg").innerHTML = error;
             });
@@ -82,4 +90,31 @@ function createCollection(...params) {
     return;
 }
 
-  
+function getMenu(){
+    const menuListElement = document.getElementById('menu-list');
+    const curr_user = firebase.auth().currentUser;
+    console.log(curr_user);
+    getRestName(curr_user).then((rest_name) => {
+        const formatted_rest_name = rest_name.replace(/ /g, "_") + "_Menu"; 
+        const menuItemsRef = firebase.firestore().collection(formatted_rest_name);
+        menuItemsRef.get()
+          .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                const menuItem = doc.data();
+                const menuItemElement = document.createElement('div');
+                menuItemElement.classList.add('menu-item');
+                menuItemElement.innerHTML = `<span>${counter}. <h1>${menuItem.item_name}</h1> $<p>${menuItem.item_price}</p></span>`;
+                menuListElement.appendChild(menuItemElement);
+                counter++;
+            });
+        });
+    });
+}
+ 
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      getMenu();
+    } else {
+      console.log("Not logged in");
+    }
+});
