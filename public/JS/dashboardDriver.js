@@ -11,6 +11,8 @@ let order1 = document.getElementById("order1");
 let order1name = document.getElementById("order1name");
 let order2 = document.getElementById("order2");
 let order2name = document.getElementById("order2name");
+let requestText1 = document.getElementById("requestText1");
+let requestText2 = document.getElementById("requestText2");
 
 let status = "";
 let currOrder1 = "";
@@ -38,14 +40,14 @@ function confirmPickup() {
             });
 
         if (currOrder1 !== "none") {
-            var ref = firebase.database().ref('Orders/' + currOrder1);
+            var ref = firebase.database().ref('AcceptedOrders/' + currOrder1);
             var updates = {};
             updates['/status'] = "on the way";
 
             ref.update(updates);
         }
         if (currOrder2 !== "none") {
-            var ref2 = firebase.database().ref('Orders/' + currOrder2);
+            var ref2 = firebase.database().ref('AcceptedOrders/' + currOrder2);
             var updates2 = {};
             updates2['/status'] = "on the way";
 
@@ -89,7 +91,7 @@ function confirmDelivery() {
             });
 
         if (currOrder1 !== "none") {
-            var ref = firebase.database().ref('Orders/' + currOrder1);
+            var ref = firebase.database().ref('AcceptedOrders/' + currOrder1);
             var updates = {};
             updates['/status'] = "delivered";
 
@@ -163,12 +165,19 @@ function link_to_dashboard() {
 
 function display_curr_orders() {
     if (currOrder1 !== "none") {
-        var ref = firebase.database().ref('Orders/' + currOrder1);
+        var ref = firebase.database().ref('AcceptedOrders/' + currOrder1);
         ref.once('value').then((snapshot) => {
             order1.style.display = 'block';
-            var retrievedRestName = (snapshot.val() && snapshot.val().restaurant_name) || 'none';
-            var retrievedTime = (snapshot.val() && snapshot.val().total_miles) || 'none';
-            order1name.innerHTML = retrievedRestName + " - Order 1" + "<span id='minuteText'>" + retrievedTime + " Min</span>";
+            var retrievedOrderID = (snapshot.val() && snapshot.val().orderID) || 'none';
+            console.log(retrievedOrderID);
+            var retrievedTime = (snapshot.val() && snapshot.val().duration) || 'none';
+            var orderRef = firebase.database().ref('Orders/' + retrievedOrderID);
+            orderRef.once('value').then((snapshot2 => {
+                var retrievedRestName = (snapshot2.val() && snapshot2.val().restaurant_name) || 'none';
+                var retrievedSpecialReq = (snapshot2.val() && snapshot2.val().special_request) || 'none';
+                order1name.innerHTML = retrievedRestName + " - Order 1" + "<span id='minuteText'>" + retrievedTime + " Min</span>";
+                requestText1.innerHTML = retrievedSpecialReq;
+            }));
         }, {
             onlyOnce: false
         });
@@ -178,11 +187,17 @@ function display_curr_orders() {
     }
 
     if (currOrder2 !== "none") {
-        var ref2 = firebase.database().ref('Orders/' + currOrder2);
+        var ref2 = firebase.database().ref('AcceptedOrders/' + currOrder2);
         ref2.once('value').then((snapshot) => {
             order2.style.display = 'block';
-            var retrievedRestName = (snapshot.val() && snapshot.val().restaurant_name) || 'none';
-            order2name.innerHTML = retrievedRestName + " - Order 2";
+            var retrievedOrderID = (snapshot.val() && snapshot.val().orderID) || 'none';
+            var orderRef = firebase.database().ref('Orders/' + retrievedOrderID);
+            orderRef.once('value').then((snapshot2 => {
+                var retrievedRestName = (snapshot2.val() && snapshot2.val().restaurant_name) || 'none';
+                var retrievedSpecialReq = (snapshot2.val() && snapshot2.val().special_request) || 'none';
+                order2name.innerHTML = retrievedRestName + " - Order 2";
+                requestText2.innerHTML = retrievedSpecialReq;
+            }));
         }, {
             onlyOnce: false
         });
