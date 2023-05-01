@@ -508,8 +508,8 @@ async function sendOrderAction() {
 
 const sendOrder = document.getElementById('sendOrder');
 sendOrder.addEventListener('click', function () {
-  //window.location.href = `http://${window.location.host}/HTML/checkout_detail.html`
-  sendOrderAction();
+  window.location.href = `http://${window.location.host}/checkout_detail.html`
+  //sendOrderAction();
 });
 
 
@@ -523,45 +523,6 @@ function loadRestaurantMenu() {
     }
   });
 }
-
-function tableCreate(cart) {
-  //body reference
-  console.log(cart);
-  var body = document.getElementsByClassName("order-quantity")[0];
-  // create elements <table> and a <tbody>
-  var tbl = document.createElement("div");
-  tbl.setAttribute("width", "100%");
-  tbl.classList.add("col");
-
-  cart.map((val, index) => {
-    var row = document.createElement("div");
-
-    var name = document.createTextNode(val.name);
-    var price = document.createTextNode(val.price);
-    var quantity = document.createTextNode(val.quantity);
-
-    var text1 = document.createElement("text");
-    var text2 = document.createElement("text");
-    var text3 = document.createElement("text");
-
-    text1.appendChild(name);
-    text2.appendChild(price);
-    text3.appendChild(quantity);
-
-    row.appendChild(text1);
-    row.appendChild(text2);
-    row.appendChild(text3);
-
-    row.setAttribute("padding-bottom", "20px");
-    row.classList.add("row");
-
-    tbl.appendChild(row);
-  });
-
-  // body.appendChild(tbl);
-}
-
-tableCreate(cart);
 
 function addItem(imageUrl, label, price, quantity) {
   // Get the table body element
@@ -609,13 +570,15 @@ function addItem(imageUrl, label, price, quantity) {
       //   price: 5,
       //   quantity: 1,
       const data = {
-        id:(Math.random() * 1000).toFixed(0).toString(),
+        id: (Math.random() * 1000).toFixed(0).toString(),
         name: label,
         price: price,
         quantity: quantity,
       };
+      cart = JSON.parse(localStorage.getItem("cart"));
       cart.push(data);
-      updateCart(imageUrl, label, price, quantity, data.id);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      updateCart(imageUrl, label, data.price, quantity, data.id);
       console.log(cart);
     }
   });
@@ -662,7 +625,7 @@ function updateCart(imageUrl, label, price, quantity, id) {
 
   // Create price cell and set the text content
   const priceCell = document.createElement('td');
-  priceCell.textContent = '$' + (price * quantity).toFixed(2) + '';
+  priceCell.textContent = "$" + (price * quantity).toFixed(2) + "";
   newRow.appendChild(priceCell);
 
   // Create quantity cell and input field
@@ -677,7 +640,11 @@ function updateCart(imageUrl, label, price, quantity, id) {
   deleteButton.style.backgroundColor = 'red';
   deleteButton.addEventListener('click', () => {
     newRow.remove();
-    cart = cart.filter((order) => {return order.id == id});
+    cart = JSON.parse(localStorage.getItem("cart"));
+    cart = cart.filter((order) => {return order.id != id});
+    console.log(id);
+    console.log(cart);
+    localStorage.setItem("cart", JSON.stringify(cart));
     updateProcessButton();
   });
   addButtonCell.appendChild(deleteButton);
@@ -718,15 +685,29 @@ function buildQuery(data, prefix) {
 
 window.onload = function () {
   loadRestaurantMenu();
-  const myCollection = collection(firestoreDB, 'Food_Inc_Menu');
-  const querySnapshot = getDocs(myCollection);
-  querySnapshot.then((snapshot) => {
-    snapshot.forEach((doc) => {
-      const data = doc.data();
-      console.log(data);
-      addItem('../assets/foodItemPlaceholder.png', data.item_name, data.item_price, 0);
+  if (localStorage.getItem("cart") === null) {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }else{
+    cart = JSON.parse(localStorage.getItem("cart"));
+    cart.forEach((order) => {
+      updateCart(
+        "../assets/foodItemPlaceholder.png",
+        order.name,
+        order.price,
+        order.quantity,
+        order.id,
+      );
     });
-  });
+  }
+  // const myCollection = collection(firestoreDB, 'Food_Inc_Menu');
+  // const querySnapshot = getDocs(myCollection);
+  // querySnapshot.then((snapshot) => {
+  //   snapshot.forEach((doc) => {
+  //     const data = doc.data();
+  //     console.log(data);
+  //     addItem('../assets/foodItemPlaceholder.png', data.item_name, data.item_price, 0);
+  //   });
+  // });
 }
 
 window.initMap = initMap;
