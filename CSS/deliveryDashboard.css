@@ -38,7 +38,7 @@
     background-color: #f1af3d;
 }
 
-.minuteText {
+#minuteText {
     float: right;
     margin-right: 25px;
     font-weight: normal;
@@ -81,7 +81,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
-.map-placeholder iframe {
+.map {
     width: 487px;
     height: 500px;
 }
