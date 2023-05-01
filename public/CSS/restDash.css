@@ -1,5 +1,10 @@
 /* Area for features that a restaurant has such as add to menu, search for driver, etc */
+form {
+    font-family: 'Poppins', sans-serif;
+}
+
 .rest-wrapper{
+    font-family: 'Poppins', sans-serif;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     margin: 0 2%;
