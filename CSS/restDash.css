@@ -122,3 +122,19 @@
 .rest-menu{
     background-color: #acacac;
 }
+
+#menu-list{
+    max-height: 400px;
+    overflow-y: scroll;
+    text-align: left;
+    margin-left: 30%;
+}
+
+
+.menu-item h1, .menu-item p {
+    display: inline;
+    margin: 0;
+    padding-right: 10px;
+}
+  
+  
