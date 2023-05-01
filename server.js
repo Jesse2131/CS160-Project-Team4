@@ -12,12 +12,12 @@ const app = express();
 
 // When the app is first run, we go the the default page
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/HTML/index.html');
+    res.sendFile(__dirname + '/HTML/customerPage.html');
 });
 
 // For all other pages load them from directories directly
-app.use(express.static(__dirname + '/HTML'));
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + ''));
+// app.use(express.static(__dirname + '/public'));
 
   
 app.listen(PORT, HOST, () => {
