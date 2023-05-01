@@ -206,6 +206,18 @@ function driverOnline() {
         });
 }
 
+/*var myStyles = [
+    {
+        featureType: "poi",
+        stylers: [{ visibility: "off" }]
+    },
+    {
+        featureType: "transit",
+        elementType: "labels.icon",
+        stylers: [{ visibility: "off" }]
+    }
+];
+
 /*function initMap() {
     geocoder = new google.maps.Geocoder();
     directionsService = new google.maps.DirectionsService();
@@ -218,9 +230,10 @@ function driverOnline() {
         {
             zoom: 11,
             center: { lat: 37.33956562562412, lng: -121.89712826599812 },
+            style: myStyles,
         }
     );
     directionsRenderer.setMap(map);
 }
 
-initMap();*/
+window.initMap = initMap;*/
