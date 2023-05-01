@@ -10,11 +10,11 @@ function login() {
         // Redirect to correct dashboard
         if(user_type === 'customers'){
           console.log('customer');
-          // window.location.href = 'index.html';
+          // window.location.href = '';
         }
         else if(user_type === 'drivers'){
           console.log('driver');
-          window.location.href = "../HTML/welcomeDashboardDriver.html";
+          window.location.href = "welcomeDashboardDriver.html";
           sessionStorage.setItem("currentUser", curr_user);
         }
         else{

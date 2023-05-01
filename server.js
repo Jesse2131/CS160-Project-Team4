@@ -5,7 +5,7 @@ const express = require('express');
 // Constants
 const PORT = 13000;
 // For local, set host to localhost, for docker set to 0.0.0.0
-const HOST = '0.0.0.0';
+const HOST = 'localhost';
 
 // App
 const app = express();
