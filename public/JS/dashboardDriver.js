@@ -201,12 +201,12 @@ function driverOnline() {
             updateObject["status"] = "online";
             userRef.update(updateObject);
             setTimeout(function() {
-                window.location.href = "../HTML/deliveryDashboardDriver.html";
+                window.location.href = "../deliveryDashboardDriver.html";
             }, 300);
         });
 }
 
-/*var myStyles = [
+var myStyles = [
     {
         featureType: "poi",
         stylers: [{ visibility: "off" }]
@@ -218,7 +218,7 @@ function driverOnline() {
     }
 ];
 
-/*function initMap() {
+function initMap() {
     geocoder = new google.maps.Geocoder();
     directionsService = new google.maps.DirectionsService();
     directionsRenderer = new google.maps.DirectionsRenderer({
@@ -236,4 +236,4 @@ function driverOnline() {
     directionsRenderer.setMap(map);
 }
 
-window.initMap = initMap;*/
+window.initMap = initMap;

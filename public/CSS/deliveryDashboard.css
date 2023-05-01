@@ -64,13 +64,15 @@
     pointer-events: none;
 }
 
-.driverDashboardContainer .map-placeholder {
+.driverDashboardContainer #map {
     float: right;
-    width: 35%;
-    height: 35%;
+    width: 540px;
+    height: 500px;
     position: relative;
     top: -40px;
     margin-right: 15px;
+    flex: 1;
+    flex-basis: 50%;
 }
 
 .currentDeliveries h1 {
