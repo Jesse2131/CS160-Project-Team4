@@ -10,12 +10,12 @@ function login() {
         // Redirect to correct dashboard
         if(user_type === 'customers'){
           console.log('customer');
-          // window.location.href = '';
+          window.location.href = 'customerDash.html';
         }
         else if(user_type === 'drivers'){
           console.log('driver');
           window.location.href = "welcomeDashboardDriver.html";
-          sessionStorage.setItem("currentUser", curr_user);
+          // sessionStorage.setItem("currentUser", curr_user);
         }
         else{
           console.log('restaurants');
@@ -122,12 +122,12 @@ function addToDB(...params) {
       // Redirect to appropriate dashboard
       if(user_type === 'customers'){
         console.log('customer');
-        // window.location.href = '';
+        window.location.href = 'customerDash.html';
       }
       else if(user_type === 'drivers'){
         console.log('driver');
         window.location.href = "welcomeDashboardDriver.html";
-        sessionStorage.setItem("currentUser", curr_user);
+        // sessionStorage.setItem("currentUser", curr_user);
       }
       else{
         console.log('restaurants');
