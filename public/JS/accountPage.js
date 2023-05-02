@@ -176,8 +176,8 @@ function updateInfo() {
     const curr_user = firebase.auth().currentUser;
     const curr_user_id = curr_user.uid;
     // Text fields
-    const usernameField = document.getElementById("username").value;
-    const emailField = document.getElementById("email").value;
+    const usernameField = document.getElementById("username").value.trim();
+    const emailField = document.getElementById("email").value.trim();
 
     if (emailField !== "") {
         curr_user.updateEmail(emailField)

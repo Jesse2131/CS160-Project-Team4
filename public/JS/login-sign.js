@@ -77,7 +77,7 @@ function logout() {
                       document.getElementById("errormsg").innerHTML = error;
                   });
               setTimeout(function() {
-                  window.location.href = "/HTML/index.html";
+                  window.location.href = "index.html";
               }, 300);
         });
     }).catch((error) => {

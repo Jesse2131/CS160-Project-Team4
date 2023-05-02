@@ -93,7 +93,6 @@ function createCollection(...params) {
 function getMenu(){
     const menuListElement = document.getElementById('menu-list');
     const curr_user = firebase.auth().currentUser;
-    console.log(curr_user);
     getRestName(curr_user).then((rest_name) => {
         const formatted_rest_name = rest_name.replace(/ /g, "_") + "_Menu"; 
         const menuItemsRef = firebase.firestore().collection(formatted_rest_name);
