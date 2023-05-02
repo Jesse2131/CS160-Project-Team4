@@ -1,5 +1,14 @@
 # CS 160 - Team 04
 
+## **TO RUN DOCKER IMAGE**
+1. docker pull jesse24/odfds_team4 
+2. docker run -d -p port:13000 jesse24/odfds_team4 
+
+NOTE: The port number can be anything, perferrably > 10,000. If running into issues try a diff port number
+example run: docker run -d -p 13001:13000 jesse24/odfds_team4 
+
+3. go to: localhost:port 
+
 ## The Team
 
 1. Bryan Christiano
@@ -31,7 +40,7 @@ Software:
 - **Docker** *Docker image*
 - **Google Maps API** *map functionality*
 - **Stripe** *payment functionality*
-- **NodeJS and Express** *Live server*
+
 Soft-Skill Tools:
 
 - **Zoom** *team meetings*
@@ -43,25 +52,3 @@ Soft-Skill Tools:
 - **Adobe Photoshop** *logo design*
 - **[Coolors.co](http://coolors.co)** *color palette development*
 
-
-
-# CS160-Team 4
-
-## **Team Members**
-
-1. Christiano,Bryan	
-2. Dong,Jesse	
-3. Lopez,Kelvin Enrique	
-4. Ly,Kevin	
-5. Ong,Huy Gia	
-6. Tawde,Gargi Sunil
-
-## **ODFS**
-To run the docker image 
-1. docker pull jesse24/odfds_team4 
-2. docker run -d -p port:13000 jesse24/odfds_team4 
-
-NOTE: The port number can be anything, perferrably > 10,000. If running into issues try a diff port number
-example run: docker run -d -p 13001:13000 jesse24/odfds_team4 
-
-3. go to: localhost:port 
