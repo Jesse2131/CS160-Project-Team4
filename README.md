@@ -30,7 +30,7 @@ Software:
 - **FireBase** *user authentication*
 - **Docker** *Docker image*
 - **Google Maps API** *map functionality*
-- **Stripe** *payment functionality**
+- **Stripe** *payment functionality*
 
 Soft-Skill Tools:
 
