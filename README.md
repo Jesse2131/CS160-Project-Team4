@@ -33,16 +33,15 @@ Special note: We use Google Map (or other mapping services like MapBox) for rout
 ### Tech Stack
 
 Software:
-
 - **HTML, CSS** *frontend and general website layout*
 - **JavaScript** *general website functionality and integration with other software/tools*
 - **FireBase** *user authentication*
 - **Docker** *Docker image*
 - **Google Maps API** *map functionality*
 - **Stripe** *payment functionality*
+- **NodeJS and Express** *Live server*
 
 Soft-Skill Tools:
-
 - **Zoom** *team meetings*
 - **Notion** *meeting notes, README write-up*
 - **Jira** *Agile Workflow, Backlog*
@@ -51,4 +50,15 @@ Soft-Skill Tools:
 - **Adobe XD** *wireframing/design*
 - **Adobe Photoshop** *logo design*
 - **[Coolors.co](http://coolors.co)** *color palette development*
+
+### Design Inspiration
+<img width="1508" alt="image" src="https://user-images.githubusercontent.com/40704006/235800427-092e250c-0133-4f82-83ec-8edf891ce893.png">
+*Initial design concept made by: Gargi Tawde*
+
+### Users
+
+1. **Restaurant** *can accept orders, edit their available menu, and pay for deliveries*
+2. **Customer** *places an order and can see its progress once it is accepted and restaurant/driver start to fulfill it*
+3. **Driver** *goes online, then is assigned orders to fulfill*
+
 
