@@ -42,8 +42,9 @@ Soft-Skill Tools:
 - **Adobe Photoshop** *logo design*
 - **[Coolors.co](http://coolors.co)** *color palette development*
 
-### Design
+### Design Inspiration
 <img width="1508" alt="image" src="https://user-images.githubusercontent.com/40704006/235800427-092e250c-0133-4f82-83ec-8edf891ce893.png">
+*Initial design concept made by: Gargi Tawde
 
 
 # CS160-Team 4
