@@ -3,13 +3,6 @@ firebase.analytics();
 
 const database = firebase.database();
 
-var isFirstLoad = localStorage.getItem("isFirstLoad");
-
-if (!isFirstLoad) {
-  console.log("Test");
-  localStorage.setItem("isFirstLoad", "true");
-}
-
 let cart = [
   {
     name: "Trip minimum",
@@ -49,7 +42,6 @@ async function writePayment() {
         var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
         let obj = chargeRes.data[i].data.object;
         const dbRef = database.ref();
-        localStorage.setItem("current_order", dbRef.child("Orders").push().key);
         console.log(dbRef.child("Orders").push().key);
         dbRef
           .child("Orders")

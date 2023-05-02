@@ -20,7 +20,18 @@ var bestDriver;
 var activerOrders = [];
 
 
-let cart = [];
+let cart = [
+  // {
+  //   name: "Trip minimum",
+  //   price: 5,
+  //   quantity: 1,
+  // },
+  // {
+  //   name: "XX miles",
+  //   price: 5,
+  //   quantity: 1,
+  // },
+];
 
 var myStyles = [
   {
@@ -83,8 +94,6 @@ const driversRef = ref(db, 'drivers');
 const restaurantsRef = ref(db, 'restaurants');
 const ordersRef = ref(db, 'orders');
 const firestoreDB = getFirestore(app2);
-
-
 
 async function fetchRestaurants() {
   await get(restaurantsRef).then((snapshot) => {

@@ -97,34 +97,6 @@ function buildQuery(data, prefix) {
     .join("&");
 }
 
-async function testing(){
-  let paymentRequest2 = await fetch(
-    "https://api.stripe.com/v1/payment_intents",
-    {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer sk_test_51Mvuu4I6ZJcOWwlq0rLtERYLSP8MOAZYNq6dKQdpJfywIpdi8A5LEOgcl2oW5ynvWaidmPQArHvIAizmHX86IeRj009naEPT3c`,
-      },
-    }
-  );
-  let res2 = await paymentRequest2.json();
-  console.log("test");
-  console.log(res2.data);
-
-  let paymentRequest = await fetch(
-    "https://api.stripe.com/v1/payment_intents/pi_3MyjiDI6ZJcOWwlq0g7zySvt",
-    {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer sk_test_51Mvuu4I6ZJcOWwlq0rLtERYLSP8MOAZYNq6dKQdpJfywIpdi8A5LEOgcl2oW5ynvWaidmPQArHvIAizmHX86IeRj009naEPT3c`,
-      },
-    }
-  );
-  let res = await paymentRequest.json();
-  console.log(res.latest_charge);
-}
-testing();
-
 async function goToCheckout(){
   console.log("test");
   let line_items = cart.map(function (item) {
@@ -169,8 +141,8 @@ const checkout = document.getElementById("checkout");
 checkout.addEventListener("click", function () {
   //window.location.href = `http://${window.location.host}/HTML/checkout_detail.html`
   
-  const request = document.getElementById("requests").value;
-  localStorage.setItem("request", request);
+  // const request = document.getElementById("requests").value;
+  // localStorage.setItem("request", request);
   goToCheckout();
 });
 

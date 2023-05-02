@@ -55,6 +55,7 @@ function signup() {
       creation.then(function () {
           addToDB(user_type, email, name, address);
       });
+      console.log("test");
     }
     else{
       document.getElementById("errormsg").innerHTML = "Please select a user type";
@@ -90,8 +91,9 @@ function logout() {
 function addToDB(...params) {
   // Get current user and their type 
   var userUid = firebase.auth().currentUser.uid;
+  console.log(userUid);
   // unpack params 
-  const [user_type, email, name, address] = params
+  const [user_type, email, name, address] = params;
   // Add to users collection and corresponding collecion
   var col = db.collection(user_type);
   Promise.all([

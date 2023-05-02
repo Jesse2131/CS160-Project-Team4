@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="/JS/restaurantPage.js"></script>
+</head>
+<body>
+    <fieldset>
+        <legend>Review Order:</legend>
+        <div id="container">
+            <div id="map" style="height: 300px;"></div>
+            <div id="sidebar">
+                <fieldset>
+                    <legend>Locations:</legend>
+                    <p>Restaurant: 2855 Stevens Creek Blvd, Santa Clara, CA 95050</p>
+                    <p>Delivery: 1419 Keoncrest Ave, San Jose, CA, 95110</p>
+                </fieldset>
+    
+                <fieldset>
+                    <legend>Order Details:</legend>
+                    <p>Pizza: Small - Quality: 2</p>
+                    <p>Pizza: Medium - Quality: 2</p>
+                    <p>Pizza: Large - Quality: 2</p>
+                </fieldset>
+    
+                <fieldset>
+                    <legend>Deliver Details:</legend>
+                    <p>Driver: Huy Ong</p>
+                    <p>Duration: 40 mins</p>
+                    <p>Distance: 12 miles</p>
+                    <p>Cost: $23</p>
+                </fieldset>
+    
+                <button id="acceptRequest">Accept Order</button>
+            </div> 
+        </div>
+    </fieldset>
+    <div id="loading">
+        <div id="loading-spinner"></div>
+    </div>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoWTjotq5OuS-aZLeiZxd0uR2YNRCJdmY&callback=initMap&v=weekly"
+        defer></script>
+</body>
+</html>
