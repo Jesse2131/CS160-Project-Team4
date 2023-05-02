@@ -14,15 +14,26 @@ let order2name = document.getElementById("order2name");
 let requestText1 = document.getElementById("requestText1");
 let requestText2 = document.getElementById("requestText2");
 
-let status = "";
+let currStatus = "";
 let currOrder1 = "";
 let currOrder2 = "";
+let currLocation = "";
+let currRestLocation = "";
+let currCustLocation1 = "";
+let currCustLocation2 = "";
+let address = "";
 
 var map;
 var directionsService;
 var directionsRenderer;
 var distanceService;
 var geocoder;
+
+var currDriverLatLng = { lat:0, lng:0};
+var currRestLatLng = { lat:0, lng:0};
+var currCustLatLng1 = { lat:0, lng:0};
+var currCustLatLng2 = { lat:0, lng:0};
+var markers = [];
 
 
 const database = firebase.database();
@@ -36,6 +47,11 @@ function confirmPickup() {
                 const userRef = db.collection(userType).doc(curr_user.uid);
                 const updateObject = {};
                 updateObject["status"] = "delivering";
+                currStatus = "delivering";
+                markers[0].setMap(null);
+                markers[1].setMap(null);
+                currLocation = currRestLocation;
+                updateObject["currentLocation"] = currRestLocation;
                 userRef.update(updateObject);
             });
 
@@ -53,6 +69,13 @@ function confirmPickup() {
 
             ref2.update(updates2);
         }
+
+        setTimeout(function() {
+            displayDriver();
+            setTimeout(function() {
+                drawRoute();
+            }, 800);
+        }, 600);
 
         but1.classList.add('disabledButton');
         but2.classList.remove('disabledButton');
@@ -74,7 +97,23 @@ function confirmDelivery() {
                 if (currOrder2 === "none") {
                     updateObject["status"] = "online";
                     updateObject["order1"] = "none";
+                    markers[0].setMap(null);
+                    markers[2].setMap(null);
+                    if (markers.length === 4) {
+                        markers[3].setMap(null);
+                        currLocation = currCustLocation2;
+                        updateObject["currentLocation"] = currCustLocation2;
+                    } else {
+                        currLocation = currCustLocation1;
+                        updateObject["currentLocation"] = currCustLocation1;
+                    }
                     userRef.update(updateObject);
+
+                    setTimeout(function() {
+                        displayDriver();
+                        directionsRenderer.setMap(null);
+                    }, 600);
+
                     currOrder1 = "none";
                     but2.classList.add('disabledButton');
 
@@ -84,9 +123,20 @@ function confirmDelivery() {
                 } else {
                     updateObject["order1"] = currOrder2;
                     updateObject["order2"] = "none";
+                    markers[0].setMap(null);
+                    markers[2].setMap(null);
+                    currLocation = currCustLocation1;
+                    updateObject["currentLocation"] = currCustLocation1;
                     userRef.update(updateObject);
                     currOrder1 = currOrder2;
                     currOrder2 = "none";
+
+                    setTimeout(function() {
+                        displayDriver();
+                        setTimeout(function() {
+                            drawRoute();
+                        }, 800);
+                    }, 600);
                 }
             });
 
@@ -112,9 +162,25 @@ firebase.auth().onAuthStateChanged(function(user) {
         display_user_info(user);
         setTimeout(function() {
             link_to_dashboard();
-            if (status !== "offline") {
+            if (currStatus !== "offline") {
                 display_curr_orders();
+                displayDriver();
+                displayRestaurant();
             }
+            if (currOrder1 !== "none") {
+                displayCustomer(currOrder1);
+            }
+            if (currOrder2 !== "none") {
+                displayCustomer(currOrder2);
+            }
+            setTimeout(function() {
+                if (currStatus === "delivering") {
+                    markers[1].setMap(null);
+                }
+            }, 600);
+            setTimeout(function() {
+                drawRoute();
+            }, 1000);
         }, 800);
 
     } else {
@@ -136,8 +202,13 @@ function display_user_info(user) {
             const retrievedStatus = doc.data().status;
             const retrievedOrder1 = doc.data().order1;
             const retrievedOrder2 = doc.data().order2;
+            const retrievedAddress = doc.data().address;
+            const retrievedLocation = doc.data().currentLocation;
             // Update account button to show currently logged in user
             document.getElementById("nav-logged-in-user").innerHTML = "Welcome " + retrievedName;
+            if (retrievedOrder1 !== "none") {
+                but1.classList.remove('disabledButton');
+            }
             if (retrievedStatus === "delivering") {
                 but1.classList.add('disabledButton');
                 but2.classList.remove('disabledButton');
@@ -146,9 +217,12 @@ function display_user_info(user) {
                 dot1.style.filter = "grayscale(0%)";
                 driverImg.style.filter = "grayscale(0%)";
             }
-            status = retrievedStatus;
+
+            currStatus = retrievedStatus;
             currOrder1 = retrievedOrder1;
             currOrder2 = retrievedOrder2;
+            address = retrievedAddress;
+            currLocation = retrievedLocation;
         });
     }).catch((error) => {
         console.log("Error getting user data:", error);
@@ -156,7 +230,7 @@ function display_user_info(user) {
 }
 
 function link_to_dashboard() {
-    if (status === "offline") {
+    if (currStatus === "offline") {
         dashLink.href = "welcomeDashboardDriver.html";
     } else {
         dashLink.href = "deliveryDashboardDriver.html";
@@ -169,7 +243,6 @@ function display_curr_orders() {
         ref.once('value').then((snapshot) => {
             order1.style.display = 'block';
             var retrievedOrderID = (snapshot.val() && snapshot.val().orderID) || 'none';
-            console.log(retrievedOrderID);
             var retrievedTime = (snapshot.val() && snapshot.val().duration) || 'none';
             var orderRef = firebase.database().ref('Orders/' + retrievedOrderID);
             orderRef.once('value').then((snapshot2 => {
@@ -252,3 +325,143 @@ function initMap() {
 }
 
 window.initMap = initMap;
+
+function displayDriver() {
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode( { 'address': currLocation}, function(results, status) {
+        if (status === google.maps.GeocoderStatus.OK)
+        {
+            const lat = results[0].geometry.location.lat();
+            const lng = results[0].geometry.location.lng();
+            currDriverLatLng = { lat:lat, lng:lng };
+
+            const driverMarker = new google.maps.Marker({
+                position: currDriverLatLng,
+                map,
+                icon: "../ASSETS/driver-dashboard/driverMarker.png",
+            });
+            markers[0] = driverMarker;
+            driverMarker.setMap(map);
+        }
+    });
+}
+
+function displayRestaurant() {
+    if (currOrder1 !== "none") {
+        var ref = firebase.database().ref('AcceptedOrders/' + currOrder1);
+        ref.once('value').then((snapshot) => {
+            var retrievedRestID = (snapshot.val() && snapshot.val().from) || 'none';
+            var restRef = firebase.database().ref('restaurants/' + retrievedRestID);
+            restRef.once('value').then((snapshot2 => {
+                var retrievedRestAddress = (snapshot2.val() && snapshot2.val().address) || 'none';
+                currRestLocation = retrievedRestAddress;
+
+                var geocoder = new google.maps.Geocoder();
+                geocoder.geocode( { 'address': retrievedRestAddress}, function(results, status) {
+                    if (status === google.maps.GeocoderStatus.OK)
+                    {
+                        const lat = results[0].geometry.location.lat();
+                        const lng = results[0].geometry.location.lng();
+                        currRestLatLng = { lat:lat, lng:lng };
+
+                        const restaurantMarker = new google.maps.Marker({
+                            position: currRestLatLng,
+                            map,
+                            icon: "../ASSETS/driver-dashboard/restaurantMarker.png",
+                        });
+                        markers[1] = restaurantMarker;
+                        restaurantMarker.setMap(map);
+                    }
+                });
+            }));
+        }, {
+            onlyOnce: false
+        });
+    }
+}
+
+function displayCustomer(orderID) {
+    var ref = firebase.database().ref('AcceptedOrders/' + orderID);
+    ref.once('value').then((snapshot) => {
+        var retrievedCustID = (snapshot.val() && snapshot.val().to) || 'none';
+        var custRef = firebase.database().ref('customers/' + retrievedCustID);
+        custRef.once('value').then((snapshot2 => {
+            var retrievedCustAddress = (snapshot2.val() && snapshot2.val().address) || 'none';
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode( { 'address': retrievedCustAddress}, function(results, status) {
+                if (status === google.maps.GeocoderStatus.OK)
+                {
+                    const lat = results[0].geometry.location.lat();
+                    const lng = results[0].geometry.location.lng();
+                    const customerLatLng = { lat:lat, lng:lng };
+
+                    const customerMarker = new google.maps.Marker({
+                        position: customerLatLng,
+                        map,
+                        icon: "../ASSETS/driver-dashboard/customerMarker.png",
+                    });
+
+                    if (orderID === currOrder1) {
+                        currCustLatLng1 = { lat:lat, lng:lng};
+                        currCustLocation1 = retrievedCustAddress;
+                        markers[2] = customerMarker;
+                    } else {
+                        currCustLatLng2 = { lat:lat, lng:lng};
+                        currCustLocation2 = retrievedCustAddress
+                        markers[3] = customerMarker;
+                    }
+
+                    customerMarker.setMap(map);
+                }
+            });
+        }));
+    }, {
+        onlyOnce: false
+    });
+}
+
+function drawRoute() {
+    directionsRenderer.setDirections({ routes: [] });
+    const driverLocation = new google.maps.LatLng(currDriverLatLng.lat, currDriverLatLng.lng);
+    var waypoints;
+    var deliveryLocation;
+    if (currStatus === "delivering" && currOrder2 !== "none") {
+        waypoints = [
+            { location: new google.maps.LatLng(currCustLatLng1.lat, currCustLatLng1.lng), stopover: true }
+        ];
+        deliveryLocation = currCustLatLng2;
+    } else if (currStatus === "delivering") {
+        waypoints = [];
+        deliveryLocation = currCustLatLng1;
+    } else if (currOrder2 !== "none") {
+        waypoints = [
+            { location: new google.maps.LatLng(currRestLatLng.lat, currRestLatLng.lng), stopover: true },
+            { location: new google.maps.LatLng(currCustLatLng1.lat, currCustLatLng1.lng), stopover: true }
+        ];
+        deliveryLocation = currCustLatLng2;
+    } else {
+        waypoints = [
+            { location: new google.maps.LatLng(currRestLatLng.lat, currRestLatLng.lng), stopover: true },
+        ];
+        deliveryLocation = currCustLatLng1;
+    }
+
+    var request = {
+        origin: driverLocation,
+        destination: new google.maps.LatLng(deliveryLocation.lat, deliveryLocation.lng),
+        waypoints: waypoints,
+        optimizeWaypoints: true,
+        travelMode: 'DRIVING',
+        drivingOptions: {
+            departureTime: new Date(),
+            trafficModel: 'pessimistic'
+        },
+        unitSystem: google.maps.UnitSystem.IMPERIAL,
+    };
+
+    directionsService.route(request, function (response, status) {
+        if (status === 'OK') {
+            directionsRenderer.setDirections(response);
+        }
+    });
+}
