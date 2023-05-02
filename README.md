@@ -1,6 +1,6 @@
 # CS 160 - Team 04
 
-## **TO RUN DOCKER IMAGE**
+## **Run Docker Image Instructions**
 1. docker pull jesse24/odfds_team4 
 2. docker run -d -p port:13000 jesse24/odfds_team4 
 
