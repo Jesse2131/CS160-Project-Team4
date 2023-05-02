@@ -33,14 +33,18 @@ Soft-Skill Tools:
 - **Adobe XD** *wireframing/design*
 - **Adobe Photoshop** *logo design*
 - **[Coolors.co](http://coolors.co)** *color palette development*
+
 ### Design Inspiration
 <img width="1508" alt="image" src="https://user-images.githubusercontent.com/40704006/235800427-092e250c-0133-4f82-83ec-8edf891ce893.png">
 *Initial design concept made by: Gargi Tawde*
+
 ### Users
 1. **Restaurant** *can accept orders, edit their available menu, and pay for deliveries*
 2. **Customer** *places an order and can see its progress once it is accepted and restaurant/driver start to fulfill it*
 3. **Driver** *goes online, then is assigned orders to fulfill*
+
 ## Try Out the Product
+
 ### Run the docker image: 
 1. docker pull jesse24/odfds_team4 
 2. docker run -d -p port:13000 jesse24/odfds_team4 
