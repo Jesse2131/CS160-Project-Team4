@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
 import { getDatabase, set, ref, update, get, child, onValue } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
-import { getFirestore, collection, doc, getDocs, setDoc, updateDoc, arrayUnion, arrayRemove } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+import { getFirestore, collection, doc, getDocs, getDoc, setDoc, updateDoc, arrayUnion, arrayRemove } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
 
 var map;
 var directionsService;
@@ -94,6 +94,8 @@ const driversRef = ref(db, 'drivers');
 const restaurantsRef = ref(db, 'restaurants');
 const ordersRef = ref(db, 'orders');
 const firestoreDB = getFirestore(app2);
+// const firestoreDB = firebase.firestore();
+
 
 async function fetchRestaurants() {
   await get(restaurantsRef).then((snapshot) => {
@@ -511,14 +513,50 @@ sendOrder.addEventListener('click', function () {
 });
 
 
-function loadRestaurantMenu() {
-  const restID = "130B8712-FC53-4A93-9E78-AC44F29B3F2B";
-  get(ref(db, `restaurants/${restID}/menu`)).then((snapshot) => {
-    const menu = snapshot.val();
-    console.log(menu);
-    for (const item in menu) {
-      addItem('../assets/foodItemPlaceholder.png', item, menu[item], 0);
-    }
+function getRestMenu(restID) {
+  // const restID = "130B8712-FC53-4A93-9E78-AC44F29B3F2B";
+  console.log("loading menu for " + restID);
+  // get(ref(db, `restaurants/${restID}/menu`)).then((snapshot) => {
+  //   const menu = snapshot.val();
+  //   console.log(menu);
+  //   for (const item in menu) {
+  //     addItem('../assets/foodItemPlaceholder.png', item, menu[item], 0);
+  //   }
+  // });
+
+  // Get the restaurant name from the ID then go the the restaurant menu 
+
+  const restaurantsCollection = collection(firestoreDB, 'restaurants');
+const docRef = doc(restaurantsCollection, restID);
+
+getDoc(docRef).then((doc) => {
+  if (doc.exists()) {
+    const data = doc.data();
+    const rest_name = data.name; 
+    console.log(rest_name);
+    const formatted_rest_name = rest_name.replace(/ /g, "_") + "_Menu";
+    // Use this name to load the menu items
+    console.log(formatted_rest_name);
+    loadRestaurantMenu(formatted_rest_name);
+
+  } else {
+    console.log("This restaurant doesn't exist");
+  }
+}).catch((error) => {
+  console.log("Error getting document:", error);
+});
+
+}
+
+function loadRestaurantMenu(rest_name){
+  const myCollection = collection(firestoreDB, rest_name);
+  const querySnapshot = getDocs(myCollection);
+  querySnapshot.then((snapshot) => {
+    snapshot.forEach((doc) => {
+      const data = doc.data();
+      console.log(data);
+      addItem('../assets/foodItemPlaceholder.png', data.item_name, data.item_price, 0);
+    });
   });
 }
 
@@ -697,6 +735,8 @@ window.onload = function () {
       );
     });
   }
+  const restaurantId = localStorage.getItem('order_restaurantId');
+  getRestMenu(restaurantId);
   // const myCollection = collection(firestoreDB, 'Food_Inc_Menu');
   // const querySnapshot = getDocs(myCollection);
   // querySnapshot.then((snapshot) => {

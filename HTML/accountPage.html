@@ -15,7 +15,7 @@
       <img class="odfds-logo" src="../ASSETS/odfdsLOGO.png"/>
       <h1 id="nav-logged-in-user">Welcome User</h1>
       <ul>
-        <li><a id="dashboardLink" href="deliveryDashboardDriver.html">Dashboard</a></li>
+        <li><a onclick="goToDash()">Dashboard</a></li>
         <li><a href="accountPage.html">Account</a></li>
         <li><a onclick="logout()">Log Out</a></li>
       </ul>
@@ -106,7 +106,9 @@
           </form>
         </div>
       </div>
+      <br>
       <p id="errormsg"></p>
+      <br>
       <button class="editacc-btn" onclick="updateInfo()">Save Changes</button>
     </div>
 

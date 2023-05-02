@@ -10,12 +10,12 @@ function login() {
         // Redirect to correct dashboard
         if(user_type === 'customers'){
           console.log('customer');
-          // window.location.href = '';
+          window.location.href = 'customerDash.html';
         }
         else if(user_type === 'drivers'){
           console.log('driver');
           window.location.href = "welcomeDashboardDriver.html";
-          sessionStorage.setItem("currentUser", curr_user);
+          // sessionStorage.setItem("currentUser", curr_user);
         }
         else{
           console.log('restaurants');
@@ -35,9 +35,8 @@ function login() {
 
 function signup() {
     const user_type = document.getElementById("user-type").value
-    console.log(user_type)
     if(user_type != ""){
-      const email = document.getElementById('email').value;
+      const email = document.getElementById('email').value.toLowerCase();
       const password = document.getElementById('password').value;
       const name = document.getElementById('name').value;
       const address = document.getElementById('address').value;
@@ -79,7 +78,7 @@ function logout() {
                       document.getElementById("errormsg").innerHTML = error;
                   });
               setTimeout(function() {
-                  window.location.href = "../HTML/intro.html";
+                  window.location.href = "index.html";
               }, 300);
         });
     }).catch((error) => {
@@ -96,6 +95,18 @@ function addToDB(...params) {
   const [user_type, email, name, address] = params;
   // Add to users collection and corresponding collecion
   var col = db.collection(user_type);
+
+  // Add to realtime if user is a driver 
+  if(user_type === "drivers"){
+    console.log("ADDING TO REALTIME");
+    real_db.ref(`drivers/${userUid}`).set({
+        email: email,
+        name: name,
+        address: address,
+        status: "offline"
+    })
+  }
+
   Promise.all([
     db.collection("users").doc(userUid).set({
         id: userUid,
@@ -111,7 +122,19 @@ function addToDB(...params) {
   .then(() => {
       console.log("Success");
       // Redirect to appropriate dashboard
-      window.location.href = "index.html"; 
+      if(user_type === 'customers'){
+        console.log('customer');
+        window.location.href = 'customerDash.html';
+      }
+      else if(user_type === 'drivers'){
+        console.log('driver');
+        window.location.href = "welcomeDashboardDriver.html";
+        // sessionStorage.setItem("currentUser", curr_user);
+      }
+      else{
+        console.log('restaurants');
+        window.location.href = "restaurantDash.html";
+      }
   })
   .catch((error) => {
       console.error(error);
@@ -134,4 +157,15 @@ function getUserType(id){
     });
 }
 
+// function disablePages(){
+//   const curr_user = firebase.auth().currentUser;
+//   getUserType(curr_user.uid)
+//     .then(userType => {
+//       console.log(userType); 
+//       if(userType === "driver"){
+//         // disable others
+//       }
+//       else if()
+//   });
+// }
 

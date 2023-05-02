@@ -9,7 +9,6 @@ function addToMenu(event){
     event.preventDefault();
 
     const curr_user = firebase.auth().currentUser;
-    console.log(curr_user);
     // Input form values
     const item_name = document.getElementById("new-menu-item-name").value;
     const item_price = document.getElementById("new-menu-item-price").value;
@@ -25,6 +24,7 @@ function addToMenu(event){
         getRestName(curr_user).then((rest_name) => {
             // Collections for each restaurants menus are in the format
             // Restaurantname_Menu. If restaurant names have spaces replace with "_"
+            console.log(rest_name);
             const formatted_rest_name = rest_name.replace(/ /g, "_") + "_Menu"; 
             // Add item and price to collection
             createCollection(formatted_rest_name, item_name, item_price);
@@ -38,17 +38,18 @@ function addToMenu(event){
 
 function getRestName(user) {
     const restaurantsRef = db.collection("restaurants");
-    
     return restaurantsRef
         .where("email", "==", user.email)
         .limit(1)
         .get()
         .then((querySnapshot) => {
             if (querySnapshot.empty) {
+                console.log("didn't find anyone");
                 return null;
             } else {
                 const doc = querySnapshot.docs[0];
                 const rest_name = doc.data().name;
+                console.log(rest_name);
                 return rest_name;
             }
     });
@@ -93,7 +94,6 @@ function createCollection(...params) {
 function getMenu(){
     const menuListElement = document.getElementById('menu-list');
     const curr_user = firebase.auth().currentUser;
-    console.log(curr_user);
     getRestName(curr_user).then((rest_name) => {
         const formatted_rest_name = rest_name.replace(/ /g, "_") + "_Menu"; 
         const menuItemsRef = firebase.firestore().collection(formatted_rest_name);

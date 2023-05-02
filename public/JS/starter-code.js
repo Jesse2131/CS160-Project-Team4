@@ -6,8 +6,9 @@ firebase.analytics();
 
 // get the database
 const db = firebase.firestore(); 
-
+const real_db = firebase.database();
 // console.log(curr_user, curr_user_id, curr_user_email);
 
 // All users have a name and address
+
 
