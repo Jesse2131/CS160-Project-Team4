@@ -24,7 +24,6 @@ Special note: We use Google Map (or other mapping services like MapBox) for rout
 ### Tech Stack
 
 Software:
-
 - **HTML, CSS** *frontend and general website layout*
 - **JavaScript** *general website functionality and integration with other software/tools*
 - **FireBase** *user authentication*
@@ -32,8 +31,8 @@ Software:
 - **Google Maps API** *map functionality*
 - **Stripe** *payment functionality*
 - **NodeJS and Express** *Live server*
-Soft-Skill Tools:
 
+Soft-Skill Tools:
 - **Zoom** *team meetings*
 - **Notion** *meeting notes, README write-up*
 - **Jira** *Agile Workflow, Backlog*
@@ -43,6 +42,8 @@ Soft-Skill Tools:
 - **Adobe Photoshop** *logo design*
 - **[Coolors.co](http://coolors.co)** *color palette development*
 
+### Design
+<img width="1508" alt="image" src="https://user-images.githubusercontent.com/40704006/235800427-092e250c-0133-4f82-83ec-8edf891ce893.png">
 
 
 # CS160-Team 4
