@@ -44,8 +44,12 @@ Soft-Skill Tools:
 
 ### Design Inspiration
 <img width="1508" alt="image" src="https://user-images.githubusercontent.com/40704006/235800427-092e250c-0133-4f82-83ec-8edf891ce893.png">
-*Initial design concept made by: Gargi Tawde
+*Initial design concept made by: Gargi Tawde*
 
+### Users
+**Customer** *places an order and can see its progress once it is accepted and restaurant/driver start to fulfill it*
+**Restaurant** *can accept orders, edit their available menu, and pay for deliveries*
+**Driver** *goes online, then is assigned orders to fulfill*
 
 # CS160-Team 4
 
