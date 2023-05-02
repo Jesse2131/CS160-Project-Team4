@@ -49,9 +49,8 @@ Soft-Skill Tools:
 ### Users
 
 **Restaurant** *can accept orders, edit their available menu, and pay for deliveries*
-**Driver** *goes online, then is assigned orders to fulfill*
 **Customer** *places an order and can see its progress once it is accepted and restaurant/driver start to fulfill it*
-
+**Driver** *goes online, then is assigned orders to fulfill*
 
 # CS160-Team 4
 
