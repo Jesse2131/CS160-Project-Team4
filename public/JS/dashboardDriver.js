@@ -162,6 +162,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         display_user_info(user);
         setTimeout(function() {
             link_to_dashboard();
+            detectChange();
             if (currStatus !== "offline") {
                 display_curr_orders();
                 displayDriver();
@@ -463,5 +464,18 @@ function drawRoute() {
         if (status === 'OK') {
             directionsRenderer.setDirections(response);
         }
+    });
+}
+
+function detectChange() {
+    const curr_user = firebase.auth().currentUser;
+    const collectionRef = db.collection("drivers").where(firebase.firestore.FieldPath.documentId(),"==",curr_user.uid);
+    collectionRef.onSnapshot((querySnapshot) => {
+        querySnapshot.docChanges().forEach((change) => {
+            if (currStatus === "online" && currOrder1 === "none" && change.type === "modified") {
+                alert("Incoming order to fulfill!");
+                window.location.reload(true);
+            }
+        });
     });
 }
