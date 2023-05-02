@@ -228,3 +228,8 @@ function updateAttribute(userRef, attribute, updatedValue) {
         document.getElementById("errormsg").innerHTML = error;
     });
 }
+
+// When a user clicks on dashboard from the account page it will go to the correct on
+function goToDash(){
+    
+}

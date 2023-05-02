@@ -36,7 +36,7 @@ function login() {
 function signup() {
     const user_type = document.getElementById("user-type").value
     if(user_type != ""){
-      const email = document.getElementById('email').value;
+      const email = document.getElementById('email').value.toLowerCase();
       const password = document.getElementById('password').value;
       const name = document.getElementById('name').value;
       const address = document.getElementById('address').value;
@@ -155,4 +155,15 @@ function getUserType(id){
     });
 }
 
+// function disablePages(){
+//   const curr_user = firebase.auth().currentUser;
+//   getUserType(curr_user.uid)
+//     .then(userType => {
+//       console.log(userType); 
+//       if(userType === "driver"){
+//         // disable others
+//       }
+//       else if()
+//   });
+// }
 
