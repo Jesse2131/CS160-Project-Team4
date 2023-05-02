@@ -115,6 +115,8 @@
 
 /* FOR INCOMING ORDERS  */ 
 .incoming-orders{
+    display: flex;
+    flex-direction: column;
     background-color: #acacac;
 }
 
@@ -136,5 +138,7 @@
     margin: 0;
     padding-right: 10px;
 }
+
+
   
   

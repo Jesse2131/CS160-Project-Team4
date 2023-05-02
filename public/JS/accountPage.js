@@ -17,7 +17,7 @@ arr.map((val, index) => {
   var createdAt = document.createTextNode(val.createdAt);
   var restaurant = document.createTextNode(val.restaurant_name);
   var total_spend = document.createTextNode(val.total_spend);
-  var status = document.createTextNode(val.status);
+  var status = document.createTextNode(val.progress);
   var payment_type = document.createTextNode(val.payment_type);
 
   var text1 = document.createElement("text");

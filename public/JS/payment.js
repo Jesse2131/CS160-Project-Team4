@@ -155,7 +155,7 @@ async function goToCheckout(){
         payment_intent_data: {
           receipt_email: "handyperson12@gmail.com",
         },
-        success_url: `http://${window.location.host}/HTML/success_payment.html`,
+        success_url: `http://${window.location.host}/success_payment.html`,
         cancel_url: `http://${window.location.host}/cancel_payment.html`,
         line_items,
       }),
@@ -169,8 +169,8 @@ const checkout = document.getElementById("checkout");
 checkout.addEventListener("click", function () {
   //window.location.href = `http://${window.location.host}/HTML/checkout_detail.html`
   
-  // const request = document.getElementById("requests").value;
-  // localStorage.setItem("request", request);
+  const request = document.getElementById("requests").value;
+  localStorage.setItem("request", request);
   goToCheckout();
 });
 

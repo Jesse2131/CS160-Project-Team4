@@ -20,18 +20,7 @@ var bestDriver;
 var activerOrders = [];
 
 
-let cart = [
-  // {
-  //   name: "Trip minimum",
-  //   price: 5,
-  //   quantity: 1,
-  // },
-  // {
-  //   name: "XX miles",
-  //   price: 5,
-  //   quantity: 1,
-  // },
-];
+let cart = [];
 
 var myStyles = [
   {

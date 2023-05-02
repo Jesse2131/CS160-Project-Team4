@@ -5,8 +5,61 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
     integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    
+/* NAVBAR */
+.navbar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;   
+}
+.navbar ul {
+    list-style-type: none;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.navbar li {
+    padding: 7px;
+}
+.navbar li a {
+    font-family: 'Poppins', sans-serif;
+    color: #FFFFFF;
+    background-color: #000000;
+    text-align: center;
+    padding: 8px 17px;
+    text-decoration: none;
+    border-radius: 4px;
+
+}
+.navbar li a:hover {
+    background-color: #F1AF3D;
+}
+
+.navbar h1 {
+    color: #F1AF3D;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* LOGO ENDS */
+
+/* NAVBAR ENDS */
+  </style>
 </head>
 <body>
+    
+    <div class="navbar">
+        <ul>
+        <li><a onclick="logout()">Log Out</a></li>
+        <li><a href="accountPage.html">Account</a></li>
+        <li><a href="deliveryDashboardDriver.html">Dashboard</a></li>
+        </ul>
+    </div>
+
     <div class="main" style="display:flex; justify-content: center; flex-direction: column; align-items: center; width: 100%;">
         <img src="../../ASSETS/odfdsLOGO.png" alt="" style="height: 150px; width: 150px;">
         <p style="font-size: 25px; text-align: center;">

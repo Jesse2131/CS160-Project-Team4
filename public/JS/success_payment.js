@@ -55,17 +55,15 @@ async function writePayment() {
           .child("Orders")
           .push()
           .set({
+            charge_id: obj.id,
             createdAt: date + " " + time,
-            driver_id: "BJ5wMY0pJfXeWglmloWkmTElyL13",
-            item_lists: cart,
+            item_lists: JSON.parse(localStorage.getItem("cart")),
             payment_type: obj.payment_method_details.type,
             restaurant_id: 121241,
             restaurant_name: "Mcdonald",
-            status: "On the way",
-            total_miles: 5,
+            progress: "On the way",
+            special_request: localStorage.getItem("request"),
             total_spend: obj.amount / 100.0,
-            transportation_cost: 2,
-            charge_id: obj.id,
           })
           .then((res) => {
             console.log(res);
@@ -75,6 +73,8 @@ async function writePayment() {
             console.error(error);
           });
         localStorage.setItem(chargeRes.data[i].id, "true");
+        localStorage.removeItem("cart");
+        localStorage.removeItem("request");
       }
       console.log("success");
       break;
