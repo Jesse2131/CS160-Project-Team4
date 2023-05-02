@@ -526,7 +526,7 @@ function getRestMenu(restID) {
 
   // Get the restaurant name from the ID then go the the restaurant menu 
 
-  const restaurantsCollection = collection(firestoreDB, 'restaurants');
+const restaurantsCollection = collection(firestoreDB, 'restaurants');
 const docRef = doc(restaurantsCollection, restID);
 
 getDoc(docRef).then((doc) => {

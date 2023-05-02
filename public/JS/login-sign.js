@@ -87,7 +87,7 @@ function logout() {
     });
 }
 
-function addToDB(...params) {
+async function addToDB(...params) {
   // Get current user and their type 
   var userUid = firebase.auth().currentUser.uid;
   console.log(userUid);
@@ -107,7 +107,7 @@ function addToDB(...params) {
     })
   }
 
-  Promise.all([
+  await Promise.all([
     db.collection("users").doc(userUid).set({
         id: userUid,
         type: user_type

@@ -1,11 +1,11 @@
-const database = firebase.database();
+// const database = firebase.database();
 
 let arr = [];
 let key = [];
 
-async function readOrders() {
-  const dbRef = database.ref();
-  await dbRef
+function readOrders() {
+  const dbRef = real_db.ref();
+    dbRef
     .child("Orders")
     .get()
     .then(async (snapshot) => {
@@ -14,6 +14,7 @@ async function readOrders() {
           key.push(childSnapshot.key);
           arr.push(childSnapshot.val());
         });
+        createOrder(arr);
       } else {
         console.log("No data available");
       }
@@ -64,6 +65,5 @@ function createOrder(arr){
 }
 
 window.onload = function(){
-    const user = firebase.auth().currentUser;
-    console.log(user);
+    console.log(sessionStorage.getItem("currentUser"));
 }

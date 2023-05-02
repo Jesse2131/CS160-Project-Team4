@@ -65,10 +65,49 @@ function initMap() {
   directionsRenderer.setMap(map);
 }
 
+function fetchRestaurant(){
+  const checkUserType = db.collection("users").doc(sessionStorage.getItem("currentUser"));
+  let retrievedUserType = "";
+  checkUserType
+    .get()
+    .then((doc) => {
+      retrievedUserType = doc.data().type;
+
+      const curr_user = db
+        .collection(retrievedUserType)
+        .doc(sessionStorage.getItem("currentUser"));
+      curr_user.get().then((doc) => {
+        console.log(doc.data());
+        // const retrievedName = doc.data().name;
+        // const retrievedStatus = doc.data().status;
+        // const retrievedOrder1 = doc.data().order1;
+        // const retrievedOrder2 = doc.data().order2;
+        // // Update account button to show currently logged in user
+        // document.getElementById("nav-logged-in-user").innerHTML =
+        //   "Welcome " + retrievedName;
+        // if (retrievedStatus === "delivering") {
+        //   but1.classList.add("disabledButton");
+        //   but2.classList.remove("disabledButton");
+
+        //   check1.style.filter = "grayscale(0%)";
+        //   dot1.style.filter = "grayscale(0%)";
+        //   driverImg.style.filter = "grayscale(0%)";
+        // }
+        // status = retrievedStatus;
+        // currOrder1 = retrievedOrder1;
+        // currOrder2 = retrievedOrder2;
+      });
+    })
+    .catch((error) => {
+      console.log("Error getting user data:", error);
+    });
+}
 
 
+fetchRestaurant();
 window.onload = function(){
     console.log(localStorage.getItem("current_order_id"));
+    console.log(sessionStorage.getItem("currentUser"));
 }
 
 window.initMap = initMap;
