@@ -69,16 +69,28 @@ function logout() {
               const userRef = db.collection(userType).doc(curr_user.uid);
               const updateObject = {};
               updateObject["status"] = "offline";
-              userRef.update(updateObject)
-                  .then(() => {
-                      document.getElementById("errormsg").innerHTML = "Changes saved successfully";
-                  })
-                  .catch((error) => {
-                      document.getElementById("errormsg").innerHTML = error;
+              if (userType === "drivers") {
+                  userRef.get().then((doc) => {
+                      const retrievedAddress = doc.data().address;
+                      const retrievedOrder1 = doc.data().order1;
+                      if (retrievedOrder1 === "none") {
+                          updateObject["currentLocation"] = retrievedAddress;
+                      }
                   });
+              }
+              setTimeout(function() {
+                  userRef.update(updateObject)
+                      .then(() => {
+                          document.getElementById("errormsg").innerHTML = "Changes saved successfully";
+                      })
+                      .catch((error) => {
+                          document.getElementById("errormsg").innerHTML = error;
+                      });
+              }, 300)
+
               setTimeout(function() {
                   window.location.href = "index.html";
-              }, 300);
+              }, 600);
         });
     }).catch((error) => {
         // Handle errors here
