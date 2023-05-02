@@ -34,6 +34,7 @@ body {
 }
 .navbar li a:hover {
     background-color: #F1AF3D;
+    cursor: pointer;
 }
 
 .navbar h1 {

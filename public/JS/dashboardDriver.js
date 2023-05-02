@@ -230,6 +230,7 @@ function display_user_info(user) {
 }
 
 function link_to_dashboard() {
+    console.log("CHANGING DASHBOARD LINK " + currStatus); 
     if (currStatus === "offline") {
         dashLink.href = "welcomeDashboardDriver.html";
     } else {
