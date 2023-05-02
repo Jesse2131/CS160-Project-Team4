@@ -31,7 +31,7 @@ Software:
 - **Docker** *Docker image*
 - **Google Maps API** *map functionality*
 - **Stripe** *payment functionality*
-
+- **NodeJS and Express** *Live server*
 Soft-Skill Tools:
 
 - **Zoom** *team meetings*
