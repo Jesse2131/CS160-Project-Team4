@@ -6,42 +6,8 @@
 /* Optional: Makes the sample page fill the window. */
 
 
-ul {
-    display: flex;
-    flex-wrap: wrap;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  li {
-    margin: 0 10px 10px 0;
-  }
-  html,
-  body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
+
   
-  ul {
-    display: flex;
-    flex-wrap: wrap;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  li {
-    margin: 0 10px 10px 0;
-  } 
-  
-  input {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 5px;
-    font-size: 14px;
-    width: 80%;
-  }
   
   button {
     display: inline-block;

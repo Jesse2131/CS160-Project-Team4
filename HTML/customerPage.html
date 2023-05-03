@@ -9,16 +9,8 @@
 <head>
   <title>Draggable Directions</title>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-  <link rel="stylesheet" type="text/css" href="/CSS/customerPage.css" />
-  <link rel="stylesheet" href="/CSS/starter-code.css">
-  <link rel="stylesheet" href="/CSS/accountPage.css">
-
   <style>
-    body {
-      width: 80%;
-      margin: 0 auto;
-    }
-
+    
     table {
       border-collapse: collapse;
       width: 100%;
@@ -32,11 +24,6 @@
 
     th {
       background-color: #f2f2f2;
-    }
-
-    img {
-      width: 50px;
-      height: 50px;
     }
 
     input[type="number"] {
@@ -80,10 +67,14 @@
       }
     }
   </style>
+  <link rel="stylesheet" type="text/css" href="/CSS/customerPage.css" />
+  <link rel="stylesheet" href="/CSS/starter-code.css">
+  <link rel="stylesheet" href="/CSS/accountPage.css">
 </head>
 
 <body>
 
+<<<<<<< HEAD
   <div class="navbar">
     <ul>
       <li><a onclick="logout()">Log Out</a></li>
@@ -91,12 +82,34 @@
       <li><a href="deliveryDashboardDriver.html">Dashboard</a></li>
     </ul>
     <img class="odfds-logo" src="ASSETS/odfdsLOGO.png" height="452" width="452" />
+=======
+    <!-- NAVBAR -->
+    <div class="navbar">
+      <img class="odfds-logo" src="../ASSETS/odfdsLOGO.png"/>
+      <h1 id="nav-logged-in-user">Welcome User</h1>
+      <ul>
+          <li><a href="customerDash.html">Dashboard</a></li>
+          <li><a href="accountPage.html">Account</a></li>
+          <li><a onclick="logout()">Log Out</a></li>
+      </ul>
+>>>>>>> 39617cf77c8b3b8dbb586dc475241ce0416ebfed
   </div>
+  <!-- NAVBAR ENDS -->
+
+  <!-- PAGE FOOTER -->
+  <div class="footer">
+      <p class="odfds-title">ODFDS©</p>
+      <img class="socials" src="../ASSETS/instalogo.png">
+      <img class="socials" src="../ASSETS/twitterlogo.png"/>
+      <img class="appstore-download" src="../ASSETS/appstore.png"/>
+      <img class="playstore-download" src="../ASSETS/playstore.png"/>
+  </div>
+  <!-- PAGE FOOTER ENDS -->
 
   <img src="/ASSETS/pizzaCover.jpeg" alt="Image" style="width: 100%; height: 300px; border-radius: 10px;">
 
   <div>
-    <h1>Amazing Box</h1>
+    <h1 id="order_RestName">Not Logged In</h1>
 
     <fieldset>
       <legend>Items:</legend>
@@ -134,15 +147,10 @@
 
     <button id="sendOrder" style="margin-top: 12px; margin-bottom: 12px;">Add Item Before Process</button>
   </div>
-  <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-database.js"></script>
-  <script src="../JS/config.js"></script>
-  <script src="../JS/starter-code.js"></script>
-  <script type="module" src="/JS/customer.js"></script>
-  <script src="/JS/pageBlocker.js"></script>
+
+  <script type="module" src="../JS/customer.js"></script>
+  <script src="../JS/login-sign"></script>
+  <script src="../JS/pageBlocker.js"></script>
 </body>
 
 </html>

@@ -162,6 +162,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         display_user_info(user);
         setTimeout(function () {
             link_to_dashboard();
+            detectChange();
             if (currStatus !== "offline") {
                 display_curr_orders();
                 displayDriver();
@@ -230,6 +231,7 @@ function display_user_info(user) {
 }
 
 function link_to_dashboard() {
+    console.log("CHANGING DASHBOARD LINK " + currStatus); 
     if (currStatus === "offline") {
         dashLink.href = "welcomeDashboardDriver.html";
     } else {
@@ -463,7 +465,21 @@ function drawRoute() {
     });
 }
 
+<<<<<<< HEAD
 window.onload = function () {
     const curr_user = firebase.auth().currentUser;
     console.log(curr_user);
+=======
+function detectChange() {
+    const curr_user = firebase.auth().currentUser;
+    const collectionRef = db.collection("drivers").where(firebase.firestore.FieldPath.documentId(),"==",curr_user.uid);
+    collectionRef.onSnapshot((querySnapshot) => {
+        querySnapshot.docChanges().forEach((change) => {
+            if (currStatus === "online" && currOrder1 === "none" && change.type === "modified") {
+                alert("Incoming order to fulfill!");
+                window.location.reload(true);
+            }
+        });
+    });
+>>>>>>> 39617cf77c8b3b8dbb586dc475241ce0416ebfed
 }
