@@ -465,11 +465,6 @@ function drawRoute() {
     });
 }
 
-<<<<<<< HEAD
-window.onload = function () {
-    const curr_user = firebase.auth().currentUser;
-    console.log(curr_user);
-=======
 function detectChange() {
     const curr_user = firebase.auth().currentUser;
     const collectionRef = db.collection("drivers").where(firebase.firestore.FieldPath.documentId(),"==",curr_user.uid);
@@ -481,5 +476,4 @@ function detectChange() {
             }
         });
     });
->>>>>>> 39617cf77c8b3b8dbb586dc475241ce0416ebfed
 }
