@@ -743,6 +743,9 @@ window.onload = function () {
   cart = JSON.parse(localStorage.getItem("cart"));
   console.log(cart);
 
+  // sets navbar username 
+  document.getElementById("nav-logged-in-user").innerHTML = "Welcome " + localStorage.getItem("userName");
+
 }
 
 window.initMap = initMap;

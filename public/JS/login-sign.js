@@ -9,9 +9,8 @@ function login() {
       const curr_user = firebase.auth().currentUser.uid;
       getUserType(curr_user).then((user_type) => {
 
-        // Store user type in local storage
+        // Store the user and user type in local storage
         localStorage.setItem("userType", user_type);
-
         // Redirect to correct dashboard
         if (user_type === 'customers') {
           console.log('customer');
@@ -125,6 +124,7 @@ function logout() {
         setTimeout(function () {
           // Store user type in local storage
           localStorage.removeItem("userType");
+          localStorage.removeItem("userName");
           window.location.href = "index.html";
         }, 600);
       });
