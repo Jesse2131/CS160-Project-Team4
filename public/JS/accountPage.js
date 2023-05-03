@@ -227,7 +227,3 @@ function updateAttribute(userRef, attribute, updatedValue) {
     });
 }
 
-// When a user clicks on dashboard from the account page it will go to the correct on
-function goToDash(){
-    
-}

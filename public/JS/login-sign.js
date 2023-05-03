@@ -70,16 +70,28 @@ function logout() {
               const userRef = db.collection(userType).doc(curr_user.uid);
               const updateObject = {};
               updateObject["status"] = "offline";
-              userRef.update(updateObject)
-                  .then(() => {
-                      document.getElementById("errormsg").innerHTML = "Changes saved successfully";
-                  })
-                  .catch((error) => {
-                      document.getElementById("errormsg").innerHTML = error;
+              if (userType === "drivers") {
+                  userRef.get().then((doc) => {
+                      const retrievedAddress = doc.data().address;
+                      const retrievedOrder1 = doc.data().order1;
+                      if (retrievedOrder1 === "none") {
+                          updateObject["currentLocation"] = retrievedAddress;
+                      }
                   });
+              }
+              setTimeout(function() {
+                  userRef.update(updateObject)
+                      .then(() => {
+                          document.getElementById("errormsg").innerHTML = "Changes saved successfully";
+                      })
+                      .catch((error) => {
+                          document.getElementById("errormsg").innerHTML = error;
+                      });
+              }, 300)
+
               setTimeout(function() {
                   window.location.href = "index.html";
-              }, 300);
+              }, 600);
         });
     }).catch((error) => {
         // Handle errors here
@@ -116,7 +128,12 @@ async function addToDB(...params) {
         email: email,
         name: name,
         address: address,
-        status: "offline"
+        status: "offline",
+        ...(user_type === "drivers" && {
+          currentLocation: address,
+          order1: "none",
+          order2: "none"
+      }),
     })
   ])
   .then(() => {
@@ -156,6 +173,42 @@ function getUserType(id){
       return "";
     });
 }
+
+// When a user clicks on dashboard from the account page it will go to the correct on
+function goToDash(){
+  const curr_user = firebase.auth().currentUser.uid; 
+  getUserType(curr_user).then((user_type) => {
+    // Redirect to correct dashboard
+    if(user_type === 'customers'){
+      window.location.href = 'customerDash.html';
+    }
+    else if(user_type === 'drivers'){
+      // Check offline or online status 
+      const docRef = db.collection('drivers').doc(curr_user);
+      docRef.get().then((doc) => {
+        if (doc.exists) {
+          const status = doc.data().status;
+          if(status === "online"){
+            window.location.href = "deliveryDashboardDriver.html";
+          }
+          else{
+            window.location.href = "welcomeDashboardDriver.html";
+          }
+        } else {
+          console.log('No such document!');
+        }
+      }).catch((error) => {
+        console.log('Error getting document:', error);
+      });
+    }
+    else{
+      window.location.href = "restaurantDash.html";
+    }
+  }).catch((error) => {
+    console.log("Error getting user type:", error);
+  });
+}
+
 
 // function disablePages(){
 //   const curr_user = firebase.auth().currentUser;
