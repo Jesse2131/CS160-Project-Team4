@@ -170,12 +170,13 @@ function viewOrdrHist() {
 }
 
 
-function updateInfo() {
+async function updateInfo() {
     const curr_user = firebase.auth().currentUser;
     const curr_user_id = curr_user.uid;
     // Text fields
     const usernameField = document.getElementById("username").value.trim();
     const emailField = document.getElementById("email").value.trim();
+    const addressField = document.getElementById("address").value.trim();
 
     if (emailField !== "") {
         curr_user.updateEmail(emailField)
@@ -192,8 +193,16 @@ function updateInfo() {
             updateAttribute(userRef, "name", usernameField);
         });
     }
-    // TODO: 
-    // Add code for address update 
+    else if(addressField !== ""){
+        const validAddress = await validateAddress(addressField);
+        if(!validAddress){
+            document.getElementById("errormsg").innerHTML = "Please enter a valid address";
+        }
+        else{
+            document.getElementById("errormsg").innerHTML = "Changes saved successfully";
+        }
+    }
+    
 }
 
 // For email reset
