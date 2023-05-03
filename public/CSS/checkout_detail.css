@@ -125,7 +125,7 @@ body {
 
 .order-quantity{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-content: center;
 }
@@ -133,6 +133,8 @@ body {
 .checkout-button{
     background-color: orange;
     height: 25px;
+    border: none;
+    cursor:pointer;
     color: #FFFFFF;
     padding-left: 5px;
     padding-right: 5px;

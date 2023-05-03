@@ -29,10 +29,10 @@ var directionsRenderer;
 var distanceService;
 var geocoder;
 
-var currDriverLatLng = { lat:0, lng:0};
-var currRestLatLng = { lat:0, lng:0};
-var currCustLatLng1 = { lat:0, lng:0};
-var currCustLatLng2 = { lat:0, lng:0};
+var currDriverLatLng = { lat: 0, lng: 0 };
+var currRestLatLng = { lat: 0, lng: 0 };
+var currCustLatLng1 = { lat: 0, lng: 0 };
+var currCustLatLng2 = { lat: 0, lng: 0 };
 var markers = [];
 
 
@@ -72,9 +72,9 @@ function confirmPickup() {
             ref2.update(updates2);
         }
 
-        setTimeout(function() {
+        setTimeout(function () {
             displayDriver();
-            setTimeout(function() {
+            setTimeout(function () {
                 drawRoute();
             }, 800);
         }, 600);
@@ -113,7 +113,7 @@ function confirmDelivery() {
                     userRef.update(updateObject);
                     realtimeRef.update(updateObject);
 
-                    setTimeout(function() {
+                    setTimeout(function () {
                         displayDriver();
                         directionsRenderer.setMap(null);
                     }, 600);
@@ -136,9 +136,9 @@ function confirmDelivery() {
                     currOrder1 = currOrder2;
                     currOrder2 = "none";
 
-                    setTimeout(function() {
+                    setTimeout(function () {
                         displayDriver();
-                        setTimeout(function() {
+                        setTimeout(function () {
                             drawRoute();
                         }, 800);
                     }, 600);
@@ -153,19 +153,19 @@ function confirmDelivery() {
             ref.update(updates);
         }
 
-        setTimeout(function() {
+        setTimeout(function () {
             display_curr_orders();
         }, 500);
     }
 }
 
-firebase.auth().onAuthStateChanged(function(user) {
+firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         // Set session storage
         sessionStorage.setItem("currentUser", user.uid);
         // Display account page info
         display_user_info(user);
-        setTimeout(function() {
+        setTimeout(function () {
             link_to_dashboard();
             detectChange();
             if (currStatus !== "offline") {
@@ -179,12 +179,12 @@ firebase.auth().onAuthStateChanged(function(user) {
             if (currOrder2 !== "none") {
                 displayCustomer(currOrder2);
             }
-            setTimeout(function() {
+            setTimeout(function () {
                 if (currStatus === "delivering") {
                     markers[1].setMap(null);
                 }
             }, 600);
-            setTimeout(function() {
+            setTimeout(function () {
                 drawRoute();
             }, 1000);
         }, 800);
@@ -212,6 +212,7 @@ function display_user_info(user) {
             const retrievedLocation = doc.data().currentLocation;
             // Update account button to show currently logged in user
             document.getElementById("nav-logged-in-user").innerHTML = "Welcome " + retrievedName;
+            localStorage.setItem("userName", retrievedName);
             if (retrievedOrder1 !== "none") {
                 but1.classList.remove('disabledButton');
             }
@@ -236,6 +237,7 @@ function display_user_info(user) {
 }
 
 function link_to_dashboard() {
+    console.log("CHANGING DASHBOARD LINK " + currStatus); 
     if (currStatus === "offline") {
         dashLink.href = "welcomeDashboardDriver.html";
     } else {
@@ -294,7 +296,7 @@ function driverOnline() {
             const updateObject = {};
             updateObject["status"] = "online";
             userRef.update(updateObject);
-            setTimeout(function() {
+            setTimeout(function () {
                 window.location.href = "../deliveryDashboardDriver.html";
             }, 300);
         });
@@ -334,12 +336,11 @@ window.initMap = initMap;
 
 function displayDriver() {
     var geocoder = new google.maps.Geocoder();
-    geocoder.geocode( { 'address': currLocation}, function(results, status) {
-        if (status === google.maps.GeocoderStatus.OK)
-        {
+    geocoder.geocode({ 'address': currLocation }, function (results, status) {
+        if (status === google.maps.GeocoderStatus.OK) {
             const lat = results[0].geometry.location.lat();
             const lng = results[0].geometry.location.lng();
-            currDriverLatLng = { lat:lat, lng:lng };
+            currDriverLatLng = { lat: lat, lng: lng };
 
             const driverMarker = new google.maps.Marker({
                 position: currDriverLatLng,
@@ -363,12 +364,11 @@ function displayRestaurant() {
                 currRestLocation = retrievedRestAddress;
 
                 var geocoder = new google.maps.Geocoder();
-                geocoder.geocode( { 'address': retrievedRestAddress}, function(results, status) {
-                    if (status === google.maps.GeocoderStatus.OK)
-                    {
+                geocoder.geocode({ 'address': retrievedRestAddress }, function (results, status) {
+                    if (status === google.maps.GeocoderStatus.OK) {
                         const lat = results[0].geometry.location.lat();
                         const lng = results[0].geometry.location.lng();
-                        currRestLatLng = { lat:lat, lng:lng };
+                        currRestLatLng = { lat: lat, lng: lng };
 
                         const restaurantMarker = new google.maps.Marker({
                             position: currRestLatLng,
@@ -394,12 +394,11 @@ function displayCustomer(orderID) {
         custRef.once('value').then((snapshot2 => {
             var retrievedCustAddress = (snapshot2.val() && snapshot2.val().address) || 'none';
             var geocoder = new google.maps.Geocoder();
-            geocoder.geocode( { 'address': retrievedCustAddress}, function(results, status) {
-                if (status === google.maps.GeocoderStatus.OK)
-                {
+            geocoder.geocode({ 'address': retrievedCustAddress }, function (results, status) {
+                if (status === google.maps.GeocoderStatus.OK) {
                     const lat = results[0].geometry.location.lat();
                     const lng = results[0].geometry.location.lng();
-                    const customerLatLng = { lat:lat, lng:lng };
+                    const customerLatLng = { lat: lat, lng: lng };
 
                     const customerMarker = new google.maps.Marker({
                         position: customerLatLng,
@@ -408,11 +407,11 @@ function displayCustomer(orderID) {
                     });
 
                     if (orderID === currOrder1) {
-                        currCustLatLng1 = { lat:lat, lng:lng};
+                        currCustLatLng1 = { lat: lat, lng: lng };
                         currCustLocation1 = retrievedCustAddress;
                         markers[2] = customerMarker;
                     } else {
-                        currCustLatLng2 = { lat:lat, lng:lng};
+                        currCustLatLng2 = { lat: lat, lng: lng };
                         currCustLocation2 = retrievedCustAddress
                         markers[3] = customerMarker;
                     }

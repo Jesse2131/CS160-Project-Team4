@@ -42,27 +42,23 @@
                         <text class="customer-name">CUSTOMER NAME</text>
                     </div>
                     <div class="order-quantity">
-                        <!-- <div class="col" style="width: 100%;">
-                            <div class="row" style="padding-bottom:20px">
-                                <text style="flex: 2;">Pizza</text>
-                                <text style="flex: 1;">1 qty</text>
-                                <text style="flex: 1; text-align: end;">$10.0</text>
-                            </div>
-                        </div> -->
+                        <div class="row" style="margin-bottom: 20px;">
+                            <text>name</text>
+                            <text>qty</text>
+                            <text>price</text>
+                        </div>
                     </div>
                     <div class="row" style="margin-top: 40px; align-content: center;">
-                        
-                        <div class="col">
-                            <text style="font-weight: bold">Special Requests:</text>
-                            <a>Any special requests</a>
-                        </div>
-                        
-                        <a class="checkout-button" href="">
-                            <div class="icon-box">
-                                <i class="fa fa-shopping-cart"></i>
+                            <div class="col">
+                                <text style="font-weight: bold">Special Requests:</text>
+                                <textarea id="requests" name="requests" rows="4" cols="50" placeholder="Any special requests"></textarea>
                             </div>
-                            <text style="font-size: 12px;">CHECKOUT</text>
-                        </a>
+                            <button id="checkout" class="checkout-button">
+                                <div class="icon-box">
+                                    <i class="fa fa-shopping-cart"></i>
+                                </div>
+                                <text style="font-size: 12px;">CHECKOUT</text>
+                            </button>
                     </div>
                 </div>
             </div>
@@ -72,6 +68,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js"></script>
     <!-- <script src="js/config.js"></script> -->
-    <script src="../JS/customer.js"></script>
+    <script type="module"  src="/JS/payment.js"></script>
+    <script src="../JS/pageBlocker.js"></script>
 </body>
 </html>

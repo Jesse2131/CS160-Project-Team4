@@ -17,7 +17,7 @@ arr.map((val, index) => {
   var createdAt = document.createTextNode(val.createdAt);
   var restaurant = document.createTextNode(val.restaurant_name);
   var total_spend = document.createTextNode(val.total_spend);
-  var status = document.createTextNode(val.status);
+  var status = document.createTextNode(val.progress);
   var payment_type = document.createTextNode(val.payment_type);
 
   var text1 = document.createElement("text");
@@ -55,8 +55,6 @@ arr.map((val, index) => {
   getCharge(val.charge_id, index);
 });
 }
-
-console.log(localStorage.getItem("current_order"));
 
 function readOrders(){
   const dbRef = database.ref();
@@ -172,12 +170,13 @@ function viewOrdrHist() {
 }
 
 
-function updateInfo() {
+async function updateInfo() {
     const curr_user = firebase.auth().currentUser;
     const curr_user_id = curr_user.uid;
     // Text fields
     const usernameField = document.getElementById("username").value.trim();
     const emailField = document.getElementById("email").value.trim();
+    const addressField = document.getElementById("address").value.trim();
 
     if (emailField !== "") {
         curr_user.updateEmail(emailField)
@@ -194,8 +193,20 @@ function updateInfo() {
             updateAttribute(userRef, "name", usernameField);
         });
     }
-    // TODO: 
-    // Add code for address update 
+    else if(addressField !== ""){
+        const validAddress = await validateAddress(addressField);
+        if(!validAddress){
+            document.getElementById("errormsg").innerHTML = "Please enter a valid address";
+        }
+        else{
+            getUserType(curr_user.uid)
+            .then(userType => {
+                const userRef = db.collection(userType).doc(curr_user.uid);    
+                updateAttribute(userRef, "address", addressField);
+            });
+        }
+    }
+    
 }
 
 // For email reset
@@ -229,7 +240,3 @@ function updateAttribute(userRef, attribute, updatedValue) {
     });
 }
 
-// When a user clicks on dashboard from the account page it will go to the correct on
-function goToDash(){
-    
-}

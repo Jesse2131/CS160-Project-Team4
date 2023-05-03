@@ -14,7 +14,6 @@ const app = express();
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/HTML/index.html');
 });
-
 // For all other pages load them from directories directly
 app.use(express.static(__dirname + '/HTML'));
 app.use(express.static(__dirname + '/public'));

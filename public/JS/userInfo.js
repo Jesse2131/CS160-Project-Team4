@@ -1,7 +1,5 @@
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-        // Set session storage
-        sessionStorage.setItem("currentUser", user.uid);
         // Display account page info 
         display_acc_info(user);
     } else {
@@ -31,6 +29,7 @@ function display_acc_info(user) {
             const retrievedAddress = doc.data().address;
             // Update account button to show currently logged in user        
             document.getElementById("nav-logged-in-user").innerHTML = "Welcome " + retrievedName;
+            localStorage.setItem("userName", retrievedName);
             if(document.getElementById("username") !== null && document.getElementById("address") !== null){
                 document.getElementById("username").placeholder = retrievedName;
                 document.getElementById("address").placeholder = retrievedAddress;

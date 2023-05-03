@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/starter-code.css">
+    <script type="module" src="/JS/restaurantPage.js"></script>
+    <style>
+        /* NAVBAR */
+        .navbar {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;   
+        }
+        .navbar ul {
+            list-style-type: none;
+            padding-top: 25px;
+            padding-bottom: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .navbar li {
+            padding: 7px;
+        }
+        .navbar li a {
+            font-family: 'Poppins', sans-serif;
+            color: #FFFFFF;
+            background-color: #000000;
+            text-align: center;
+            padding: 8px 17px;
+            text-decoration: none;
+            border-radius: 4px;
+
+        }
+        .navbar li a:hover {
+            background-color: #F1AF3D;
+        }
+
+        .navbar h1 {
+            color: #F1AF3D;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <img class="odfds-logo" src="../ASSETS/odfdsLOGO.png" />
+        <h1></h1>
+        <ul>
+            <li><a href="restaurantDash.html">Dashboard</a></li>
+            <li><a href="accountPage.html">Account</a></li>
+            <li><a onclick="logout()">Log Out</a></li>
+        </ul>
+    </div>
+    <fieldset>
+        <legend>Review Order:</legend>
+        <div id="container">
+            <div id="map" style="height: 300px;"></div>
+            <div id="sidebar" class="order-info">
+                <!-- <fieldset>
+                    <legend>Locations:</legend>
+                    <p>Restaurant: 2855 Stevens Creek Blvd, Santa Clara, CA 95050</p>
+                    <p>Delivery: 1419 Keoncrest Ave, San Jose, CA, 95110</p>
+                </fieldset>
+    
+                <fieldset>
+                    <legend>Order Details:</legend>
+                    <p>Pizza: Small - Quality: 2</p>
+                    <p>Pizza: Medium - Quality: 2</p>
+                    <p>Pizza: Large - Quality: 2</p>
+                </fieldset>
+    
+                <fieldset>
+                    <legend>Deliver Details:</legend>
+                    <p>Driver: Huy Ong</p>
+                    <p>Duration: 40 mins</p>
+                    <p>Distance: 12 miles</p>
+                    <p>Cost: $23</p>
+                </fieldset> -->
+    
+                <!-- <button id="acceptRequest">Accept Order</button> -->
+            </div> 
+        </div>
+    </fieldset>
+    <div id="loading">
+        <div id="loading-spinner"></div>
+    </div>
+        <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js"></script>
+    <script src="../JS/config.js"></script>
+    <script src="../JS/pageBlocker.js"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoWTjotq5OuS-aZLeiZxd0uR2YNRCJdmY&callback=initMap&v=weekly"
+        defer></script>
+</body>
+</html>

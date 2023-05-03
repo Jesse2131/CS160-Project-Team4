@@ -508,8 +508,8 @@ async function sendOrderAction() {
 
 const sendOrder = document.getElementById('sendOrder');
 sendOrder.addEventListener('click', function () {
-  //window.location.href = `http://${window.location.host}/HTML/checkout_detail.html`
-  sendOrderAction();
+  window.location.href = `http://${window.location.host}/checkout_detail.html`
+  //sendOrderAction();
 });
 
 
@@ -526,7 +526,7 @@ function getRestMenu(restID) {
 
   // Get the restaurant name from the ID then go the the restaurant menu 
 
-  const restaurantsCollection = collection(firestoreDB, 'restaurants');
+const restaurantsCollection = collection(firestoreDB, 'restaurants');
 const docRef = doc(restaurantsCollection, restID);
 
 getDoc(docRef).then((doc) => {
@@ -550,57 +550,18 @@ getDoc(docRef).then((doc) => {
 
 function loadRestaurantMenu(rest_name){
   const myCollection = collection(firestoreDB, rest_name);
+  document.getElementById("order_RestName").innerHTML = rest_name;
   const querySnapshot = getDocs(myCollection);
   querySnapshot.then((snapshot) => {
     snapshot.forEach((doc) => {
       const data = doc.data();
-      console.log(data);
-      addItem('../assets/foodItemPlaceholder.png', data.item_name, data.item_price, 0);
+      // console.log(data);
+      addItem(data.item_name, data.item_price, 0);
     });
   });
 }
 
-
-function tableCreate(cart) {
-  //body reference
-  console.log(cart);
-  var body = document.getElementsByClassName("order-quantity")[0];
-  // create elements <table> and a <tbody>
-  var tbl = document.createElement("div");
-  tbl.setAttribute("width", "100%");
-  tbl.classList.add("col");
-
-  cart.map((val, index) => {
-    var row = document.createElement("div");
-
-    var name = document.createTextNode(val.name);
-    var price = document.createTextNode(val.price);
-    var quantity = document.createTextNode(val.quantity);
-
-    var text1 = document.createElement("text");
-    var text2 = document.createElement("text");
-    var text3 = document.createElement("text");
-
-    text1.appendChild(name);
-    text2.appendChild(price);
-    text3.appendChild(quantity);
-
-    row.appendChild(text1);
-    row.appendChild(text2);
-    row.appendChild(text3);
-
-    row.setAttribute("padding-bottom", "20px");
-    row.classList.add("row");
-
-    tbl.appendChild(row);
-  });
-
-  // body.appendChild(tbl);
-}
-
-tableCreate(cart);
-
-function addItem(imageUrl, label, price, quantity) {
+function addItem(label, price, quantity) {
   // Get the table body element
   const tableBody = document.getElementById('table-body');
 
@@ -608,11 +569,11 @@ function addItem(imageUrl, label, price, quantity) {
   const newRow = document.createElement('tr');
 
   // Create image element and set the source attribute
-  const imageCell = document.createElement('td');
-  const image = document.createElement('img');
-  image.src = imageUrl;
-  imageCell.appendChild(image);
-  newRow.appendChild(imageCell);
+  // const imageCell = document.createElement('td');
+  // const image = document.createElement('img');
+  // image.src = imageUrl;
+  // imageCell.appendChild(image);
+  // newRow.appendChild(imageCell);
 
   // Create label cell and set the text content
   const labelCell = document.createElement('td');
@@ -646,13 +607,15 @@ function addItem(imageUrl, label, price, quantity) {
       //   price: 5,
       //   quantity: 1,
       const data = {
-        id:(Math.random() * 1000).toFixed(0).toString(),
+        id: (Math.random() * 1000).toFixed(0).toString(),
         name: label,
         price: price,
         quantity: quantity,
       };
+      cart = JSON.parse(localStorage.getItem("cart"));
       cart.push(data);
-      updateCart(imageUrl, label, price, quantity, data.id);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      updateCart(label, data.price, quantity, data.id);
       console.log(cart);
     }
   });
@@ -672,13 +635,13 @@ function updateProcessButton() {
   let sum = 0;
   for (let i = 0; i < cartItemsRows.length; i++) {
     const row = cartItemsRows[i];
-    const price = row.getElementsByTagName('td')[2].textContent;
+    const price = row.getElementsByTagName('td')[1].textContent;
     sum += parseFloat(price.substring(1));
   }
   sendOrder.textContent = "Process Order: " + "$" + sum.toFixed(2) + "";
 };
 
-function updateCart(imageUrl, label, price, quantity, id) {
+function updateCart(label, price, quantity, id) {
   // Get the table body element
   const tableBody = document.getElementById('cart-items');
 
@@ -686,11 +649,11 @@ function updateCart(imageUrl, label, price, quantity, id) {
   const newRow = document.createElement('tr');
 
   // Create image element and set the source attribute
-  const imageCell = document.createElement('td');
-  const image = document.createElement('img');
-  image.src = imageUrl;
-  imageCell.appendChild(image);
-  newRow.appendChild(imageCell);
+  // const imageCell = document.createElement('td');
+  // const image = document.createElement('img');
+  // image.src = imageUrl;
+  // imageCell.appendChild(image);
+  // newRow.appendChild(imageCell);
 
   // Create label cell and set the text content
   const labelCell = document.createElement('td');
@@ -699,7 +662,7 @@ function updateCart(imageUrl, label, price, quantity, id) {
 
   // Create price cell and set the text content
   const priceCell = document.createElement('td');
-  priceCell.textContent = '$' + (price * quantity).toFixed(2) + '';
+  priceCell.textContent = "$" + (price * quantity).toFixed(2) + "";
   newRow.appendChild(priceCell);
 
   // Create quantity cell and input field
@@ -714,7 +677,11 @@ function updateCart(imageUrl, label, price, quantity, id) {
   deleteButton.style.backgroundColor = 'red';
   deleteButton.addEventListener('click', () => {
     newRow.remove();
-    cart = cart.filter((order) => {return order.id == id});
+    cart = JSON.parse(localStorage.getItem("cart"));
+    cart = cart.filter((order) => {return order.id != id});
+    console.log(id);
+    console.log(cart);
+    localStorage.setItem("cart", JSON.stringify(cart));
     updateProcessButton();
   });
   addButtonCell.appendChild(deleteButton);
@@ -753,18 +720,32 @@ function buildQuery(data, prefix) {
     .join("&");
 }
 
+
 window.onload = function () {
+  // loadRestaurantMenu();
+  if (localStorage.getItem("cart") === null) {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }else{
+    cart = JSON.parse(localStorage.getItem("cart"));
+    cart.forEach((order) => {
+      updateCart(
+        order.name,
+        order.price,
+        order.quantity,
+        order.id,
+      );
+    });
+  }
+
   const restaurantId = localStorage.getItem('order_restaurantId');
   getRestMenu(restaurantId);
-  // const myCollection = collection(firestoreDB, 'Food_Inc_Menu');
-  // const querySnapshot = getDocs(myCollection);
-  // querySnapshot.then((snapshot) => {
-  //   snapshot.forEach((doc) => {
-  //     const data = doc.data();
-  //     console.log(data);
-  //     addItem('../assets/foodItemPlaceholder.png', data.item_name, data.item_price, 0);
-  //   });
-  // });
+  
+  cart = JSON.parse(localStorage.getItem("cart"));
+  console.log(cart);
+
+  // sets navbar username 
+  document.getElementById("nav-logged-in-user").innerHTML = "Welcome " + localStorage.getItem("userName");
+
 }
 
 window.initMap = initMap;

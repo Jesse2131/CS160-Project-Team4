@@ -1,0 +1,36 @@
+/* Area for features that a restaurant has such as add to menu, search for driver, etc */
+.cust-wrapper{
+    display: flex;
+    margin: 0 2%;
+    gap: 1%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* FOR RESTAURANT LIST */
+#rest-list{
+    max-height: 800px;
+    width: 600px;
+    overflow-y: auto;
+    text-align: left;
+    background-color: #acacac;
+
+}
+
+.rest-item{
+    margin: 40px 40px;
+}
+
+.rest-item button{
+    float: right;
+}
+
+.rest-item h1, .rest-item p {
+    display: inline;
+    margin: 0;
+    padding-right: 10px;
+}
+  
+  
