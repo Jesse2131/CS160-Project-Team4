@@ -57,6 +57,8 @@ function signup() {
 
     // Continue if no errors
     creation.then(function () {
+      // Store user type in local storage
+      localStorage.setItem("userType", user_type);
       addToDB(user_type, email, name, address);
     });
   }
@@ -95,6 +97,8 @@ function logout() {
         }, 300)
 
         setTimeout(function () {
+          // Store user type in local storage
+          localStorage.removeItem("userType");
           window.location.href = "index.html";
         }, 600);
       });
