@@ -147,21 +147,6 @@ checkout.addEventListener("click", function () {
 });
 
 window.onload = function(){
-  let data = [
-    {
-      id: (Math.random() * 1000).toFixed(0).toString(),
-      name: "pizza",
-      price: 5,
-      quantity: 2,
-    },
-    {
-      id: (Math.random() * 1000).toFixed(0).toString(),
-      name: "Sushi",
-      price: 2,
-      quantity: 3,
-    },
-  ];
-  localStorage.setItem("cart", JSON.stringify(data));
   console.log(JSON.parse(localStorage.getItem("cart")));
   cart = JSON.parse(localStorage.getItem("cart"));
   tableCreate();
