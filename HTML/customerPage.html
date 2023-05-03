@@ -55,8 +55,7 @@
       animation: spin 2s linear infinite;
     }
 
-    #map {
-    }
+    #map {}
 
     @keyframes spin {
       0% {
@@ -75,6 +74,15 @@
 
 <body>
 
+<<<<<<< HEAD
+  <div class="navbar">
+    <ul>
+      <li><a onclick="logout()">Log Out</a></li>
+      <li><a href="accountPage.html">Account</a></li>
+      <li><a href="deliveryDashboardDriver.html">Dashboard</a></li>
+    </ul>
+    <img class="odfds-logo" src="ASSETS/odfdsLOGO.png" height="452" width="452" />
+=======
     <!-- NAVBAR -->
     <div class="navbar">
       <img class="odfds-logo" src="../ASSETS/odfdsLOGO.png"/>
@@ -84,6 +92,7 @@
           <li><a href="accountPage.html">Account</a></li>
           <li><a onclick="logout()">Log Out</a></li>
       </ul>
+>>>>>>> 39617cf77c8b3b8dbb586dc475241ce0416ebfed
   </div>
   <!-- NAVBAR ENDS -->
 
@@ -116,7 +125,7 @@
         </thead>
         <tbody id="table-body">
         </tbody>
-      </table>      
+      </table>
     </fieldset>
 
     <fieldset>
@@ -133,10 +142,10 @@
         </thead>
         <tbody id="cart-items">
         </tbody>
-      </table>      
+      </table>
     </fieldset>
 
-    <button id="sendOrder" style="margin-top: 12px; margin-bottom: 12px;" >Add Item Before Process</button>
+    <button id="sendOrder" style="margin-top: 12px; margin-bottom: 12px;">Add Item Before Process</button>
   </div>
   <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>

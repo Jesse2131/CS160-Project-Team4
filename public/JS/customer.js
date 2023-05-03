@@ -754,7 +754,12 @@ function buildQuery(data, prefix) {
     .join("&");
 }
 
+
 window.onload = function () {
+  // if (window.location.pathname.includes("customer") && window.location.pathname.endsWith(".html")){
+  //    window.history.back();
+  // }
+
   const restaurantId = localStorage.getItem('order_restaurantId');
   getRestMenu(restaurantId);
   // const myCollection = collection(firestoreDB, 'Food_Inc_Menu');
@@ -766,6 +771,7 @@ window.onload = function () {
   //     addItem('../assets/foodItemPlaceholder.png', data.item_name, data.item_price, 0);
   //   });
   // });
+  
 }
 
 window.initMap = initMap;
