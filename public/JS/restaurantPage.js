@@ -113,128 +113,130 @@ async function fetchDeliveryLocation(customerID){
 
 async function fetchDrivers() {
   drivers = [];
-  await db2.ref().child("drivers").get()
-    .then((snapshot) => {
-      snapshot.forEach((childSnapshot) => {
-        const driverID = childSnapshot.key;
-        const driverData = childSnapshot.val();
-        const isActive = driverData.isActive;
-        const driverName = driverData.name;
-        const driverLocation = driverData.location;
-        const lat = parseFloat(driverData.lat);
-        const lng = parseFloat(driverData.lng);
-        const driverLatLng = { lat, lng };
-        const driver = {
-          id: driverID,
-          name: driverName,
-          location: driverLocation,
-          lat: lat,
-          lng: lng,
-          isActive: isActive,
-        };
 
-        if (!drivers.some((d) => d.id === driverID)) {
-          drivers.push(driver);
-        }
-      });
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-    await findNearByDrivers(drivers);
+  const snapshot = await db2.ref().child("drivers").get();
+
+  snapshot.forEach((childSnapshot) => {
+    const driverID = childSnapshot.key;
+    const driverData = childSnapshot.val();
+    const status = driverData.status;
+    const driverName = driverData.name;
+    const location = driverData.currentLocation;
+    const driver = {
+      id: driverID,
+      name: driverName,
+      location: location,
+      status: status,
+    };
+
+    if (!drivers.some((d) => d.id === driverID)) {
+      drivers.push(driver);
+    }
+  });
+  console.log(drivers);
+  await findNearByDrivers(drivers);
 }
 
 async function findNearByDrivers(drivers) {
   result = [];
-
+  
   drivers.forEach((driver) => {
-    if (driver.isActive) {
-      const driverLocationLatLng = new google.maps.LatLng(
-        driver.lat,
-        driver.lng
-      );
-      const restaurantLocationLatLng = new google.maps.LatLng(
-        restaurantLocation.lat,
-        restaurantLocation.lng
-      );
-      const deliveryLocationLatLng = new google.maps.LatLng(
-        deliveryLocation.lat,
-        deliveryLocation.lng
-      );
+    if (driver.status == "online") {
+      geocoder.geocode(
+         { address: driver.location },
+         function (results, status) {
+           if (status == "OK") {
+             const driverLocationLatLng = new google.maps.LatLng(
+               results[0].geometry.location.lat(),
+               results[0].geometry.location.lng()
+             );
+             const restaurantLocationLatLng = new google.maps.LatLng(
+               restaurantLocation.lat,
+               restaurantLocation.lng
+             );
+             const deliveryLocationLatLng = new google.maps.LatLng(
+               deliveryLocation.lat,
+               deliveryLocation.lng
+             );
 
-      var totalDistance = 0;
-      var totalDuration = 0;
-      var deliveryCost = 0;
-      var totalDistanceInMiles = 0;
+             var totalDistance = 0;
+             var totalDuration = 0;
+             var deliveryCost = 0;
+             var totalDistanceInMiles = 0;
 
-      distanceService.getDistanceMatrix(
-        {
-          origins: [driverLocationLatLng],
-          destinations: [restaurantLocationLatLng],
-          travelMode: "DRIVING",
-          unitSystem: google.maps.UnitSystem.METRIC,
-          avoidHighways: false,
-          avoidTolls: false,
-          drivingOptions: {
-            departureTime: new Date(Date.now()),
-            trafficModel: "optimistic",
-          },
-        },
-        fromDriverToRestaurant
-      );
+             distanceService.getDistanceMatrix(
+               {
+                 origins: [driverLocationLatLng],
+                 destinations: [restaurantLocationLatLng],
+                 travelMode: "DRIVING",
+                 unitSystem: google.maps.UnitSystem.METRIC,
+                 avoidHighways: false,
+                 avoidTolls: false,
+                 drivingOptions: {
+                   departureTime: new Date(Date.now()),
+                   trafficModel: "optimistic",
+                 },
+               },
+               fromDriverToRestaurant
+             );
 
-      function fromDriverToRestaurant(response, status) {
-        const distance = response.rows[0].elements[0].distance.text;
-        const duration = response.rows[0].elements[0].duration.text;
-        totalDistance += parseFloat(distance);
-        totalDuration += parseFloat(duration);
+             function fromDriverToRestaurant(response, status) {
+               const distance = response.rows[0].elements[0].distance.text;
+               const duration = response.rows[0].elements[0].duration.text;
+               totalDistance += parseFloat(distance);
+               totalDuration += parseFloat(duration);
 
-        distanceService.getDistanceMatrix(
-          {
-            origins: [restaurantLocationLatLng],
-            destinations: [deliveryLocationLatLng],
-            travelMode: "DRIVING",
-            unitSystem: google.maps.UnitSystem.METRIC,
-            avoidHighways: false,
-            avoidTolls: false,
-            drivingOptions: {
-              departureTime: new Date(Date.now()),
-              trafficModel: "optimistic",
-            },
-          },
-          fromRestaurantToDelivery
-        );
+               distanceService.getDistanceMatrix(
+                 {
+                   origins: [restaurantLocationLatLng],
+                   destinations: [deliveryLocationLatLng],
+                   travelMode: "DRIVING",
+                   unitSystem: google.maps.UnitSystem.METRIC,
+                   avoidHighways: false,
+                   avoidTolls: false,
+                   drivingOptions: {
+                     departureTime: new Date(Date.now()),
+                     trafficModel: "optimistic",
+                   },
+                 },
+                 fromRestaurantToDelivery
+               );
 
-        function fromRestaurantToDelivery(response, status) {
-          const distance = response.rows[0].elements[0].distance.text;
-          const duration = response.rows[0].elements[0].duration.text;
-          totalDistance += parseFloat(distance);
-          totalDistanceInMiles = Number((totalDistance * 0.621371).toFixed(1));
-          totalDuration += parseFloat(duration);
-          deliveryCost = 5 + (totalDistanceInMiles - 1) * 2;
-          const res = `${driver.name}, ${totalDuration} min, ${totalDistanceInMiles} miles, $${deliveryCost}`;
+               function fromRestaurantToDelivery(response, status) {
+                 const distance = response.rows[0].elements[0].distance.text;
+                 const duration = response.rows[0].elements[0].duration.text;
+                 totalDistance += parseFloat(distance);
+                 totalDistanceInMiles = Number(
+                   (totalDistance * 0.621371).toFixed(1)
+                 );
+                 totalDuration += parseFloat(duration);
+                 deliveryCost = 5 + (totalDistanceInMiles - 1) * 2;
+                 const res = `${driver.name}, ${totalDuration} min, ${totalDistanceInMiles} miles, $${deliveryCost}`;
 
-          const calculatedDriver = {
-            id: driver.id,
-            name: driver.name,
-            duration: totalDuration,
-            distance: totalDistanceInMiles,
-            cost: deliveryCost,
-          };
-          result.push(calculatedDriver);
-        }
-      }
+                 const calculatedDriver = {
+                   id: driver.id,
+                   name: driver.name,
+                   duration: totalDuration,
+                   distance: totalDistanceInMiles,
+                   cost: deliveryCost,
+                 };
+                 result.push(calculatedDriver);
+               }
+             }
+           }
+         }
+       );
     }
   }
-  
   );
+
 
   setTimeout(() => {
     showRouteForBestDriver();
   }, 2000);
 }
 
-function showRouteForBestDriver() {
+async function showRouteForBestDriver() {
   bestDriver = result.reduce((prev, current) =>
     prev.cost < current.cost ? prev : current
   );
@@ -252,9 +254,19 @@ function showRouteForBestDriver() {
     to: cusID,
   };
   sessionStorage.setItem("account_order", JSON.stringify(accOrder));
+  console.log(bestDriver);
   createInfo(orders, restaurant, customer, bestDriver);
-  driverLocation.lat = bestDriverInformation.lat;
-  driverLocation.lng = bestDriverInformation.lng;
+  console.log(bestDriverInformation);
+  await geocoder.geocode(
+    { address: bestDriverInformation.location },
+    function (results, status) {
+      if (status == "OK") {
+        driverLocation.lat = results[0].geometry.location.lat();
+        driverLocation.lng = results[0].geometry.location.lng();
+      }
+    }
+  );
+  console.log(driverLocation);
   if (driverMarker) {
     driverMarker.setMap(null);
   }
@@ -265,8 +277,8 @@ function showRouteForBestDriver() {
   });
 
   const bestDriverLocation = new google.maps.LatLng(
-    bestDriverInformation.lat,
-    bestDriverInformation.lng
+    driverLocation.lat,
+    driverLocation.lng
   );
   var waypoints = [
     {
@@ -483,7 +495,7 @@ async function goToCheckout(driver) {
   );
   let stripeResponse = await stripeRequest.json();
   console.log(stripeResponse);
-  window.location.href = stripeResponse.url;
+  // window.location.href = stripeResponse.url;
 }
 
 window.onload = async function () {
