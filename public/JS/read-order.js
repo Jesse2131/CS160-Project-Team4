@@ -11,10 +11,14 @@ function readOrders() {
     .then(async (snapshot) => {
       if (snapshot.exists()) {
         snapshot.forEach((childSnapshot) => {
-          key.push(childSnapshot.key);
-          arr.push(childSnapshot.val());
+          if(childSnapshot.val().status == "pending"){
+            key.push(childSnapshot.key);
+            arr.push(childSnapshot.val());
+          }
         });
-        createOrder(arr);
+        if(arr.length !== 0){
+          createOrder(arr);
+        }
       } else {
         console.log("No data available");
       }

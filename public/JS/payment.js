@@ -141,12 +141,27 @@ const checkout = document.getElementById("checkout");
 checkout.addEventListener("click", function () {
   //window.location.href = `http://${window.location.host}/HTML/checkout_detail.html`
   
-  // const request = document.getElementById("requests").value;
-  // localStorage.setItem("request", request);
+  const request = document.getElementById("requests").value;
+  localStorage.setItem("request", request);
   goToCheckout();
 });
 
 window.onload = function(){
+  let data = [
+    {
+      id: (Math.random() * 1000).toFixed(0).toString(),
+      name: "pizza",
+      price: 5,
+      quantity: 2,
+    },
+    {
+      id: (Math.random() * 1000).toFixed(0).toString(),
+      name: "Sushi",
+      price: 2,
+      quantity: 3,
+    },
+  ];
+  localStorage.setItem("cart", JSON.stringify(data));
   console.log(JSON.parse(localStorage.getItem("cart")));
   cart = JSON.parse(localStorage.getItem("cart"));
   tableCreate();

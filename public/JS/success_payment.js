@@ -42,7 +42,6 @@ async function writePayment() {
         var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
         let obj = chargeRes.data[i].data.object;
         const dbRef = database.ref();
-        console.log(dbRef.child("Orders").push().key);
         dbRef
           .child("Orders")
           .push()
@@ -56,6 +55,8 @@ async function writePayment() {
             progress: "On the way",
             special_request: localStorage.getItem("request"),
             total_spend: obj.amount / 100.0,
+            status: "pending",
+            user_id: sessionStorage.getItem("currentUser"),
           })
           .then((res) => {
             console.log(res);

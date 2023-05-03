@@ -737,6 +737,9 @@ window.onload = function () {
   }
   const restaurantId = localStorage.getItem('order_restaurantId');
   getRestMenu(restaurantId);
+  
+  cart = JSON.parse(localStorage.getItem("cart"));
+  console.log(cart);
   // const myCollection = collection(firestoreDB, 'Food_Inc_Menu');
   // const querySnapshot = getDocs(myCollection);
   // querySnapshot.then((snapshot) => {
