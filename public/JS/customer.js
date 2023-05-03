@@ -556,7 +556,7 @@ function loadRestaurantMenu(rest_name){
     snapshot.forEach((doc) => {
       const data = doc.data();
       // console.log(data);
-      addItem('../assets/foodItemPlaceholder.png', data.item_name, data.item_price, 0);
+      addItem(data.item_name, data.item_price, 0);
     });
   });
 }
@@ -569,11 +569,11 @@ function addItem(imageUrl, label, price, quantity) {
   const newRow = document.createElement('tr');
 
   // Create image element and set the source attribute
-  const imageCell = document.createElement('td');
-  const image = document.createElement('img');
-  image.src = imageUrl;
-  imageCell.appendChild(image);
-  newRow.appendChild(imageCell);
+  // const imageCell = document.createElement('td');
+  // const image = document.createElement('img');
+  // image.src = imageUrl;
+  // imageCell.appendChild(image);
+  // newRow.appendChild(imageCell);
 
   // Create label cell and set the text content
   const labelCell = document.createElement('td');
@@ -649,11 +649,11 @@ function updateCart(imageUrl, label, price, quantity, id) {
   const newRow = document.createElement('tr');
 
   // Create image element and set the source attribute
-  const imageCell = document.createElement('td');
-  const image = document.createElement('img');
-  image.src = imageUrl;
-  imageCell.appendChild(image);
-  newRow.appendChild(imageCell);
+  // const imageCell = document.createElement('td');
+  // const image = document.createElement('img');
+  // image.src = imageUrl;
+  // imageCell.appendChild(image);
+  // newRow.appendChild(imageCell);
 
   // Create label cell and set the text content
   const labelCell = document.createElement('td');
@@ -722,14 +722,13 @@ function buildQuery(data, prefix) {
 
 
 window.onload = function () {
-  loadRestaurantMenu();
+  // loadRestaurantMenu();
   if (localStorage.getItem("cart") === null) {
     localStorage.setItem("cart", JSON.stringify(cart));
   }else{
     cart = JSON.parse(localStorage.getItem("cart"));
     cart.forEach((order) => {
       updateCart(
-        "../assets/foodItemPlaceholder.png",
         order.name,
         order.price,
         order.quantity,
