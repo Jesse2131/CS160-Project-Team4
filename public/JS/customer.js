@@ -561,7 +561,7 @@ function loadRestaurantMenu(rest_name){
   });
 }
 
-function addItem(imageUrl, label, price, quantity) {
+function addItem(label, price, quantity) {
   // Get the table body element
   const tableBody = document.getElementById('table-body');
 
@@ -615,7 +615,7 @@ function addItem(imageUrl, label, price, quantity) {
       cart = JSON.parse(localStorage.getItem("cart"));
       cart.push(data);
       localStorage.setItem("cart", JSON.stringify(cart));
-      updateCart(imageUrl, label, data.price, quantity, data.id);
+      updateCart(label, data.price, quantity, data.id);
       console.log(cart);
     }
   });
@@ -641,7 +641,7 @@ function updateProcessButton() {
   sendOrder.textContent = "Process Order: " + "$" + sum.toFixed(2) + "";
 };
 
-function updateCart(imageUrl, label, price, quantity, id) {
+function updateCart(label, price, quantity, id) {
   // Get the table body element
   const tableBody = document.getElementById('cart-items');
 
