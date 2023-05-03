@@ -722,7 +722,6 @@ function buildQuery(data, prefix) {
 
 
 window.onload = function () {
-  loadRestaurantMenu();
   if (localStorage.getItem("cart") === null) {
     localStorage.setItem("cart", JSON.stringify(cart));
   }else{
@@ -737,25 +736,13 @@ window.onload = function () {
       );
     });
   }
-  // if (window.location.pathname.includes("customer") && window.location.pathname.endsWith(".html")){
-  //    window.history.back();
-  // }
 
   const restaurantId = localStorage.getItem('order_restaurantId');
   getRestMenu(restaurantId);
   
   cart = JSON.parse(localStorage.getItem("cart"));
   console.log(cart);
-  // const myCollection = collection(firestoreDB, 'Food_Inc_Menu');
-  // const querySnapshot = getDocs(myCollection);
-  // querySnapshot.then((snapshot) => {
-  //   snapshot.forEach((doc) => {
-  //     const data = doc.data();
-  //     console.log(data);
-  //     addItem('../assets/foodItemPlaceholder.png', data.item_name, data.item_price, 0);
-  //   });
-  // });
-  
+
 }
 
 window.initMap = initMap;
