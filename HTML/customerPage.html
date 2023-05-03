@@ -12,13 +12,13 @@
   <link rel="stylesheet" type="text/css" href="/CSS/customerPage.css" />
   <link rel="stylesheet" href="/CSS/starter-code.css">
   <link rel="stylesheet" href="/CSS/accountPage.css">
-  <script type="module" src="/JS/customer.js"></script>
+
   <style>
-    
     body {
       width: 80%;
       margin: 0 auto;
     }
+
     table {
       border-collapse: collapse;
       width: 100%;
@@ -68,8 +68,7 @@
       animation: spin 2s linear infinite;
     }
 
-    #map {
-    }
+    #map {}
 
     @keyframes spin {
       0% {
@@ -91,7 +90,7 @@
       <li><a href="accountPage.html">Account</a></li>
       <li><a href="deliveryDashboardDriver.html">Dashboard</a></li>
     </ul>
-    <img class="odfds-logo" src="ASSETS/odfdsLOGO.png" height="452" width="452"/>
+    <img class="odfds-logo" src="ASSETS/odfdsLOGO.png" height="452" width="452" />
   </div>
 
   <img src="/ASSETS/pizzaCover.jpeg" alt="Image" style="width: 100%; height: 300px; border-radius: 10px;">
@@ -113,7 +112,7 @@
         </thead>
         <tbody id="table-body">
         </tbody>
-      </table>      
+      </table>
     </fieldset>
 
     <fieldset>
@@ -130,11 +129,36 @@
         </thead>
         <tbody id="cart-items">
         </tbody>
-      </table>      
+      </table>
     </fieldset>
 
-    <button id="sendOrder" style="margin-top: 12px; margin-bottom: 12px;" >Add Item Before Process</button>
+    <button id="sendOrder" style="margin-top: 12px; margin-bottom: 12px;">Add Item Before Process</button>
   </div>
+  <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-database.js"></script>
+  <script src="../JS/config.js"></script>
+  <script src="../JS/starter-code.js"></script>
+  <script type="module" src="/JS/customer.js"></script>
+  <script>
+    const userType = localStorage.getItem("userType");
+    console.log("User type: ", userType);
+    if (userType === "drivers") {
+        if (/customer|restaurant/.test(window.location.pathname) && window.location.pathname.endsWith(".html")) {
+            window.history.back();
+        }
+    } else if (userType === "customers") {
+        if (/driver|restaurant/.test(window.location.pathname) && window.location.pathname.endsWith(".html")) {
+            window.history.back();
+        }
+    } else if (userType === "restaurants") {
+        if (/customer|driver/.test(window.location.pathname) && window.location.pathname.endsWith(".html")) {
+            window.history.back();
+        }
+    }
+</script>
 </body>
 
 </html>

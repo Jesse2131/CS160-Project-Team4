@@ -1,68 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
 
-        <meta charset="UTF-8">
+<head>
 
-        <!-- Reset css for consistent styles across browsers -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta charset="UTF-8">
 
-        <!-- LINK STYLESHEET -->
-        <link rel="stylesheet" href="../CSS/starter-code.css">
-        <link rel="stylesheet" href="../CSS/welcomeDashboard.css">
+    <!-- Reset css for consistent styles across browsers -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-        <!-- FONTS -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400&display=swap" rel="stylesheet">
+    <!-- LINK STYLESHEET -->
+    <link rel="stylesheet" href="../CSS/starter-code.css">
+    <link rel="stylesheet" href="../CSS/welcomeDashboard.css">
 
-        <title>ODFDS</title>
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400&display=swap"
+        rel="stylesheet">
 
-    </head>
+    <title>ODFDS</title>
 
-
-    <body>
-
-        <!-- NAVBAR -->
-        <div class="navbar">
-            <img class="odfds-logo" src="../ASSETS/odfdsLOGO.png"/>
-            <h1 id="nav-logged-in-user">Welcome User</h1>
-            <ul>
-                <li><a id="dashboardLink" href="welcomeDashboardDriver.html">Dashboard</a></li>
-                <li><a href="accountPage.html">Account</a></li>
-                <li><a onclick="logout()">Log Out</a></li>
-            </ul>
-        </div>
-        <!-- NAVBAR ENDS -->
+</head>
 
 
-<!--        <img class = "odfds-logo-main" src="../ASSETS/odfdsLOGO.png" height="200" width="200"/>-->
-        <h1 class = "welcome-to-odfds">WELCOME TO ODFDS</h1>
-        <p class = "plate-empty">Your "plate" looks empty... Let's get you started!</p>
-        <br>
-        <br>
-        <p class = "prompt-online-status">Click the button below to go online, and we'll get you an order before you can say "Bon Appétit"!</p>
-        <br>
-        <button type="button" onclick="driverOnline()">GO ONLINE</button>
+<body>
 
-        <!-- PAGE FOOTER -->
-        <div class="footer">
-            <p class="odfds-title">ODFDS©</p>
-            <img class="socials" src="../ASSETS/instalogo.png">
-            <img class="socials" src="../ASSETS/twitterlogo.png"/>
-            <img class="appstore-download" src="../ASSETS/appstore.png"/>
-            <img class="playstore-download" src="../ASSETS/playstore.png"/>
-        </div>
-        <!-- PAGE FOOTER ENDS -->
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <img class="odfds-logo" src="../ASSETS/odfdsLOGO.png" />
+        <h1 id="nav-logged-in-user">Welcome User</h1>
+        <ul>
+            <li><a id="dashboardLink" href="welcomeDashboardDriver.html">Dashboard</a></li>
+            <li><a href="accountPage.html">Account</a></li>
+            <li><a onclick="logout()">Log Out</a></li>
+        </ul>
+    </div>
+    <!-- NAVBAR ENDS -->
 
-        <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-database.js"></script>
-        <script src="../JS/config.js"></script>
-        <script src="../JS/starter-code.js"></script>
-        <script src="../JS/login-sign.js"></script>
-        <script src="../JS/dashboardDriver.js"></script>
-    </body>
+
+    <!--        <img class = "odfds-logo-main" src="../ASSETS/odfdsLOGO.png" height="200" width="200"/>-->
+    <h1 class="welcome-to-odfds">WELCOME TO ODFDS</h1>
+    <p class="plate-empty">Your "plate" looks empty... Let's get you started!</p>
+    <br>
+    <br>
+    <p class="prompt-online-status">Click the button below to go online, and we'll get you an order before you can say
+        "Bon Appétit"!</p>
+    <br>
+    <button type="button" onclick="driverOnline()">GO ONLINE</button>
+
+    <!-- PAGE FOOTER -->
+    <div class="footer">
+        <p class="odfds-title">ODFDS©</p>
+        <img class="socials" src="../ASSETS/instalogo.png">
+        <img class="socials" src="../ASSETS/twitterlogo.png" />
+        <img class="appstore-download" src="../ASSETS/appstore.png" />
+        <img class="playstore-download" src="../ASSETS/playstore.png" />
+    </div>
+    <!-- PAGE FOOTER ENDS -->
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-database.js"></script>
+    <script src="../JS/config.js"></script>
+    <script src="../JS/starter-code.js"></script>
+    <script src="../JS/login-sign.js"></script>
+    <script src="../JS/dashboardDriver.js"></script>
+    <script>
+        const userType = localStorage.getItem("userType");
+        console.log("User type: ", userType);
+        if (userType === "drivers") {
+            if (/customer|restaurant/.test(window.location.pathname.toLowerCase()) && window.location.pathname.endsWith(".html")) {
+                window.history.back();
+            }
+        } else if (userType === "customers") {
+            if (/driver|restaurant/.test(window.location.pathname.toLowerCase()) && window.location.pathname.endsWith(".html")) {
+                window.history.back();
+            }
+        } else if (userType === "restaurants") {
+            if (/customer|driver/.test(window.location.pathname.toLowerCase()) && window.location.pathname.endsWith(".html")) {
+                window.history.back();
+            }
+        }
+    </script>
+</body>
+
 </html>
