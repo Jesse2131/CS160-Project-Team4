@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Restaurant Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../CSS/starter-code.css">
     <link rel="stylesheet"href="../CSS/restDash.css">
 </head>
@@ -13,7 +14,7 @@
         <img class="odfds-logo" src="../ASSETS/odfdsLOGO.png"/>
         <h1 id="nav-logged-in-user">Welcome User</h1>
         <ul>
-            <li><a href="restaurantDash.html">Dashboard</a></li>
+            <li><a href="https://github.com/Jesse2131/CS160-Project-Team4">Dashboard</a></li>
             <li><a href="accountPage.html">Account</a></li>
             <li><a onclick="logout()">Log Out</a></li>
 
@@ -37,9 +38,19 @@
         <div class="delivery-prog">        
             <div class="row">
                 <div class="column1">
-                    <img src="../ASSETS/restaurant-views/order.png" alt="(orders)" style="width: 800px">
-                </div>
-                <div class="column2">
+                    <div class="currentDeliveriesBorder">
+                        <div class="currentDeliveries">
+                            <div id="driver1">
+                                <h1 id="driver1name">
+                                     Driver 1
+                                    <span id="minuteText">
+                                        XX miles
+                                    </span>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+
                     <ul>
                         <li>
                             <div class="progress one">
@@ -94,7 +105,6 @@
     <script src="../JS/login-sign.js"></script>
     <script src="../JS/userInfo.js"></script>
     <script src="../JS/add-menu.js"></script>
-    <script src="/JS/pageBlocker.js"></script>
-    <!-- <script async src="progressBar.js"></script> -->
+    <script async src="../JS/dashboardRest.js"></script>
 </body>
 </html>
