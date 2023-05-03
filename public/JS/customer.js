@@ -550,6 +550,7 @@ getDoc(docRef).then((doc) => {
 
 function loadRestaurantMenu(rest_name){
   const myCollection = collection(firestoreDB, rest_name);
+  document.getElementById("order_RestName").innerHTML = rest_name;
   const querySnapshot = getDocs(myCollection);
   querySnapshot.then((snapshot) => {
     snapshot.forEach((doc) => {
