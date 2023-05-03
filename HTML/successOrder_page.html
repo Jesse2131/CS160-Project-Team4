@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* NAVBAR */
+        .navbar {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    
+        .navbar ul {
+            list-style-type: none;
+            padding-top: 25px;
+            padding-bottom: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    
+        .navbar li {
+            padding: 7px;
+        }
+    
+        .navbar li a {
+            font-family: 'Poppins', sans-serif;
+            color: #FFFFFF;
+            background-color: #000000;
+            text-align: center;
+            padding: 8px 17px;
+            text-decoration: none;
+            border-radius: 4px;
+    
+        }
+    
+        .navbar li a:hover {
+            background-color: #F1AF3D;
+        }
+    
+        .navbar h1 {
+            color: #F1AF3D;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    
+        /* LOGO ENDS */
+    
+        /* NAVBAR ENDS */
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <ul>
+            <li><a href="restaurantDash.html">Dashboard</a></li>
+            <li><a href="accountPage.html">Account</a></li>
+            <li><a onclick="logout()">Log Out</a></li>
+        </ul>
+    </div>
+    
+    <div class="main"
+        style="display:flex; justify-content: center; flex-direction: column; align-items: center; width: 100%;">
+        <img src="../../ASSETS/odfdsLOGO.png" alt="" style="height: 150px; width: 150px;">
+        <p style="font-size: 25px; text-align: center;">
+            Thank you for using our services! <br> If you have any questions, please email
+            <a href="mailto:orders@example.com">orders@example.com</a>.
+        </p>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-database.js"></script>
+    <script src="/JS/config.js"></script>
+    <script src="/JS/successOrder_payment.js"></script>
+</body>
+</html>

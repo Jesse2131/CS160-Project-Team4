@@ -134,11 +134,12 @@ function logout() {
   });
 }
 
-function addToDB(...params) {
+async function addToDB(...params) {
   // Get current user and their type 
   var userUid = firebase.auth().currentUser.uid;
+  console.log(userUid);
   // unpack params 
-  const [user_type, email, name, address] = params
+  const [user_type, email, name, address] = params;
   // Add to users collection and corresponding collecion
   var col = db.collection(user_type);
 
@@ -153,7 +154,7 @@ function addToDB(...params) {
     })
   }
 
-  Promise.all([
+  await Promise.all([
     db.collection("users").doc(userUid).set({
       id: userUid,
       type: user_type

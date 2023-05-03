@@ -111,7 +111,10 @@ body{
 
 /* FOR INCOMING ORDERS  */ 
 .incoming-orders{
+    display: flex;
+    flex-direction: column;
     background-color: #acacac;
+    align-items: center;
 }
 
 /* FOR MENU */
@@ -133,6 +136,37 @@ body{
     padding-right: 10px;
 }
 
+.order-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 60%;
+}
+
+.order-box{
+    border: solid 1px black;
+    border-radius: 5px;
+    height: 70px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.order-box-row{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 50px;
+}
+  
+.order-box i{
+    padding-right: 20px;
+}
 .currentDeliveriesBorder {
     overflow: hidden;
     border-radius: 10px;
