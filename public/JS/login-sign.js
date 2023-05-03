@@ -66,41 +66,6 @@ async function validateAddress(address) {
   }
 }
 
-// async function signup() {
-//   const user_type = document.getElementById("user-type").value
-//   if (user_type != "") {
-//     const email = document.getElementById('email').value.toLowerCase();
-//     const password = document.getElementById('password').value;
-//     const name = document.getElementById('name').value;
-//     const address = document.getElementById('address').value;
-//     const isValidAddress= await validateAddress(address);
-
-//     if (isValidAddress) {
-//       console.log("Valid address");
-//     } else {
-//       document.getElementById("errormsg").innerHTML = "Please enter a valid address";
-//       return;
-//     }
-
-//     // Create user 
-//     var creation = firebase.auth().createUserWithEmailAndPassword(email, password);
-
-//     // Check for errors 
-//     creation.catch(function (error) {
-//       var errorCode = error.code;
-//       document.getElementById("errormsg").innerHTML = error.message;
-//     });
-
-//     // Continue if no errors
-//     creation.then(function () {
-//       addToDB(user_type, email, name, address);
-//     });
-//   }
-//   else {
-//     document.getElementById("errormsg").innerHTML = "Please select a user type";
-//   }
-// }
-
 async function signup() {
   const user_type = document.getElementById("user-type").value;
   if (user_type === "") {
@@ -158,6 +123,8 @@ function logout() {
         }, 300)
 
         setTimeout(function () {
+          // Store user type in local storage
+          localStorage.removeItem("userType");
           window.location.href = "index.html";
         }, 600);
       });
