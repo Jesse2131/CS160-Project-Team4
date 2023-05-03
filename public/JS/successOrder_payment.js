@@ -16,9 +16,9 @@ async function writePayment() {
   console.log(JSON.parse(sessionStorage.getItem("account_order")));
   for (let i = 0; i < 5; i++) {
     if (chargeRes.data[i].type == "charge.succeeded") {
-    //   var isFirstLoad = localStorage.getItem(chargeRes.data[i].id);
+      var isFirstLoad = localStorage.getItem(chargeRes.data[i].id);
 
-    //   if (!isFirstLoad) {
+      if (!isFirstLoad) {
         console.log("test");
         const dbRef = database.ref();
         let data = JSON.parse(sessionStorage.getItem("account_order"));
@@ -34,8 +34,8 @@ async function writePayment() {
         console.log(pushed.key);
 
             // localStorage.setItem(chargeRes.data[i].id, "true");
-            // localStorage.removeItem("cart");
-    //   }
+        localStorage.removeItem("account_order");
+      }
       console.log("success");
       break;
     } else if (chargeRes.data[i].type == "payment_intent.failed") {
