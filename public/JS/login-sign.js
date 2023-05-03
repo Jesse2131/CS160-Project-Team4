@@ -94,44 +94,48 @@ async function signup() {
 
 
 function logout() {
-  const curr_user = firebase.auth().currentUser;
-  firebase.auth().signOut().then(() => {
-    // Set status to offline
-    getUserType(curr_user.uid)
-      .then(userType => {
-        const userRef = db.collection(userType).doc(curr_user.uid);
-        const updateObject = {};
-        updateObject["status"] = "offline";
-        if (userType === "drivers") {
-          userRef.get().then((doc) => {
-            const retrievedAddress = doc.data().address;
-            const retrievedOrder1 = doc.data().order1;
-            if (retrievedOrder1 === "none") {
-              updateObject["currentLocation"] = retrievedAddress;
-            }
-          });
-        }
-        setTimeout(function () {
-          userRef.update(updateObject)
-            .then(() => {
-              document.getElementById("errormsg").innerHTML = "Changes saved successfully";
-            })
-            .catch((error) => {
-              document.getElementById("errormsg").innerHTML = error;
-            });
-        }, 300)
+    const curr_user = firebase.auth().currentUser;
+    firebase.auth().signOut().then(() => {
+        // Set status to offline
+        getUserType(curr_user.uid)
+            .then(userType => {
+              const userRef = db.collection(userType).doc(curr_user.uid);
+              const updateObject = {};
+              updateObject["status"] = "offline";
+              if (userType === "drivers") {
+                  var realtimeRef = firebase.database().ref('drivers/' + curr_user.uid);
+                  userRef.get().then((doc) => {
+                      const retrievedAddress = doc.data().address;
+                      const retrievedOrder1 = doc.data().order1;
+                      if (retrievedOrder1 === "none") {
+                          updateObject["currentLocation"] = retrievedAddress;
+                          setTimeout(function() {
+                              realtimeRef.update(updateObject);
+                          },300);
+                      }
+                  });
+              }
+              setTimeout(function() {
+                  userRef.update(updateObject)
+                      .then(() => {
+                          document.getElementById("errormsg").innerHTML = "Changes saved successfully";
+                      })
+                      .catch((error) => {
+                          document.getElementById("errormsg").innerHTML = error;
+                      });
+              }, 600)
 
-        setTimeout(function () {
-          // Store user type in local storage
-          localStorage.removeItem("userType");
-          localStorage.removeItem("userName");
-          window.location.href = "index.html";
-        }, 600);
-      });
-  }).catch((error) => {
-    // Handle errors here
-    console.error(error);
-  });
+              setTimeout(function() {
+                        // Store user type in local storage
+                  localStorage.removeItem("userType");
+                  localStorage.removeItem("userName");
+                  window.location.href = "index.html";
+              }, 900);
+        });
+    }).catch((error) => {
+        // Handle errors here
+        console.error(error);
+    });
 }
 
 async function addToDB(...params) {
