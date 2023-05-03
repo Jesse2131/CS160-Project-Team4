@@ -38,32 +38,96 @@ function login() {
     });
 }
 
-function signup() {
-  const user_type = document.getElementById("user-type").value
-  if (user_type != "") {
-    const email = document.getElementById('email').value.toLowerCase();
-    const password = document.getElementById('password').value;
-    const name = document.getElementById('name').value;
-    const address = document.getElementById('address').value;
+async function validateAddress(address) {
+  const apiKey = 'AIzaSyDoWTjotq5OuS-aZLeiZxd0uR2YNRCJdmY';
+  const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
 
-    // Create user 
-    var creation = firebase.auth().createUserWithEmailAndPassword(email, password);
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
 
-    // Check for errors 
-    creation.catch(function (error) {
-      var errorCode = error.code;
-      document.getElementById("errormsg").innerHTML = error.message;
-    });
+    if (data.status === 'OK') {
+      // check if the address contains a valid street number and name
+      const addressComponents = data.results[0].address_components;
+      const streetNumber = addressComponents.find(component => component.types.includes('street_number'));
+      const streetName = addressComponents.find(component => component.types.includes('route'));
 
-    // Continue if no errors
-    creation.then(function () {
-      addToDB(user_type, email, name, address);
-    });
-  }
-  else {
-    document.getElementById("errormsg").innerHTML = "Please select a user type";
+      if (streetNumber && streetName) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  } catch (error) {
+    console.error(error);
+    return false;
   }
 }
+
+// async function signup() {
+//   const user_type = document.getElementById("user-type").value
+//   if (user_type != "") {
+//     const email = document.getElementById('email').value.toLowerCase();
+//     const password = document.getElementById('password').value;
+//     const name = document.getElementById('name').value;
+//     const address = document.getElementById('address').value;
+//     const isValidAddress= await validateAddress(address);
+
+//     if (isValidAddress) {
+//       console.log("Valid address");
+//     } else {
+//       document.getElementById("errormsg").innerHTML = "Please enter a valid address";
+//       return;
+//     }
+
+//     // Create user 
+//     var creation = firebase.auth().createUserWithEmailAndPassword(email, password);
+
+//     // Check for errors 
+//     creation.catch(function (error) {
+//       var errorCode = error.code;
+//       document.getElementById("errormsg").innerHTML = error.message;
+//     });
+
+//     // Continue if no errors
+//     creation.then(function () {
+//       addToDB(user_type, email, name, address);
+//     });
+//   }
+//   else {
+//     document.getElementById("errormsg").innerHTML = "Please select a user type";
+//   }
+// }
+
+async function signup() {
+  const user_type = document.getElementById("user-type").value;
+  if (user_type === "") {
+    document.getElementById("errormsg").innerHTML = "Please select a user type";
+    return;
+  }
+
+  const email = document.getElementById('email').value.toLowerCase();
+  const password = document.getElementById('password').value;
+  const name = document.getElementById('name').value;
+  const address = document.getElementById('address').value;
+  const isValidAddress = await validateAddress(address);
+
+  if (!isValidAddress) {
+    document.getElementById("errormsg").innerHTML = "Please enter a valid address";
+    return;
+  }
+
+  try {
+    const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
+    addToDB(user_type, email, name, address);
+    // redirect to success page or display success message
+  } catch (error) {
+    document.getElementById("errormsg").innerHTML = error.message;
+  }
+}
+
 
 function logout() {
   const curr_user = firebase.auth().currentUser;
