@@ -70,11 +70,15 @@ function logout() {
               const updateObject = {};
               updateObject["status"] = "offline";
               if (userType === "drivers") {
+                  var realtimeRef = firebase.database().ref('drivers/' + curr_user.uid);
                   userRef.get().then((doc) => {
                       const retrievedAddress = doc.data().address;
                       const retrievedOrder1 = doc.data().order1;
                       if (retrievedOrder1 === "none") {
                           updateObject["currentLocation"] = retrievedAddress;
+                          setTimeout(function() {
+                              realtimeRef.update(updateObject);
+                          },300);
                       }
                   });
               }
@@ -86,11 +90,11 @@ function logout() {
                       .catch((error) => {
                           document.getElementById("errormsg").innerHTML = error;
                       });
-              }, 300)
+              }, 600)
 
               setTimeout(function() {
                   window.location.href = "index.html";
-              }, 600);
+              }, 900);
         });
     }).catch((error) => {
         // Handle errors here
