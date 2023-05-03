@@ -60,6 +60,7 @@ function signup() {
     }
 }
 
+
 function logout() {
     const curr_user = firebase.auth().currentUser;
     firebase.auth().signOut().then(() => {

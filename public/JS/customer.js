@@ -555,7 +555,7 @@ function loadRestaurantMenu(rest_name){
   querySnapshot.then((snapshot) => {
     snapshot.forEach((doc) => {
       const data = doc.data();
-      console.log(data);
+      // console.log(data);
       addItem('../assets/foodItemPlaceholder.png', data.item_name, data.item_price, 0);
     });
   });
