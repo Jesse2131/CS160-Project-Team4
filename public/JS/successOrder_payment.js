@@ -1,7 +1,20 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+import {
+  initializeFirestore,
+  getDoc,
+  doc,
+  setDoc,
+} from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
 const database = firebase.database();
+
+const app = initializeApp(firebaseConfig);
+const db = initializeFirestore(app, {
+  experimentalForceLongPolling: true,
+});
 
 async function writePayment() {
   let chargeRequest = await fetch(`https://api.stripe.com/v1/events`, {
@@ -12,28 +25,42 @@ async function writePayment() {
   });
 
   let chargeRes = await chargeRequest.json();
-//   console.log(chargeRes.data);
+  //   console.log(chargeRes.data);
   console.log(JSON.parse(sessionStorage.getItem("account_order")));
   for (let i = 0; i < 5; i++) {
     if (chargeRes.data[i].type == "charge.succeeded") {
       var isFirstLoad = localStorage.getItem(chargeRes.data[i].id);
 
       if (!isFirstLoad) {
-        console.log("test");
         const dbRef = database.ref();
         let data = JSON.parse(sessionStorage.getItem("account_order"));
-        // var pushed = await dbRef
-        //   .child("AcceptedOrders")
-        //   .push()
-        //   .set(data)
-        //   .catch((error) => {
-        //     console.error(error);
-        //   });
-        dbRef.child("Orders").child(data.orderID).update({status: "accepted"});
+
+        dbRef
+          .child("Orders")
+          .child(data.orderID)
+          .update({ status: "accepted" });
+
         var pushed = dbRef.child("AcceptedOrders").push(data);
         console.log(pushed.key);
 
-            // localStorage.setItem(chargeRes.data[i].id, "true");
+        const checkUserType = await getDoc(doc(db, "users", data.driverID));
+        let retrievedUserType = checkUserType.data().type;
+
+        const curr_user = await getDoc(
+          doc(db, retrievedUserType, data.driverID)
+        );
+        let driver = curr_user.data();
+        console.log(driver);
+        if (driver["order1"] == "none"){
+          driver["order1"] = pushed.key;
+        } else if(driver["order2"] == "none"){
+          driver["order2"] = pushed.key;
+        }else{
+          driver["order1"] = pushed.key;
+        }
+        await setDoc(doc(db, retrievedUserType, data.driverID), driver);
+
+        localStorage.setItem(chargeRes.data[i].id, "true");
         localStorage.removeItem("account_order");
       }
       console.log("success");
@@ -45,3 +72,8 @@ async function writePayment() {
 }
 
 writePayment();
+
+
+// const curr_user = await getDoc(
+//   doc(db, retrievedUserType, sessionStorage.getItem("currentUser"))
+// );

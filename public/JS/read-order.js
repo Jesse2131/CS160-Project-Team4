@@ -26,11 +26,7 @@ function readOrders() {
     .catch((error) => {
       console.error(error);
     });
-    console.log(arr);
-    createOrder(arr);
 }
-
-readOrders();
 
 function createOrder(arr){
     var body = document.getElementsByClassName("order-list")[0];
@@ -68,6 +64,50 @@ function createOrder(arr){
     });
 }
 
+function readAcceptedOrder(){
+  const dbRef = real_db.ref();
+  dbRef
+    .child("AcceptedOrders")
+    .get()
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        snapshot.forEach((childSnapshot) => {
+          let orderData = childSnapshot.val();
+          if(orderData.from == sessionStorage.getItem("currentUser")){
+            var orderRef = firebase
+              .database()
+              .ref("drivers/" + orderData.driverID);
+            orderRef.once("value").then((snapshot) => {
+              console.log(snapshot.val());
+              createAcceptedOrder(snapshot.val().name, orderData.distance);
+            });
+          }
+        });
+      } else {
+        console.log("No data available");
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+function createAcceptedOrder(name, distance){
+  var body = document.getElementsByClassName("currentDeliveries")[0];
+
+  var cont = document.createElement("div");
+  cont.setAttribute("id", "driver1");
+
+  var h1 = document.createElement("h1");
+  h1.setAttribute("id", "driver1name");
+  h1.textContent = name + " - " + distance + " miles";
+  cont.appendChild(h1);
+
+  body.appendChild(cont);
+}
+
 window.onload = function(){
-    console.log(sessionStorage.getItem("currentUser"));
+  readOrders();
+  readAcceptedOrder();
+  console.log(sessionStorage.getItem("currentUser"));
 }
