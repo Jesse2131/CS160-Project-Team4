@@ -635,7 +635,7 @@ function updateProcessButton() {
   let sum = 0;
   for (let i = 0; i < cartItemsRows.length; i++) {
     const row = cartItemsRows[i];
-    const price = row.getElementsByTagName('td')[2].textContent;
+    const price = row.getElementsByTagName('td')[1].textContent;
     sum += parseFloat(price.substring(1));
   }
   sendOrder.textContent = "Process Order: " + "$" + sum.toFixed(2) + "";
