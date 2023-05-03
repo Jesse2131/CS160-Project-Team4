@@ -5,7 +5,6 @@ const one = document.querySelector(".one");
 const two = document.querySelector(".two");
 const three = document.querySelector(".three");
 
-let status = "";
 let currDriver1 = "";
 
 
@@ -18,10 +17,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         // Display account page info
         display_user_info(user);
         setTimeout(function() {
-            link_to_dashboard();
-            if (status !== "offline") {
-                display_curr_orders();
-            }
+            display_curr_orders();
         }, 800);
 
     } else {
@@ -37,19 +33,12 @@ function display_user_info(user) {
     checkUserType.get().then((doc) => {
         retrievedUserType = doc.data().type;
 
-        const curr_user = db.collection(retrievedUserType).doc(user.uid);
+        const curr_user = db.collection("drivers").doc(user.uid);
         curr_user.get().then((doc) => {
             const retrievedName = doc.data().name;
-            const retrievedStatus = doc.data().status;
             const retrievedOrder1 = doc.data().order1;
             // Update account button to show currently logged in user
             document.getElementById("nav-logged-in-user").innerHTML = "Welcome " + retrievedName;
-            if (retrievedStatus === "delivering") {
-                one.classList.add("active");
-                two.classList.remove("active");
-                three.classList.remove("active");
-            }
-            status = retrievedStatus;
             currDriver1 = retrievedOrder1;
         });
     }).catch((error) => {
@@ -59,12 +48,26 @@ function display_user_info(user) {
 
 function display_curr_orders() {
     if (currDriver1 !== "none") {
-        var ref = firebase.database().ref('activeOrders/' + currDriver1);
+        var ref = firebase.database().ref('AcceptedOrders/' + currDriver1);
         ref.once('value').then((snapshot) => {
             driver1.style.display = 'block';
-            var retrievedDriverID = (snapshot.val() && snapshot.val().driver_id) || 'none';
-            var retrievedDuration = (snapshot.val() && snapshot.val().duration) || 'none';
-            driver1name.innerHTML = retrievedDriverID + " Driver 1" + "<span id='minuteText'>" + retrievedDuration + " Min</span>";
+            var retrievedOrderID = (snapshot.val() && snapshot.val().orderID) || 'none';
+            var retrievedTime = (snapshot.val() && snapshot.val().duration) || 'none';
+            var orderRef = firebase.database().ref('Orders/' + retrievedOrderID);
+            orderRef.once('value').then((snapshot2 => {
+                var retrievedProgress = (snapshot2.val() && snapshot2.val().progress) || 'none';
+                driver1name.innerHTML = retrievedProgress + " - Driver 1" + "<span id='minuteText'>" + retrievedTime + " Min</span>";
+                if(retrievedProgress === "on the way") {
+                    one.classList.add("active");
+                    two.classList.add("active");
+                    three.classList.remove("active");
+                }
+                else if(retrievedProgress === "delivered") {
+                    one.classList.add("active");
+                    two.classList.add("active");
+                    three.classList.add("active");
+                }
+            }));
         }, {
             onlyOnce: false
         });
@@ -72,32 +75,4 @@ function display_curr_orders() {
         driver1.style.display = 'block';
         driver1.innerHTML = "<h1 id='driver1Name'>You have no current orders to fulfill!</h1>";
     }
-}
-
-two.onclick = function() {
-    if (currDriver1 !== "none") {
-        var ref = firebase.database().ref('activeOrders/' + currDriver1);
-        var updates = {};
-        updates['/status'] = "on the way";
-        ref.update(updates);
-        one.classList.add("active");
-        two.classList.add("active");
-        three.classList.remove("active");
-    }
-}
-
-three.onclick = function() {
-    if (currDriver1 !== "none") {
-        var ref = firebase.database().ref('activeOrders/' + currDriver1);
-        var updates = {};
-        updates['/status'] = "delivered";
-        ref.update(updates);
-        one.classList.add("active");
-        two.classList.add("active");
-        three.classList.add("active");
-    }
-
-    setTimeout(function() {
-        display_curr_orders();
-    }, 500);
 }
