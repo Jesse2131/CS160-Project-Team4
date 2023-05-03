@@ -45,6 +45,7 @@ function confirmPickup() {
         getUserType(curr_user.uid)
             .then(userType => {
                 const userRef = db.collection(userType).doc(curr_user.uid);
+                var realtimeRef = firebase.database().ref('drivers/' + curr_user.uid);
                 const updateObject = {};
                 updateObject["status"] = "delivering";
                 currStatus = "delivering";
@@ -53,6 +54,7 @@ function confirmPickup() {
                 currLocation = currRestLocation;
                 updateObject["currentLocation"] = currRestLocation;
                 userRef.update(updateObject);
+                realtimeRef.update(updateObject);
             });
 
         if (currOrder1 !== "none") {
@@ -93,6 +95,7 @@ function confirmDelivery() {
         getUserType(curr_user.uid)
             .then(userType => {
                 const userRef = db.collection(userType).doc(curr_user.uid);
+                var realtimeRef = firebase.database().ref('drivers/' + curr_user.uid);
                 const updateObject = {};
                 if (currOrder2 === "none") {
                     updateObject["status"] = "online";
@@ -108,6 +111,7 @@ function confirmDelivery() {
                         updateObject["currentLocation"] = currCustLocation1;
                     }
                     userRef.update(updateObject);
+                    realtimeRef.update(updateObject);
 
                     setTimeout(function () {
                         displayDriver();
@@ -128,6 +132,7 @@ function confirmDelivery() {
                     currLocation = currCustLocation1;
                     updateObject["currentLocation"] = currCustLocation1;
                     userRef.update(updateObject);
+                    realtimeRef.update(updateObject);
                     currOrder1 = currOrder2;
                     currOrder2 = "none";
 
