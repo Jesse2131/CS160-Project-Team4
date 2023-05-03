@@ -56,8 +56,7 @@
       animation: spin 2s linear infinite;
     }
 
-    #map {
-    }
+    #map {}
 
     @keyframes spin {
       0% {
@@ -69,7 +68,7 @@
       }
     }
   </style>
-  <link rel="stylesheet" type="text/css" href="/CSS/customerPage.css" />
+  <link rel="stylesheet" type="text/css" href="/CSS/customerPage.css"/>
   <link rel="stylesheet" href="/CSS/starter-code.css">
   <link rel="stylesheet" href="/CSS/accountPage.css">
 </head>
@@ -117,7 +116,7 @@
         </thead>
         <tbody id="table-body">
         </tbody>
-      </table>      
+      </table>
     </fieldset>
 
     <fieldset>
@@ -134,14 +133,22 @@
         </thead>
         <tbody id="cart-items">
         </tbody>
-      </table>      
+      </table>
     </fieldset>
 
-    <button id="sendOrder" style="margin-top: 12px; margin-bottom: 12px;" >Add Item Before Process</button>
+    <button id="sendOrder" style="margin-top: 12px; margin-bottom: 12px;">Add Item Before Process</button>
   </div>
-
+  <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-database.js"></script>
+  <script src="../JS/config.js"></script>
   <script type="module" src="../JS/customer.js"></script>
-  <script src="../JS/login-sign"></script>
+  <script src="../JS/starter-code.js"></script>
+  <script src="../JS/login-sign.js"></script>
+  <script src="../JS/pageBlocker.js"></script>
+
 </body>
 
 </html>
