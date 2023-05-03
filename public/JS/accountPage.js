@@ -199,7 +199,11 @@ async function updateInfo() {
             document.getElementById("errormsg").innerHTML = "Please enter a valid address";
         }
         else{
-            document.getElementById("errormsg").innerHTML = "Changes saved successfully";
+            getUserType(curr_user.uid)
+            .then(userType => {
+                const userRef = db.collection(userType).doc(curr_user.uid);    
+                updateAttribute(userRef, "address", addressField);
+            });
         }
     }
     
