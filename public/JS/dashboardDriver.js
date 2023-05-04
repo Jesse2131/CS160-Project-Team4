@@ -337,12 +337,10 @@ window.initMap = initMap;
 function displayDriver() {
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode({ 'address': currLocation }, function (results, status) {
-        console.log(currLocation);
         if (status === google.maps.GeocoderStatus.OK) {
             const lat = results[0].geometry.location.lat();
             const lng = results[0].geometry.location.lng();
             currDriverLatLng = { lat: lat, lng: lng };
-            console.log(currDriverLatLng);
 
             const driverMarker = new google.maps.Marker({
                 position: currDriverLatLng,
@@ -364,9 +362,7 @@ function displayRestaurant() {
             var restRef = db.collection('restaurants').doc(retrievedRestID);
             restRef.get().then((doc) => {
                 const retrievedRestAddress = doc.data().address;
-                console.log(retrievedRestAddress);
                 currRestLocation = retrievedRestAddress;
-                console.log(currRestLocation);
 
                 var geocoder = new google.maps.Geocoder();
                 geocoder.geocode({ 'address': retrievedRestAddress }, function (results, status) {
@@ -374,7 +370,6 @@ function displayRestaurant() {
                         const lat = results[0].geometry.location.lat();
                         const lng = results[0].geometry.location.lng();
                         currRestLatLng = { lat: lat, lng: lng };
-                        console.log(currRestLatLng);
 
                         const restaurantMarker = new google.maps.Marker({
                             position: currRestLatLng,
@@ -400,7 +395,6 @@ function displayCustomer(orderID) {
         var custRef = db.collection('customers').doc(retrievedCustID);
         custRef.get().then((doc) => {
             const retrievedCustAddress = doc.data().address;
-            console.log(retrievedCustAddress);
 
             var geocoder = new google.maps.Geocoder();
             geocoder.geocode({ 'address': retrievedCustAddress }, function (results, status) {
@@ -408,7 +402,6 @@ function displayCustomer(orderID) {
                     const lat = results[0].geometry.location.lat();
                     const lng = results[0].geometry.location.lng();
                     currCustLatLng = { lat: lat, lng: lng };
-                    console.log(currCustLatLng);
 
                     const customerMarker = new google.maps.Marker({
                         position: currCustLatLng,
@@ -419,12 +412,10 @@ function displayCustomer(orderID) {
                     if (orderID === currOrder1) {
                         currCustLatLng1 = { lat: lat, lng: lng };
                         currCustLocation1 = retrievedCustAddress;
-                        console.log(currCustLocation1);
                         markers[2] = customerMarker;
                     } else {
                         currCustLatLng2 = { lat: lat, lng: lng };
                         currCustLocation2 = retrievedCustAddress
-                        console.log(currCustLocation2);
                         markers[3] = customerMarker;
                     }
 
