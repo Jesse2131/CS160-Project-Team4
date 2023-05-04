@@ -495,7 +495,7 @@ async function goToCheckout(driver) {
   );
   let stripeResponse = await stripeRequest.json();
   console.log(stripeResponse);
-  // window.location.href = stripeResponse.url;
+  window.location.href = stripeResponse.url;
 }
 
 window.onload = async function () {

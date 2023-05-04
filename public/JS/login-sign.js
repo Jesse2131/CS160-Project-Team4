@@ -1,3 +1,5 @@
+let current_user = null; 
+
 function login() {
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
@@ -9,8 +11,6 @@ function login() {
       const curr_user = firebase.auth().currentUser.uid;
       getUserType(curr_user).then((user_type) => {
 
-        // Store the user and user type in local storage
-        localStorage.setItem("userType", user_type);
         // Redirect to correct dashboard
         if (user_type === 'customers') {
           console.log('customer');
@@ -19,7 +19,6 @@ function login() {
         else if (user_type === 'drivers') {
           console.log('driver');
           window.location.href = "welcomeDashboardDriver.html";
-          // sessionStorage.setItem("currentUser", curr_user);
         }
         else {
           console.log('restaurants');
@@ -92,51 +91,80 @@ async function signup() {
   }
 }
 
-
 function logout() {
-    const curr_user = firebase.auth().currentUser;
-    firebase.auth().signOut().then(() => {
-        // Set status to offline
-        getUserType(curr_user.uid)
-            .then(userType => {
-              const userRef = db.collection(userType).doc(curr_user.uid);
-              const updateObject = {};
-              updateObject["status"] = "offline";
-              if (userType === "drivers") {
-                  var realtimeRef = firebase.database().ref('drivers/' + curr_user.uid);
-                  userRef.get().then((doc) => {
-                      const retrievedAddress = doc.data().address;
-                      const retrievedOrder1 = doc.data().order1;
-                      if (retrievedOrder1 === "none") {
-                          updateObject["currentLocation"] = retrievedAddress;
-                          setTimeout(function() {
-                              realtimeRef.update(updateObject);
-                          },300);
-                      }
-                  });
-              }
-              setTimeout(function() {
-                  userRef.update(updateObject)
-                      .then(() => {
-                          document.getElementById("errormsg").innerHTML = "Changes saved successfully";
-                      })
-                      .catch((error) => {
-                          document.getElementById("errormsg").innerHTML = error;
-                      });
-              }, 600)
+  const curr_user = firebase.auth().currentUser;
+  const userRef = db.collection("users").doc(curr_user.uid);
 
-              setTimeout(function() {
-                        // Store user type in local storage
-                  localStorage.removeItem("userType");
-                  localStorage.removeItem("userName");
-                  window.location.href = "index.html";
-              }, 900);
-        });
-    }).catch((error) => {
-        // Handle errors here
-        console.error(error);
-    });
+  userRef.get().then((doc) => {
+    if (doc.exists) {
+      console.log(doc.data());
+    } else {
+      console.log("No such document!");
+    }
+  }).catch((error) => {
+    console.log("Error getting document:", error);
+  });
+
+
+  userRef.update({
+    status: "offline"
+  }).then(() => {
+    // // Sign out user
+    // firebase.auth().signOut().then(() => {
+    //   // Redirect to index.html
+    //   window.location.href = "index.html";
+    // }).catch((error) => {
+    //   console.error(error);
+    // });
+    console.log("offline");
+  }).catch((error) => {
+    console.error(error);
+  });
 }
+
+
+// function logout() {
+//   firebase.auth().signOut().then(() => {
+//     const curr_user = firebase.auth().currentUser;
+//     // Set status to offline
+//     getUserType(curr_user.uid).then(userType => {
+//       const userRef = db.collection(userType).doc(curr_user.uid);
+//       const updateObject = {};
+//       updateObject["status"] = "offline";
+//       if (userType === "drivers") {
+//         var realtimeRef = firebase.database().ref('drivers/' + curr_user.uid);
+//         userRef.get().then((doc) => {
+//           const retrievedAddress = doc.data().address;
+//           const retrievedOrder1 = doc.data().order1;
+//           if (retrievedOrder1 === "none") {
+//             updateObject["currentLocation"] = retrievedAddress;
+//             // Update both Firestore and Realtime Database
+//             Promise.all([
+//               userRef.update(updateObject),
+//               realtimeRef.update(updateObject)
+//             ])
+//             .then(() => {
+//               // Redirect to index.html
+//               window.location.href = "index.html";
+//             })
+//             .catch((error) => {
+//               console.error(error);
+//             });
+//           }
+//         });
+//       }
+//       else{
+//         window.location.href = "index.html";
+//       }
+//     });
+//   }).catch((error) => {
+//     // Handle errors here
+//     window.location.href = "index.html";
+//   });
+// }
+
+
+
 
 async function addToDB(...params) {
   // Get current user and their type 
@@ -154,14 +182,16 @@ async function addToDB(...params) {
       email: email,
       name: name,
       address: address,
-      status: "offline"
+      status: "offline",
+      available: false
     })
   }
 
   await Promise.all([
     db.collection("users").doc(userUid).set({
       id: userUid,
-      type: user_type
+      type: user_type,
+      email: email
     }),
     col.doc(userUid).set({
         email: email,
@@ -186,7 +216,6 @@ async function addToDB(...params) {
       else if (user_type === 'drivers') {
         console.log('driver');
         window.location.href = "welcomeDashboardDriver.html";
-        // sessionStorage.setItem("currentUser", curr_user);
       }
       else {
         console.log('restaurants');
@@ -249,16 +278,4 @@ function goToDash(){
   });
 }
 
-
-// function disablePages(){
-//   const curr_user = firebase.auth().currentUser;
-//   getUserType(curr_user.uid)
-//     .then(userType => {
-//       console.log(userType); 
-//       if(userType === "driver"){
-//         // disable others
-//       }
-//       else if()
-//   });
-// }
 
