@@ -38,10 +38,6 @@
           <button class="selectedButton" id="accInfoButton1" onclick="viewAccDet()">General Account Details</button>
           <br>
           <button class="deselectedButton" id="accInfoButton2" onclick="viewAddrInfo()">Address Information</button>
-          <br>
-          <button class="deselectedButton" id="accInfoButton3" onclick="viewPayInfo()">Payment Information</button>
-          <br>
-          <button class="deselectedButton" id="accInfoButton4" onclick="viewOrdrHist()">Order History</button>
         </div>
         <div class="accInfoContainer" id="accountDetails">
           <form>
@@ -71,36 +67,6 @@
             </div>
           </form>
         </div>
-        <div class="accInfoContainer" id="paymentInformation" hidden>
-          <form>
-            <div class="acc-form-group">
-              <p class="infoText">Sample Text</p>
-            </div>
-          </form>
-        </div>
-        <div class="accInfoContainer" id="orderHistory" hidden>
-          <form>
-            <div class="acc-form-group">
-              <!-- <p class="infoText">There are currently no orders in your history!</p> -->
-              <div class="order_hist_table">
-                <div class="col">
-                  <div class="row">
-                    <text style="font-size: 18px; font-weight: bold;">Order Received</text>
-                    <text style="font-size: 18px; font-weight: bold;">Restaurant</text>
-                    <text style="font-size: 18px; font-weight: bold;">Total Spend</text>
-                    <text style="font-size: 18px; font-weight: bold;">Status</text>
-                    <text style="font-size: 18px; font-weight: bold;">Payment Type</text>
-                    <text style="font-size: 18px; font-weight: bold; flex: 2;">Order/Receipt</text>
-                  </div>
-                  
-                  <div class="order_history">
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
       </div>
       <br>
       <p id="errormsg"></p>
@@ -111,13 +77,13 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-database.js"></script>
     <script src="../JS/config.js"></script>
     <script src="../JS/starter-code.js"></script>
     <script src="../JS/login-sign.js"></script>
     <script src="../JS/userInfo.js"></script>
     <script src="../JS/accountPage.js"></script>
-    <script src="../JS/pageBlocker.js"></script>
+    <!-- <script src="../JS/pageBlocker.js"></script> -->
   </body>
 </html>

@@ -1,63 +1,60 @@
 let allInfo = document.getElementsByClassName("accInfoContainer");
 let but1 = document.getElementById("accInfoButton1");
 let but2 = document.getElementById("accInfoButton2");
-let but3 = document.getElementById("accInfoButton3");
-let but4 = document.getElementById("accInfoButton4");
 
-const database = firebase.database();
 
 function createTable(arr) {
 //body reference 
 var body = document.getElementsByClassName("order_history")[0];
 
-arr.map((val, index) => {
-  var row = document.createElement("div");
-  row.classList.add("row");
+    arr.map((val, index) => {
+    var row = document.createElement("div");
+    row.classList.add("row");
 
-  var createdAt = document.createTextNode(val.createdAt);
-  var restaurant = document.createTextNode(val.restaurant_name);
-  var total_spend = document.createTextNode(val.total_spend);
-  var status = document.createTextNode(val.progress);
-  var payment_type = document.createTextNode(val.payment_type);
+    var createdAt = document.createTextNode(val.createdAt);
+    var restaurant = document.createTextNode(val.restaurant_name);
+    var total_spend = document.createTextNode(val.total_spend);
+    var status = document.createTextNode(val.progress);
+    var payment_type = document.createTextNode(val.payment_type);
 
-  var text1 = document.createElement("text");
-  var text2 = document.createElement("text");
-  var text3 = document.createElement("text");
-  var text4 = document.createElement("text");
-  var text5 = document.createElement("text");
+    var text1 = document.createElement("text");
+    var text2 = document.createElement("text");
+    var text3 = document.createElement("text");
+    var text4 = document.createElement("text");
+    var text5 = document.createElement("text");
 
-  text1.appendChild(createdAt);
-  text2.appendChild(restaurant);
-  text3.appendChild(total_spend);
-  text4.appendChild(status);
-  text5.appendChild(payment_type);
+    text1.appendChild(createdAt);
+    text2.appendChild(restaurant);
+    text3.appendChild(total_spend);
+    text4.appendChild(status);
+    text5.appendChild(payment_type);
 
-  var receipt = document.createElement("div");
-  receipt.classList.add("order-receipt-button");
+    var receipt = document.createElement("div");
+    receipt.classList.add("order-receipt-button");
 
-  var link = document.createElement("a");
-  link.setAttribute("id", "view_receipt" + index);
+    var link = document.createElement("a");
+    link.setAttribute("id", "view_receipt" + index);
 
-  var view = document.createTextNode("View Receipt");
-  link.appendChild(view);
+    var view = document.createTextNode("View Receipt");
+    link.appendChild(view);
 
-  receipt.appendChild(link);
+    receipt.appendChild(link);
 
-  row.appendChild(text1);
-  row.appendChild(text2);
-  row.appendChild(text3);
-  row.appendChild(text4);
-  row.appendChild(text5);
-  row.appendChild(receipt);
-  
-  body.appendChild(row);
+    row.appendChild(text1);
+    row.appendChild(text2);
+    row.appendChild(text3);
+    row.appendChild(text4);
+    row.appendChild(text5);
+    row.appendChild(receipt);
+    
+    body.appendChild(row);
 
-  getCharge(val.charge_id, index);
-});
+    getCharge(val.charge_id, index);
+    });
 }
 
 function readOrders(){
-  const dbRef = database.ref();
+  const dbRef = real_db.ref();
   dbRef.child("Orders").get().then(async (snapshot) => {
     if (snapshot.exists()) {
       console.log(snapshot.val());
@@ -106,11 +103,6 @@ function viewAccDet() {
 
     but2.classList.add('deselectedButton');
     but2.classList.remove('selectedButton');
-    but3.classList.add('deselectedButton');
-    but3.classList.remove('selectedButton');
-    but4.classList.add('deselectedButton');
-    but4.classList.remove('selectedButton');
-
     but1.classList.add('selectedButton');
     but1.classList.remove('deselectedButton');
 }
@@ -124,31 +116,8 @@ function viewAddrInfo() {
 
     but1.classList.add('deselectedButton');
     but1.classList.remove('selectedButton');
-    but3.classList.add('deselectedButton');
-    but3.classList.remove('selectedButton');
-    but4.classList.add('deselectedButton');
-    but4.classList.remove('selectedButton');
-
     but2.classList.add('selectedButton');
     but2.classList.remove('deselectedButton');
-}
-
-function viewPayInfo() {
-    let newView = document.getElementById("paymentInformation");
-    for (var i = 0; i < allInfo.length; i++) {
-        allInfo[i].style.display = "none";
-    }
-    newView.style.display = "block";
-
-    but1.classList.add('deselectedButton');
-    but1.classList.remove('selectedButton');
-    but2.classList.add('deselectedButton');
-    but2.classList.remove('selectedButton');
-    but4.classList.add('deselectedButton');
-    but4.classList.remove('selectedButton');
-
-    but3.classList.add('selectedButton');
-    but3.classList.remove('deselectedButton');
 }
 
 function viewOrdrHist() {
@@ -162,11 +131,6 @@ function viewOrdrHist() {
     but1.classList.remove('selectedButton');
     but2.classList.add('deselectedButton');
     but2.classList.remove('selectedButton');
-    but3.classList.add('deselectedButton');
-    but3.classList.remove('selectedButton');
-
-    but4.classList.add('selectedButton');
-    but4.classList.remove('deselectedButton');
 }
 
 

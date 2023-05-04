@@ -11,7 +11,7 @@ function readOrders() {
     .then(async (snapshot) => {
       if (snapshot.exists()) {
         snapshot.forEach((childSnapshot) => {
-          if(childSnapshot.val().status == "pending"){
+          if(childSnapshot.val().status == "pending" && firebase.auth().currentUser.uid === childSnapshot.val().restaurant_id){
             key.push(childSnapshot.key);
             arr.push(childSnapshot.val());
           }
