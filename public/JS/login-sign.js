@@ -153,7 +153,8 @@ async function addToDB(...params) {
       name: name,
       address: address,
       status: "offline",
-      available: false
+      available: true,
+      currentLocation: address
     })
   }
 

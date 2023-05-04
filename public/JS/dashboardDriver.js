@@ -289,17 +289,18 @@ function display_curr_orders() {
 
 function driverOnline() {
     const curr_user = firebase.auth().currentUser;
-
-    getUserType(curr_user.uid)
-        .then(userType => {
-            const userRef = db.collection(userType).doc(curr_user.uid);
-            const updateObject = {};
-            updateObject["status"] = "online";
-            userRef.update(updateObject);
-            setTimeout(function () {
-                window.location.href = "../deliveryDashboardDriver.html";
-            }, 300);
-        });
+    const userRef = db.collection('drivers').doc(curr_user.uid);
+    const realRef = firebase.database().ref('drivers/' + curr_user.uid);
+    const updateStatus = {status: "online"};
+    Promise.all([
+        userRef.update(updateStatus),
+        realRef.update(updateStatus)
+    ]).then(() => {
+        window.location.href = "../deliveryDashboardDriver.html";
+      })
+      .catch((error) => {
+        console.error(error);
+    });
 }
 
 var myStyles = [

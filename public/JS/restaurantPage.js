@@ -127,6 +127,7 @@ async function fetchDrivers() {
       name: driverName,
       location: location,
       status: status,
+      available: driverData.available,
     };
 
     if (!drivers.some((d) => d.id === driverID)) {
@@ -141,7 +142,7 @@ async function findNearByDrivers(drivers) {
   result = [];
   
   drivers.forEach((driver) => {
-    if (driver.status == "online") {
+    if (driver.status == "online" && driver.available) {
       geocoder.geocode(
          { address: driver.location },
          function (results, status) {

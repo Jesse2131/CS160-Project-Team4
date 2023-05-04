@@ -53,10 +53,12 @@ async function writePayment() {
         console.log(driver);
         if (driver["order1"] == "none"){
           driver["order1"] = pushed.key;
-        } else if(driver["order2"] == "none"){
+        } else{
           driver["order2"] = pushed.key;
-        }else{
-          driver["order1"] = pushed.key;
+          dbRef
+            .child("drivers")
+            .child(data.driverID)
+            .update({ available: false });
         }
         await setDoc(doc(db, retrievedUserType, data.driverID), driver);
 
