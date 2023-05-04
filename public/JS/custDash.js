@@ -1,4 +1,5 @@
 let counter = 1;
+let order_counter = 1; 
 
 function getRestName(user) {
     const restaurantsRef = db.collection("restaurants");
@@ -17,6 +18,7 @@ function getRestName(user) {
             }
     });
 }
+
 
 function getRestaurants(){
     const restListElement = document.getElementById('rest-list');
@@ -49,6 +51,27 @@ function getRestaurants(){
     });
 }
 
+
+function getOrderHistory(){
+    const orderListElement = document.getElementById('order-list');
+    const ordersRef = real_db.ref("Orders");
+    const curr_user = firebase.auth().currentUser;
+    ordersRef.on('value', (snapshot) => {
+        snapshot.forEach((orderSnap) => {
+            const order = orderSnap.val();
+            if(order.user_id === curr_user.uid){
+                // Add data to list to display
+                const orderItemElement = document.createElement("div");
+                orderItemElement.classList.add('order-item');
+                orderItemElement.innerHTML = `<span>${order_counter}. <h1>${order.restaurant_name}:</h1> <p>Status: ${order.status}</p>`;
+                orderListElement.appendChild(orderItemElement);
+                order_counter++; 
+            }
+        });
+    });
+}
+
+
 function goOrder(restName){
     if(restName){
         const rest_id = restName.split('_').pop();
@@ -62,6 +85,7 @@ function goOrder(restName){
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       getRestaurants();
+      getOrderHistory();
     } else {
       console.log("Not logged in");
     }

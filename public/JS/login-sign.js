@@ -93,26 +93,47 @@ async function signup() {
 
 function logout() {
   const curr_user = firebase.auth().currentUser;
-  const fireRef = db.collection("drivers").doc(curr_user.uid);
-  const realRef = firebase.database().ref('drivers/' + curr_user.uid);
-  const updateStatus = {status: "offline"};
+  if(curr_user !== null){
+    // If driver rest location and set to offline
+    getUserType(curr_user.uid).then((userType) => {
+      if(userType === "drivers"){
+        const fireRef = db.collection("drivers").doc(curr_user.uid);
+        const realRef = firebase.database().ref('drivers/' + curr_user.uid);
+        const updateStatus = {status: "offline"};
 
-  // Reset driver location...
+        // Reset driver location...
 
-  Promise.all([
-    fireRef.update(updateStatus),
-    realRef.update(updateStatus)
-  ])
-  .then(() => {
-    firebase.auth().signOut().then(() => {
-      window.location.href = "index.html";
-    }).catch((error) => {
+        Promise.all([
+          fireRef.update(updateStatus),
+          realRef.update(updateStatus)
+        ])
+        .then(() => {
+          firebase.auth().signOut().then(() => {
+            window.location.href = "index.html";
+          }).catch((error) => {
+            console.error(error);
+          });
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+      }
+      else{
+        firebase.auth().signOut().then(() => {
+          window.location.href = "index.html";
+        }).catch((error) => {
+          console.error(error);
+        });
+      }
+    })
+    .catch((error) => {
       console.error(error);
     });
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+    
+  }
+  else{
+    window.location.href = "index.html";
+  }
 }
 
 async function addToDB(...params) {

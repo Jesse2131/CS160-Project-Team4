@@ -5,7 +5,41 @@
     text-align: center;
     justify-content: center;
     align-items: center;
+    font-family: 'Poppins', sans-serif;
 }
+
+/* Order history */ 
+.cust-orderhist{
+    display: flex;
+    margin: 0 2%;
+    gap: 1%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #acacac;
+    border-radius: 10px;
+}
+
+#order-list{
+    max-height: 800px;
+    width: 600px;
+    overflow-y: auto;
+    text-align: left;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+}
+
+.order-item {
+    margin: 40px;
+}
+
+.order-item h1, .order-item p {
+    display: inline;
+    margin: 0;
+    padding-right: 10px;
+}
+  
 
 /* FOR RESTAURANT LIST */
 .cust-restlist{
@@ -16,6 +50,8 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background-color: #acacac;
+    border-radius: 10px;
 }
 
 #rest-list{
@@ -23,12 +59,12 @@
     width: 600px;
     overflow-y: auto;
     text-align: left;
-    background-color: #acacac;
-
+    background-color: #f5f5f5;
+    border-radius: 10px;
 }
 
 .rest-item{
-    margin: 40px 40px;
+    margin: 40px;
 }
 
 .rest-item button{
