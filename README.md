@@ -1,5 +1,11 @@
 # CS 160 - Team 04
 
+## FOR THE GRADER 
+## **To run a local instance from github**
+1. git clone https://github.com/Jesse2131/CS160-Project-Team4.git
+2. npm install
+3. node server.js 
+
 ## **Run Docker Image Instructions**
 1. docker pull jesse24/odfds_team4 
 2. docker run -d -p port:13000 jesse24/odfds_team4 
@@ -7,7 +13,9 @@
 NOTE: The port number can be anything, perferrably > 10,000. If running into issues try a diff port number
 example run: docker run -d -p 13001:13000 jesse24/odfds_team4 
 
-3. go to: localhost:port 
+3.  go to: localhost:port 
+
+    Example: localhost:13001
 
 ## Important Notes for Usage
 User should NOT be able to be logged in to multiple users in different tabs of the same browser -> They must logout of one then log into the next.
