@@ -25,6 +25,9 @@ User should NOT be able to be logged in to multiple users in different tabs of t
 *Real-world applications reflect this same structure.*
 For testing, you can log in from different browsers at the same time or use incognito browsers. 
 
+1. Customer/Driver accounts don't exist yet, should create them
+2. We have 2 default restaurant accounts with emails rest@gmail.com and rest2@gmail.com. Passwords are both 123456. Feel free to create more restaurants as well. 
+
 ## The Team
 1. Bryan Christiano
 2. Jesse Dong
