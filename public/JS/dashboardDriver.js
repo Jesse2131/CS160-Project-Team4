@@ -358,9 +358,10 @@ function displayRestaurant() {
         var ref = firebase.database().ref('AcceptedOrders/' + currOrder1);
         ref.once('value').then((snapshot) => {
             var retrievedRestID = (snapshot.val() && snapshot.val().from) || 'none';
-            var restRef = firebase.database().ref('restaurants/' + retrievedRestID);
-            restRef.once('value').then((snapshot2 => {
-                var retrievedRestAddress = (snapshot2.val() && snapshot2.val().address) || 'none';
+
+            var restRef = db.collection('restaurants').doc(retrievedRestID);
+            restRef.get().then((doc) => {
+                const retrievedRestAddress = doc.data().address;
                 currRestLocation = retrievedRestAddress;
 
                 var geocoder = new google.maps.Geocoder();
@@ -379,7 +380,7 @@ function displayRestaurant() {
                         restaurantMarker.setMap(map);
                     }
                 });
-            }));
+            });
         }, {
             onlyOnce: false
         });
@@ -390,18 +391,20 @@ function displayCustomer(orderID) {
     var ref = firebase.database().ref('AcceptedOrders/' + orderID);
     ref.once('value').then((snapshot) => {
         var retrievedCustID = (snapshot.val() && snapshot.val().to) || 'none';
-        var custRef = firebase.database().ref('customers/' + retrievedCustID);
-        custRef.once('value').then((snapshot2 => {
-            var retrievedCustAddress = (snapshot2.val() && snapshot2.val().address) || 'none';
+
+        var custRef = db.collection('customers').doc(retrievedCustID);
+        custRef.get().then((doc) => {
+            const retrievedCustAddress = doc.data().address;
+
             var geocoder = new google.maps.Geocoder();
             geocoder.geocode({ 'address': retrievedCustAddress }, function (results, status) {
                 if (status === google.maps.GeocoderStatus.OK) {
                     const lat = results[0].geometry.location.lat();
                     const lng = results[0].geometry.location.lng();
-                    const customerLatLng = { lat: lat, lng: lng };
+                    currCustLatLng = { lat: lat, lng: lng };
 
                     const customerMarker = new google.maps.Marker({
-                        position: customerLatLng,
+                        position: currCustLatLng,
                         map,
                         icon: "../ASSETS/driver-dashboard/customerMarker.png",
                     });
@@ -419,7 +422,7 @@ function displayCustomer(orderID) {
                     customerMarker.setMap(map);
                 }
             });
-        }));
+        });
     }, {
         onlyOnce: false
     });
