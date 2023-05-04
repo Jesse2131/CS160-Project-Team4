@@ -20,6 +20,7 @@ example run: docker run -d -p 13001:13000 jesse24/odfds_team4
 ## Important Notes for Usage
 User should NOT be able to be logged in to multiple users in different tabs of the same browser -> They must logout of one then log into the next.
 *Real-world applications reflect this same structure.*
+For testing, you can log in from different browsers at the same time or use incognito browsers. 
 
 ## The Team
 1. Bryan Christiano
