@@ -10,14 +10,15 @@ let currDriver1 = "";
 
 const database = firebase.database();
 
-firebase.auth().onAuthStateChanged(function(user) {
+firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         // Set session storage
         sessionStorage.setItem("currentUser", user.uid);
         // Display account page info
         display_user_info(user);
-        setTimeout(function() {
+        setTimeout(function () {
             display_curr_orders();
+            display_completed_orders();
         }, 800);
 
     } else {
@@ -57,12 +58,12 @@ function display_curr_orders() {
             orderRef.once('value').then((snapshot2 => {
                 var retrievedProgress = (snapshot2.val() && snapshot2.val().progress) || 'none';
                 driver1name.innerHTML = retrievedProgress + " - Driver 1" + "<span id='minuteText'>" + retrievedTime + " Min</span>";
-                if(retrievedProgress === "on the way") {
+                if (retrievedProgress === "on the way") {
                     one.classList.add("active");
                     two.classList.add("active");
                     three.classList.remove("active");
                 }
-                else if(retrievedProgress === "delivered") {
+                else if (retrievedProgress === "delivered") {
                     one.classList.add("active");
                     two.classList.add("active");
                     three.classList.add("active");
@@ -75,4 +76,41 @@ function display_curr_orders() {
         driver1.style.display = 'block';
         driver1.innerHTML = "<h1 id='driver1Name'>You have no current orders to fulfill!</h1>";
     }
+}
+
+function display_completed_orders() {
+    var ref = real_db.ref('Orders');
+    var deliveredOrders = [];
+
+    ref.once('value').then((snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+            const status = childSnapshot.val().status;
+            // if (status === "delivered") {
+                const createdAt = childSnapshot.val().createdAt;
+                const total_spend = childSnapshot.val().total_spend;
+                deliveredOrders.push([createdAt, total_spend])
+            // }
+        });
+    });
+
+    setTimeout(function () {
+        display_completed_orders()
+    }, 1000);
+
+    display_completed_orders();
+
+    function display_completed_orders() {
+
+        const deliveredOrderList = document.getElementById("completed-order-list");
+        console.log(deliveredOrders);
+        // Add the first 5 delivered orders to the list
+        for (const completedOrder in deliveredOrders) {
+            const li = document.createElement("li");
+            const createdAt = deliveredOrders[completedOrder][0];
+            const total_spend = deliveredOrders[completedOrder][1];
+            li.innerHTML = "Date: " + createdAt + " - $" + total_spend;
+            deliveredOrderList.appendChild(li);
+        }
+    }
+
 }
