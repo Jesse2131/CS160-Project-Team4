@@ -1,6 +1,15 @@
 /* Area for features that a restaurant has such as add to menu, search for driver, etc */
 .cust-wrapper{
     display: flex;
+    gap: 1%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+/* FOR RESTAURANT LIST */
+.cust-restlist{
+    display: flex;
     margin: 0 2%;
     gap: 1%;
     text-align: center;
@@ -9,7 +18,6 @@
     flex-direction: column;
 }
 
-/* FOR RESTAURANT LIST */
 #rest-list{
     max-height: 800px;
     width: 600px;

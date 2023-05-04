@@ -93,78 +93,27 @@ async function signup() {
 
 function logout() {
   const curr_user = firebase.auth().currentUser;
-  const userRef = db.collection("users").doc(curr_user.uid);
+  const fireRef = db.collection("drivers").doc(curr_user.uid);
+  const realRef = firebase.database().ref('drivers/' + curr_user.uid);
+  const updateStatus = {status: "offline"};
 
-  userRef.get().then((doc) => {
-    if (doc.exists) {
-      console.log(doc.data());
-    } else {
-      console.log("No such document!");
-    }
-  }).catch((error) => {
-    console.log("Error getting document:", error);
-  });
+  // Reset driver location...
 
-
-  userRef.update({
-    status: "offline"
-  }).then(() => {
-    // // Sign out user
-    // firebase.auth().signOut().then(() => {
-    //   // Redirect to index.html
-    //   window.location.href = "index.html";
-    // }).catch((error) => {
-    //   console.error(error);
-    // });
-    console.log("offline");
-  }).catch((error) => {
+  Promise.all([
+    fireRef.update(updateStatus),
+    realRef.update(updateStatus)
+  ])
+  .then(() => {
+    firebase.auth().signOut().then(() => {
+      window.location.href = "index.html";
+    }).catch((error) => {
+      console.error(error);
+    });
+  })
+  .catch((error) => {
     console.error(error);
   });
 }
-
-
-// function logout() {
-//   firebase.auth().signOut().then(() => {
-//     const curr_user = firebase.auth().currentUser;
-//     // Set status to offline
-//     getUserType(curr_user.uid).then(userType => {
-//       const userRef = db.collection(userType).doc(curr_user.uid);
-//       const updateObject = {};
-//       updateObject["status"] = "offline";
-//       if (userType === "drivers") {
-//         var realtimeRef = firebase.database().ref('drivers/' + curr_user.uid);
-//         userRef.get().then((doc) => {
-//           const retrievedAddress = doc.data().address;
-//           const retrievedOrder1 = doc.data().order1;
-//           if (retrievedOrder1 === "none") {
-//             updateObject["currentLocation"] = retrievedAddress;
-//             // Update both Firestore and Realtime Database
-//             Promise.all([
-//               userRef.update(updateObject),
-//               realtimeRef.update(updateObject)
-//             ])
-//             .then(() => {
-//               // Redirect to index.html
-//               window.location.href = "index.html";
-//             })
-//             .catch((error) => {
-//               console.error(error);
-//             });
-//           }
-//         });
-//       }
-//       else{
-//         window.location.href = "index.html";
-//       }
-//     });
-//   }).catch((error) => {
-//     // Handle errors here
-//     window.location.href = "index.html";
-//   });
-// }
-
-
-
 
 async function addToDB(...params) {
   // Get current user and their type 
