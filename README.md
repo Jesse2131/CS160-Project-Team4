@@ -1,6 +1,9 @@
 # CS 160 - Team 04
 
 ## FOR THE GRADER 
+When showing the TA our code during the presentation day we ran into some network issues/small code issues that 
+affected our program. In the final submission of our project the issue has been fixed. If you could check back on any
+of the notes the TA made and see
 ## **To run a local instance from github**
 1. git clone https://github.com/Jesse2131/CS160-Project-Team4.git
 2. npm install

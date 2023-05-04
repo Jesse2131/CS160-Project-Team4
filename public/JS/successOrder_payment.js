@@ -6,10 +6,10 @@ import {
   setDoc,
 } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
 
-firebase.initializeApp(firebaseConfig);
-firebase.analytics();
+// firebase.initializeApp(firebaseConfig);
+// firebase.analytics();
 
-const database = firebase.database();
+// const database = firebase.database();
 
 const app = initializeApp(firebaseConfig);
 const db = initializeFirestore(app, {
@@ -32,7 +32,7 @@ async function writePayment() {
       var isFirstLoad = localStorage.getItem(chargeRes.data[i].id);
 
       if (!isFirstLoad) {
-        const dbRef = database.ref();
+        const dbRef = real_db.ref();
         let data = JSON.parse(sessionStorage.getItem("account_order"));
 
         dbRef
