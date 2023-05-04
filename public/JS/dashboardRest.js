@@ -18,7 +18,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         display_user_info(user);
         setTimeout(function () {
             display_curr_orders();
-            display_completed_orders();
+            display_completed_orders(user.uid);
         }, 800);
 
     } else {
@@ -78,18 +78,19 @@ function display_curr_orders() {
     }
 }
 
-function display_completed_orders() {
+function display_completed_orders(userID) {
     var ref = real_db.ref('Orders');
     var deliveredOrders = [];
 
     ref.once('value').then((snapshot) => {
         snapshot.forEach((childSnapshot) => {
             const status = childSnapshot.val().status;
-            // if (status === "delivered") {
+            const resID = childSnapshot.val().restaurant_id;
+            if (status === "delivered" && resID === userID) {
                 const createdAt = childSnapshot.val().createdAt;
                 const total_spend = childSnapshot.val().total_spend;
                 deliveredOrders.push([createdAt, total_spend])
-            // }
+            }
         });
     });
 
