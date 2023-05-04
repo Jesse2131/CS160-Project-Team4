@@ -5,60 +5,32 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
     integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <style>
-    
-/* NAVBAR */
-.navbar {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;   
-}
-.navbar ul {
-    list-style-type: none;
-    padding-top: 25px;
-    padding-bottom: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.navbar li {
-    padding: 7px;
-}
-.navbar li a {
-    font-family: 'Poppins', sans-serif;
-    color: #FFFFFF;
-    background-color: #000000;
-    text-align: center;
-    padding: 8px 17px;
-    text-decoration: none;
-    border-radius: 4px;
+    <link rel="stylesheet" href="../CSS/starter-code.css">
 
-}
-.navbar li a:hover {
-    background-color: #F1AF3D;
-}
-
-.navbar h1 {
-    color: #F1AF3D;
-    font-family: 'Poppins', sans-serif;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-/* LOGO ENDS */
-
-/* NAVBAR ENDS */
-  </style>
 </head>
 <body>
     
+    <!-- NAVBAR -->
     <div class="navbar">
+        <img class="odfds-logo" src="../ASSETS/odfdsLOGO.png"/>
+        <h1 id="nav-logged-in-user">Welcome User</h1>
         <ul>
-        <li><a onclick="logout()">Log Out</a></li>
+        <li><a onclick="goToDash()">Dashboard</a></li>
         <li><a href="accountPage.html">Account</a></li>
-        <li><a href="deliveryDashboardDriver.html">Dashboard</a></li>
+        <li><a onclick="logout()">Log Out</a></li>
         </ul>
     </div>
+    <!-- NAVBAR ENDS -->
+
+    <!-- PAGE FOOTER -->
+    <div class="footer">
+        <p class="odfds-title">ODFDS©</p>
+        <img class="socials" src="../ASSETS/instalogo.png">
+        <img class="socials" src="../ASSETS/twitterlogo.png"/>
+        <img class="appstore-download" src="../ASSETS/appstore.png"/>
+        <img class="playstore-download" src="../ASSETS/playstore.png"/>
+    </div>
+    <!-- PAGE FOOTER ENDS -->
 
     <div class="main" style="display:flex; justify-content: center; flex-direction: column; align-items: center; width: 100%;">
         <img src="../../ASSETS/odfdsLOGO.png" alt="" style="height: 150px; width: 150px;">
@@ -74,6 +46,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-database.js"></script>
     <script src="../JS/config.js"></script>
     <script src="../JS/starter-code.js"></script>
+    <script src="../JS/login-sign.js"></script>
     <script src="../JS/success_payment.js"></script>
     <!-- <script src="../JS/pageBlocker.js"></script> -->
 </body>
