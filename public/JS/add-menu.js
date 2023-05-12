@@ -79,7 +79,7 @@ function createCollection(...params) {
                 const menuListElement = document.getElementById('menu-list');
                 const menuItemElement = document.createElement('div');
                 menuItemElement.classList.add('menu-item');
-                menuItemElement.innerHTML = `<span>${counter}. <h1>${item_name}</h1> $<p>${item_price}</p></span>`;
+                menuItemElement.innerHTML = `<span>${counter}. <h1>${item_name}</h1> $<p>${item_price.toFixed(2)}</p></span>`;
                 menuListElement.appendChild(menuItemElement);
                 counter++;
             }).catch((error) => {
