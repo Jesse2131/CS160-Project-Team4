@@ -17,6 +17,7 @@
                 <input type="password" id="password" name="password" placeholder="Password">
                 <input type="text" id="name" name="name" placeholder="Name">
                 <input type="text" id="address" placeholder="Address">
+                <p id="selected-addr"></p>
                   
                 <select id="user-type">
                     <option value="" disabled selected>Please select who you are</option>
@@ -25,7 +26,7 @@
                     <option value="drivers">Driver</option>
                 </select>
                 <p id="errormsg"></p>
-                <button type="button" onclick="signup()">Sign Up</button><br>
+                <button type="button" id="signup-button" onclick="signup()">Sign Up</button><br>
                 <a href="login.html">Already have an account? Login here!</a>
             </form>
         </div>

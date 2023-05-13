@@ -66,28 +66,31 @@ async function validateAddress(address) {
 }
 
 async function signup() {
+
+  const email = document.getElementById('email').value.toLowerCase();
+  const password = document.getElementById('password').value;
+  const name = document.getElementById('name').value;
   const user_type = document.getElementById("user-type").value;
   if (user_type === "") {
     document.getElementById("errormsg").innerHTML = "Please select a user type";
     return;
   }
 
-  const email = document.getElementById('email').value.toLowerCase();
-  const password = document.getElementById('password').value;
-  const name = document.getElementById('name').value;
-
-  // const addressInput = document.getElementById('address');
-  // const address = addressInput.value;
-
-  // Create a new autocomplete instance 
-  // const autocomplete = new google.maps.places.Autocomplete(addressInput);
   if(autocomplete){
     try {
-      const place = await getPlaceFromAutocomplete(autocomplete);
+      // const place = await getPlaceFromAutocomplete(autocomplete);
+      let place = autocomplete.getPlace(); 
+      autocomplete.addListener('place_changed', () => {
+        place = autocomplete.getPlace();
+      });
+
+      if(!place){
+        document.getElementById("errormsg").innerHTML = "Please select an address";
+        return;
+      }
       const formattedAddress = place.formatted_address;
-      // const latitude = place.geometry.location.lat();
-      // const longitude = place.geometry.location.lng();
-    
+      document.getElementById("selected-addr").innerHTML = "Your address: " + formattedAddress;
+
       try {
         const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
         addToDB(user_type, email, name, formattedAddress);
@@ -259,32 +262,10 @@ function goToDash(){
   });
 }
 
-function getPlaceFromAutocomplete(autocomplete) {
-  return new Promise((resolve, reject) => {
-    autocomplete.addListener('place_changed', () => {
-      const place = autocomplete.getPlace();
-      if (!place || !place.formatted_address || !place.geometry) {
-        reject(new Error("Please enter a valid address"));
-      } else {
-        resolve(place);
-      }
-      // resolve(place);
-    });
-
-    // Handle the case where the user manually submits the form without selecting a place
-    autocomplete.addListener('blur', () => {
-      const place = autocomplete.getPlace();
-      if (!place || !place.formatted_address || !place.geometry) {
-        reject(new Error("Please enter a valid address"));
-      }
-    });
-
-  });
-}
-
 function initAutocomplete() {
   const addressInput = document.getElementById('address');
   autocomplete = new google.maps.places.Autocomplete(addressInput);
+  
 }
 
 
