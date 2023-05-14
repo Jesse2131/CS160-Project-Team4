@@ -381,7 +381,7 @@ function createInfo(order, restaurant, customer, driver){
 
   order.item_lists.map((val, index) => {
     var p = document.createElement("p");
-    var order_name = document.createTextNode(val.name + " - Quality: " + val.quantity);
+    var order_name = document.createTextNode(val.name + " - Quantity: " + val.quantity);
     p.appendChild(order_name);
     order_field.appendChild(p);
   });
