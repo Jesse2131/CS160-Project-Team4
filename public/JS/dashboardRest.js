@@ -50,25 +50,25 @@ function display_user_info(user) {
 function display_curr_orders() {
     if (currDriver1 !== "none") {
         var ref = firebase.database().ref('AcceptedOrders/' + currDriver1);
+        console.log(currDriver1);
         ref.once('value').then((snapshot) => {
-            driver1.style.display = 'block';
-            var retrievedOrderID = (snapshot.val() && snapshot.val().orderID) || 'none';
-            var retrievedTime = (snapshot.val() && snapshot.val().duration) || 'none';
-            var orderRef = firebase.database().ref('Orders/' + retrievedOrderID);
-            orderRef.once('value').then((snapshot2 => {
-                var retrievedProgress = (snapshot2.val() && snapshot2.val().progress) || 'none';
-                driver1name.innerHTML = retrievedProgress + " - Driver 1" + "<span id='minuteText'>" + retrievedTime + " Min</span>";
-                if (retrievedProgress === "on the way") {
-                    one.classList.add("active");
-                    two.classList.add("active");
-                    three.classList.remove("active");
-                }
-                else if (retrievedProgress === "delivered") {
-                    one.classList.add("active");
-                    two.classList.add("active");
-                    three.classList.add("active");
-                }
-            }));
+            const orderInfo = snapshot.val();
+            // Get the key of the inner object
+            const innerKey = Object.keys(orderInfo)[0];
+            // Access the inner object using the key
+            const innerObject = orderInfo[innerKey];
+            driver1name.innerHTML = innerObject.status + "<span id='minuteText'>";
+            if (innerObject.status === "on the way") {
+                one.classList.add("active");
+                two.classList.add("active");
+                three.classList.remove("active");
+            }
+            else if (innerObject.status === "delivered") {
+                one.classList.add("active");
+                two.classList.add("active");
+                three.classList.add("active");
+            }
+            // var orderRef = firebase.database().ref('Orders/' + retrievedOrderID);
         }, {
             onlyOnce: false
         });
