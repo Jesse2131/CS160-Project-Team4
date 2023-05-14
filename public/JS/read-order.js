@@ -1,5 +1,3 @@
-// const database = firebase.database();
-
 let arr = [];
 let key = [];
 
@@ -73,7 +71,7 @@ function readAcceptedOrder(){
       if (snapshot.exists()) {
         snapshot.forEach((childSnapshot) => {
           let orderData = childSnapshot.val();
-          if(orderData.from == localStorage.getItem("currentUser") && orderData.status == "accepted"){
+          if(orderData.from == localStorage.getItem("currentUser") && orderData.status == "on the way"){
             var orderRef = firebase
               .database()
               .ref("drivers/" + orderData.driverID);
@@ -106,7 +104,50 @@ function createAcceptedOrder(name, distance){
   body.appendChild(cont);
 }
 
+function readCompletedOrder(){
+  const dbRef = real_db.ref();
+  dbRef
+    .child("AcceptedOrders")
+    .get()
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        snapshot.forEach((childSnapshot) => {
+          let orderData = childSnapshot.val();
+          if (
+            orderData.from == localStorage.getItem("currentUser") &&
+            orderData.status == "delivered"
+          ) {
+            var orderRef = firebase
+              .database()
+              .ref("drivers/" + orderData.driverID);
+            orderRef.once("value").then((snapshot) => {
+              console.log(orderData);
+              createCompletedOrder(
+                snapshot.val().name,
+                orderData.distance,
+                orderData.cost
+              );
+            });
+          }
+        });
+      } else {
+        console.log("No data available");
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+function createCompletedOrder(name, distance, cost){
+  const deliveredOrderList = document.getElementById("completed-order-list");
+  const li = document.createElement("li");
+  li.innerHTML = "Driver: " + name + " - $" + cost + " - " + distance + " miles.";
+  deliveredOrderList.appendChild(li);
+}
+
 window.onload = function(){
   readOrders();
   readAcceptedOrder();
+  readCompletedOrder();
 }
