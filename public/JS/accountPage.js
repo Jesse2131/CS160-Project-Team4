@@ -157,17 +157,26 @@ async function updateInfo() {
             updateAttribute(userRef, "name", usernameField);
         });
     }
-    else if(addressField !== ""){
-        const validAddress = await validateAddress(addressField);
-        if(!validAddress){
-            document.getElementById("errormsg").innerHTML = "Please enter a valid address";
-        }
-        else{
-            getUserType(curr_user.uid)
+    else if(autocomplete){
+        try {
+          let place = autocomplete.getPlace(); 
+          autocomplete.addListener('place_changed', () => {
+            place = autocomplete.getPlace();
+          });
+    
+          if(!place){
+            document.getElementById("errormsg").innerHTML = "Please select an address";
+            return;
+          }
+          const formattedAddress = place.formatted_address;
+    
+          getUserType(curr_user.uid)
             .then(userType => {
                 const userRef = db.collection(userType).doc(curr_user.uid);    
-                updateAttribute(userRef, "address", addressField);
+                updateAttribute(userRef, "address", formattedAddress);
             });
+        } catch (error) {
+          document.getElementById("errormsg").innerHTML = error.message;
         }
     }
     
