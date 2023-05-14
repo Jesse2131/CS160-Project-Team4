@@ -7,7 +7,8 @@ of the notes the TA made and see differences that would be greatly appreciated.
 ## **To run a local instance from github**
 1. git clone https://github.com/Jesse2131/CS160-Project-Team4.git
 2. npm install
-3. node server.js 
+3. Make sure host is set to localhost in the server.js file
+4. node server.js 
 
 ## **Run Docker Image Instructions**
 1. docker pull jesse24/odfds_team4 
@@ -27,6 +28,8 @@ For testing, you can log in from different browsers at the same time or use inco
 
 1. Customer/Driver accounts don't exist yet, should create them
 2. We have a default restaurant account with email rest@gmail.com and password 123456. Feel free to create more restaurants as well. 
+3. When a restaurant confirms an order, the driver is selected based on cheapest delivery fee. The driver must also be ONLINE (by logging into a driver account and going online). If there are no drivers online, a restaurant cannot pay for an order to be delivered. 
+4. Project flow is as follows: Customer orders from a restaurant menu -> Restaurant account receives this order and pays for the delivery fee and assigns the order to the driver -> Driver will then receive this order and will click through where they are in the order. 
 
 ## The Team
 1. Bryan Christiano
