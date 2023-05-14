@@ -22,9 +22,22 @@
         </div>
         </div>
     </div>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-database.js"></script>
+    <script src="../JS/config.js"></script>
+    <script src="../JS/starter-code.js"></script>
+    <script src="../JS/pageBlocker.js"></script>
+    <script src="../JS/login-sign.js"></script>
     <script>
-        const curr_user = firebase.auth().currentUser;
-        console.log(curr_user);
+        // Call the logout method if a user manually enters this page after being logged in
+        if(localStorage.getItem("currentUser")){
+            window.addEventListener('load', function() {
+                logout();  
+            });
+        }
     </script>
 </body>
 </html>

@@ -73,7 +73,7 @@ function readAcceptedOrder(){
       if (snapshot.exists()) {
         snapshot.forEach((childSnapshot) => {
           let orderData = childSnapshot.val();
-          if(orderData.from == sessionStorage.getItem("currentUser") && orderData.status == "accepted"){
+          if(orderData.from == localStorage.getItem("currentUser") && orderData.status == "accepted"){
             var orderRef = firebase
               .database()
               .ref("drivers/" + orderData.driverID);
@@ -109,5 +109,4 @@ function createAcceptedOrder(name, distance){
 window.onload = function(){
   readOrders();
   readAcceptedOrder();
-  console.log(sessionStorage.getItem("currentUser"));
 }

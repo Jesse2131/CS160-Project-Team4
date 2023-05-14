@@ -65,12 +65,12 @@ function initMap() {
 
 async function fetchRestaurant() {
   const checkUserType = await getDoc(
-    doc(db, "users", sessionStorage.getItem("currentUser"))
+    doc(db, "users", localStorage.getItem("currentUser"))
   );
   let retrievedUserType = checkUserType.data().type;
 
   const curr_user = await getDoc(
-    doc(db, retrievedUserType, sessionStorage.getItem("currentUser"))
+    doc(db, retrievedUserType, localStorage.getItem("currentUser"))
   );
   restaurant = curr_user.data();
   updateRestaurantLocation(curr_user.data().address);
@@ -249,7 +249,7 @@ async function showRouteForBestDriver() {
     distance: bestDriver.distance,
     driverID: bestDriver.id,
     duration:bestDriver.duration,
-    from: sessionStorage.getItem("currentUser"),
+    from: localStorage.getItem("currentUser"),
     orderID: ordersID,
     status: "accepted",
     to: cusID,
@@ -504,7 +504,7 @@ window.onload = async function () {
   await fetchRestaurant();
   await fetchDrivers();
   console.log(localStorage.getItem("current_order_id"));
-  console.log(sessionStorage.getItem("currentUser"));
+  console.log(localStorage.getItem("currentUser"));
 };
 
 window.initMap = initMap;

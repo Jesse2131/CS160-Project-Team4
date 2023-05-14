@@ -4,25 +4,27 @@ let autocomplete;
 function login() {
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
-
   firebase.auth().signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
-
       // Get logged in user and their type
       const curr_user = firebase.auth().currentUser.uid;
+      localStorage.setItem("currentUser", curr_user);
       getUserType(curr_user).then((user_type) => {
 
         // Redirect to correct dashboard
         if (user_type === 'customers') {
           console.log('customer');
+          localStorage.setItem("userType", "customers");
           window.location.href = 'customerDash.html';
         }
         else if (user_type === 'drivers') {
           console.log('driver');
+          localStorage.setItem("userType", "drivers");
           window.location.href = "welcomeDashboardDriver.html";
         }
         else {
           console.log('restaurants');
+          localStorage.setItem("userType", "restaurants");
           window.location.href = "restaurantDash.html";
         }
       }).catch((error) => {
@@ -93,6 +95,7 @@ async function signup() {
 
       try {
         const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
+        localStorage.setItem("currentUser", firebase.auth().currentUser.uid);
         addToDB(user_type, email, name, formattedAddress);
         // redirect to success page or display success message
       } catch (error) {
@@ -122,6 +125,8 @@ function logout() {
         ])
         .then(() => {
           firebase.auth().signOut().then(() => {
+            localStorage.clear();
+            sessionStorage.clear();
             window.location.href = "index.html";
           }).catch((error) => {
             console.error(error);
@@ -133,6 +138,8 @@ function logout() {
       }
       else{
         firebase.auth().signOut().then(() => {
+          localStorage.clear();
+          sessionStorage.clear();
           window.location.href = "index.html";
         }).catch((error) => {
           console.error(error);
@@ -145,6 +152,8 @@ function logout() {
     
   }
   else{
+    localStorage.clear();
+    sessionStorage.clear();
     window.location.href = "index.html";
   }
 }
@@ -195,14 +204,17 @@ async function addToDB(...params) {
       // Redirect to appropriate dashboard
       if (user_type === 'customers') {
         console.log('customer');
+        localStorage.setItem("userType", "customers");
         window.location.href = 'customerDash.html';
       }
       else if (user_type === 'drivers') {
         console.log('driver');
+        localStorage.setItem("userType", "drivers");
         window.location.href = "welcomeDashboardDriver.html";
       }
       else {
         console.log('restaurants');
+        localStorage.setItem("userType", "restaurants");
         window.location.href = "restaurantDash.html";
       }
     })

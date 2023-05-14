@@ -162,7 +162,7 @@ function confirmDelivery() {
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         // Set session storage
-        sessionStorage.setItem("currentUser", user.uid);
+        // sessionStorage.setItem("currentUser", user.uid);
         // Display account page info
         display_user_info(user);
         setTimeout(function () {
@@ -212,7 +212,7 @@ function display_user_info(user) {
             const retrievedLocation = doc.data().currentLocation;
             // Update account button to show currently logged in user
             document.getElementById("nav-logged-in-user").innerHTML = "Welcome " + retrievedName;
-            localStorage.setItem("userName", retrievedName);
+            // localStorage.setItem("userName", retrievedName);
             if (retrievedOrder1 !== "none") {
                 but1.classList.remove('disabledButton');
             }

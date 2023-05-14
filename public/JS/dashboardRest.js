@@ -13,7 +13,7 @@ const database = firebase.database();
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         // Set session storage
-        sessionStorage.setItem("currentUser", user.uid);
+        // sessionStorage.setItem("currentUser", user.uid);
         // Display account page info
         display_user_info(user);
         setTimeout(function () {
