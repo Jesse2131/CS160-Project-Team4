@@ -11,11 +11,19 @@ function addToMenu(event){
     const curr_user = firebase.auth().currentUser;
     // Input form values
     const item_name = document.getElementById("new-menu-item-name").value;
-    const item_price = document.getElementById("new-menu-item-price").value;
-    
+    let item_price = "";
+    try{
+        item_price = parseFloat(document.getElementById("new-menu-item-price").value).toFixed(2);
+    }
+    catch(error){
+        document.getElementById("errormsg").innerHTML = error.message;
+        return;
+    }
+
+    console.log(item_price);
     // Make sure item_price is a number
-    if (isNaN(item_price)){
-        document.getElementById("errormsg").innerHTML = "Price must be a number";
+    if (isNaN(item_price) || item_price < 0 || item_price > 100){
+        document.getElementById("errormsg").innerHTML = "Price must be a number between 0 and 100";
         return;
     }
 
@@ -79,7 +87,7 @@ function createCollection(...params) {
                 const menuListElement = document.getElementById('menu-list');
                 const menuItemElement = document.createElement('div');
                 menuItemElement.classList.add('menu-item');
-                menuItemElement.innerHTML = `<span>${counter}. <h1>${item_name}</h1> $<p>${item_price.toFixed(2)}</p></span>`;
+                menuItemElement.innerHTML = `<span>${counter}. <h1>${item_name}</h1> $<p>${item_price}</p></span>`;
                 menuListElement.appendChild(menuItemElement);
                 counter++;
             }).catch((error) => {
