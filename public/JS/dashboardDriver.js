@@ -478,11 +478,19 @@ function drawRoute() {
 function detectChange() {
     const curr_user = firebase.auth().currentUser;
     const collectionRef = db.collection("drivers").where(firebase.firestore.FieldPath.documentId(),"==",curr_user.uid);
+    const userRef = db.collection("drivers").doc(curr_user.uid)
     collectionRef.onSnapshot((querySnapshot) => {
         querySnapshot.docChanges().forEach((change) => {
-            if (currStatus === "online" && currOrder1 === "none" && change.type === "modified") {
-                alert("Incoming order to fulfill!");
-                window.location.reload(true);
+            if (currStatus === "online" && currOrder1 === "none" && change.type === "modified")  {
+
+                userRef.get().then((doc) => {
+                    const retrievedOrder = doc.data().order1;
+                    console.log(retrievedOrder);
+                    if (retrievedOrder !== "none") {
+                        alert("Incoming order to fulfill!");
+                        window.location.reload(true);
+                    }
+                });
             }
         });
     });
